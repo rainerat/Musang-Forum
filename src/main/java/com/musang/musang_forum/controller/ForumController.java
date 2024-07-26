@@ -1,4 +1,4 @@
-package com.musang.musang_forum;
+package com.musang.musang_forum.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
