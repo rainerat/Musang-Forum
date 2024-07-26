@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1015.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1015.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.SignUpController">
    <top>
       <HBox alignment="CENTER" prefHeight="65.0" prefWidth="415.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
@@ -52,7 +52,7 @@
                         <Font name="Segoe UI" size="20.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="45.0" promptText="Enter your username" style="-fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="usernameField" prefHeight="45.0" promptText="Enter your username" style="-fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Segoe UI" size="16.0" />
                      </font>
@@ -66,7 +66,7 @@
                         <Font name="Segoe UI" size="20.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="45.0" promptText="Enter your email" style="-fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="emailField" prefHeight="45.0" promptText="Enter your email" style="-fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Segoe UI" size="16.0" />
                      </font>
@@ -80,7 +80,7 @@
                         <Font name="Segoe UI" size="20.0" />
                      </font>
                   </Label>
-                  <DatePicker prefHeight="45.0" prefWidth="235.0" promptText="DD/MM/YYYY" style="-fx-font-size: 16; -fx-font-family: 'Segoe UI'; -fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS" />
+                  <DatePicker fx:id="dobField" prefHeight="45.0" prefWidth="235.0" promptText="DD/MM/YYYY" style="-fx-font-size: 16; -fx-font-family: 'Segoe UI'; -fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="415.0" spacing="20.0">
@@ -90,7 +90,7 @@
                         <Font name="Segoe UI" size="20.0" />
                      </font>
                   </Label>
-                  <PasswordField prefHeight="45.0" promptText="Enter your password" style="-fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS">
+                  <PasswordField fx:id="passwordField1" prefHeight="45.0" promptText="Enter your password" style="-fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Segoe UI" size="16.0" />
                      </font>
@@ -104,14 +104,14 @@
                         <Font name="Segoe UI" size="20.0" />
                      </font>
                   </Label>
-                  <PasswordField prefHeight="45.0" promptText="Confirm password" style="-fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS">
+                  <PasswordField fx:id="passwordField2" prefHeight="45.0" promptText="Confirm password" style="-fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Segoe UI" size="16.0" />
                      </font>
                   </PasswordField>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="415.0" style="-fx-background-color: #605341; -fx-background-radius: 30;" text="Submit" textFill="WHITE">
+            <Button fx:id="submitButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="415.0" style="-fx-background-color: #605341; -fx-background-radius: 30;" text="Submit" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Semibold" size="21.0" />
                </font>
@@ -131,7 +131,7 @@
                         <Font name="Segoe UI" size="14.0" />
                      </font>
                   </Label>
-                  <Label text="Sign in" textFill="BLUE">
+                  <Label fx:id="signInLabel" onMouseClicked="#openSignInPage" onMouseEntered="#signInEnter" onMouseExited="#signInExit" text="Sign in" textFill="BLUE">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>
