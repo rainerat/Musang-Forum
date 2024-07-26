@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1015.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.SignUpController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1015.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.SignUpController">
    <top>
       <HBox alignment="CENTER" prefHeight="65.0" prefWidth="415.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
@@ -30,15 +30,15 @@
             </Label>
          </children>
          <BorderPane.margin>
-            <Insets bottom="20.0" top="40.0" />
+            <Insets />
          </BorderPane.margin>
       </HBox>
    </top>
    <padding>
-      <Insets left="300.0" right="300.0" />
+      <Insets bottom="30.0" left="300.0" right="300.0" top="30.0" />
    </padding>
    <center>
-      <VBox prefHeight="200.0" prefWidth="415.0" spacing="14.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="415.0" spacing="1.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Sign up">
                <font>
@@ -58,7 +58,15 @@
                      </font>
                   </TextField>
                </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </HBox>
+            <Label alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="415.0" text="Username must be unique" textFill="#c04431">
+               <font>
+                  <Font name="Segoe UI Semilight" size="12.0" />
+               </font>
+            </Label>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="415.0" spacing="20.0">
                <children>
                   <Label prefWidth="160.0" text="Email">
@@ -72,7 +80,15 @@
                      </font>
                   </TextField>
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </HBox>
+            <Label alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="415.0" text="Error message" textFill="#c04431">
+               <font>
+                  <Font name="Segoe UI Semilight" size="12.0" />
+               </font>
+            </Label>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="415.0" spacing="20.0">
                <children>
                   <Label prefWidth="160.0" text="Date of birth">
@@ -82,7 +98,15 @@
                   </Label>
                   <DatePicker fx:id="dobField" prefHeight="45.0" prefWidth="235.0" promptText="DD/MM/YYYY" style="-fx-font-size: 16; -fx-font-family: 'Segoe UI'; -fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS" />
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </HBox>
+            <Label alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="415.0" text="Error message" textFill="#c04431">
+               <font>
+                  <Font name="Segoe UI Semilight" size="12.0" />
+               </font>
+            </Label>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="415.0" spacing="20.0">
                <children>
                   <Label prefWidth="160.0" text="Password">
@@ -96,7 +120,15 @@
                      </font>
                   </PasswordField>
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </HBox>
+            <Label alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="415.0" text="Error message" textFill="#c04431">
+               <font>
+                  <Font name="Segoe UI Semilight" size="12.0" />
+               </font>
+            </Label>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="415.0" spacing="20.0">
                <children>
                   <Label prefWidth="160.0" text="Confirm Password">
@@ -110,8 +142,16 @@
                      </font>
                   </PasswordField>
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </HBox>
-            <Button fx:id="submitButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="415.0" style="-fx-background-color: #605341; -fx-background-radius: 30;" text="Submit" textFill="WHITE">
+            <Label alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="415.0" text="Error message" textFill="#c04431">
+               <font>
+                  <Font name="Segoe UI Semilight" size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#saveUser" prefHeight="50.0" prefWidth="415.0" style="-fx-background-color: #605341; -fx-background-radius: 30;" text="Submit" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Semibold" size="21.0" />
                </font>
@@ -121,7 +161,7 @@
             </Button>
             <Separator prefWidth="200.0">
                <VBox.margin>
-                  <Insets top="15.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
             </Separator>
             <HBox alignment="CENTER" prefHeight="0.0" prefWidth="415.0" spacing="5.0">
@@ -138,12 +178,12 @@
                   </Label>
                </children>
                <VBox.margin>
-                  <Insets />
+                  <Insets top="10.0" />
                </VBox.margin>
             </HBox>
          </children>
          <BorderPane.margin>
-            <Insets bottom="50.0" />
+            <Insets />
          </BorderPane.margin>
       </VBox>
    </center>
