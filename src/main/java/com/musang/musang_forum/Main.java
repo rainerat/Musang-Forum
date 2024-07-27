@@ -13,7 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("images/Musang_Logo.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("images/musang_logo_bg.png"))));
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/SignUp.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Musang Forum");

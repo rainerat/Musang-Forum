@@ -52,15 +52,17 @@ public class SignUpController extends Controller {
     private Label signInLabel;
 
     @FXML
-    protected void saveUser() {
-        User validatedUser = validateUser();
-//        if (validatedUser != null) validatedUser.save();
+    protected void saveUser() throws IOException {
+        User user = validateUser();
+
+        if (user != null) {
+            user.save();
+            this.openOpenPopUpPage();
+        }
     }
 
-    private String normalFieldStyle = "-fx-background-color: #ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2";
-    private String errorFieldStyle =  "-fx-background-color: #ffffff; -fx-border-color: c04431; -fx-border-radius: 5; -fx-border-width: 1.2";
-    private String normalDateStyle = "-fx-font-size: 16; -fx-font-family: 'Segoe UI'; -fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;";
-    private String errorDateStyle = "-fx-font-size: 16; -fx-font-family: 'Segoe UI'; -fx-background-color: ffffff; -fx-border-color: c04431; -fx-border-radius: 5; -fx-border-width: 1.2;";
+    private final String normalFieldStyle = "-fx-background-color: #ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2";
+    private final String errorFieldStyle =  "-fx-background-color: #ffffff; -fx-border-color: c04431; -fx-border-radius: 5; -fx-border-width: 1.2";
 
     private User validateUser() {
         String username = usernameField.getText();
@@ -122,7 +124,7 @@ public class SignUpController extends Controller {
         }
 
         // email must be valid
-        if (!(email.contains("@") && email.contains(".com"))) {
+        if (!(email.contains("@") && email.endsWith(".com"))) {
             emailField.setStyle(errorFieldStyle);
             emailErrorLabel.setText("Invalid email address");
             emailErrorLabel.setVisible(true);
@@ -137,13 +139,13 @@ public class SignUpController extends Controller {
     private boolean validateDob(LocalDate dob) {
         // date can't be empty
         if (dob == null) {
-            dobField.setStyle(errorDateStyle);
+            dobField.setStyle("-fx-font-size: 16; -fx-font-family: 'Segoe UI'; -fx-background-color: ffffff; -fx-border-color: c04431; -fx-border-radius: 5; -fx-border-width: 1.2;");
             dobErrorLabel.setText("This field is required");
             dobErrorLabel.setVisible(true);
             return false;
         }
 
-        dobField.setStyle(normalDateStyle);
+        dobField.setStyle("-fx-font-size: 16; -fx-font-family: 'Segoe UI'; -fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;");
         dobErrorLabel.setVisible(false);
         return true;
     }
@@ -190,9 +192,14 @@ public class SignUpController extends Controller {
         return true;
     }
 
+    private void openOpenPopUpPage() throws IOException {
+        stage = (Stage) submitButton.getScene().getWindow();
+        stage.setScene(new Scene(new FXMLLoader(Main.class.getResource("view/PopUp.fxml")).load()));
+    }
+
     @FXML
     protected void openSignInPage() throws IOException {
-        Stage stage = (Stage) submitButton.getScene().getWindow();
+        stage = (Stage) submitButton.getScene().getWindow();
         stage.setScene(new Scene(new FXMLLoader(Main.class.getResource("view/SignIn.fxml")).load()));
     }
 

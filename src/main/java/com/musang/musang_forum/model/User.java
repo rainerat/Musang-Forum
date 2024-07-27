@@ -69,7 +69,7 @@ public class User {
     }
 
     public void save() {
-        String query = "INSERT INTO user VALUES (?,?,?,?)";
+        String query = "INSERT INTO user (name, dob, email, password) VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = Database.getInstance().prepareStatement(query)) {
             preparedStatement.setString(1, name);
@@ -78,7 +78,7 @@ public class User {
             preparedStatement.setString(4, password);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }
