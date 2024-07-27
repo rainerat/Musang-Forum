@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Main extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
         stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("images/Musang_Logo.png"))));

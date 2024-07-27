@@ -13,22 +13,37 @@ import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 
-public class SignUpController {
+public class SignUpController extends Controller {
 
     @FXML
     private TextField usernameField;
 
     @FXML
+    private Label usernameErrorLabel;
+
+    @FXML
     private TextField emailField;
+
+    @FXML
+    private Label emailErrorLabel;
 
     @FXML
     private DatePicker dobField;
 
     @FXML
-    private PasswordField passwordField1;
+    private Label dobErrorLabel;
 
     @FXML
-    private PasswordField passwordField2;
+    private PasswordField passwordField;
+
+    @FXML
+    private Label passwordErrorLabel;
+
+    @FXML
+    private PasswordField confirmPwField;
+
+    @FXML
+    private Label confirmPwErrorLabel;
 
     @FXML
     private Button submitButton;
@@ -42,79 +57,136 @@ public class SignUpController {
 //        if (validatedUser != null) validatedUser.save();
     }
 
+    private String normalFieldStyle = "-fx-background-color: #ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2";
+    private String errorFieldStyle =  "-fx-background-color: #ffffff; -fx-border-color: c04431; -fx-border-radius: 5; -fx-border-width: 1.2";
+    private String normalDateStyle = "-fx-font-size: 16; -fx-font-family: 'Segoe UI'; -fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;";
+    private String errorDateStyle = "-fx-font-size: 16; -fx-font-family: 'Segoe UI'; -fx-background-color: ffffff; -fx-border-color: c04431; -fx-border-radius: 5; -fx-border-width: 1.2;";
+
     private User validateUser() {
         String username = usernameField.getText();
-        LocalDate date = dobField.getValue();
         String email = emailField.getText();
-        String password = passwordField1.getText();
-        String confirmPw = passwordField2.getText();
+        LocalDate dob = dobField.getValue();
+        String password = passwordField.getText();
+        String confirmPw = confirmPwField.getText();
 
-        // Border styles
-        String normalFieldStyle = "-fx-background-color: #ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2";
-        String errorFieldStyle =  "-fx-background-color: #ffffff; -fx-border-color: c04431; -fx-border-radius: 5; -fx-border-width: 1.2";
-        String normalDateStyle = "-fx-font-size: 16; -fx-font-family: 'Segoe UI'; -fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;";
-        String errorDateStyle = "-fx-font-size: 16; -fx-font-family: 'Segoe UI'; -fx-background-color: ffffff; -fx-border-color: c04431; -fx-border-radius: 5; -fx-border-width: 1.2;";
+        boolean isUsernameValid = validateUsername(username);
+        boolean isEmailValid = validateEmail(email);
+        boolean isDobValid = validateDob(dob);
+        boolean isPasswordValid = validatePassword(password);
+        boolean isConfirmPwValid = validateConfirmPw(password, confirmPw);
 
-        // all text fields must be filled
-        if (!isFilled(usernameField, emailField, passwordField1, passwordField2)) {
-            usernameField.setStyle(errorFieldStyle);
-            emailField.setStyle(errorFieldStyle);
-            dobField.setStyle(errorDateStyle);
-            passwordField1.setStyle(errorFieldStyle);
-            passwordField2.setStyle(errorFieldStyle);
+        if (!(isUsernameValid && isEmailValid && isDobValid && isPasswordValid && isConfirmPwValid)) {
             return null;
         }
 
-        // name can't be less than 4 characters
-        if (username.length() < 4) {
+        return new User(username, Date.valueOf(dob), email, password);
+    }
+
+    private boolean validateUsername(String username) {
+        if (username.isBlank()) {
             usernameField.setStyle(errorFieldStyle);
-            return null;
+            usernameErrorLabel.setText("This field is required");
+            usernameErrorLabel.setVisible(true);
+            return false;
+        }
+
+        // name can't be less than 4 characters
+        if (username.length() < 3) {
+            usernameField.setStyle(errorFieldStyle);
+            usernameErrorLabel.setText("Username must have at least 3 characters");
+            usernameErrorLabel.setVisible(true);
+            return false;
         }
 
         // username must be unique
         for (String otherUsername : UserRepository.getAllUsernames()) {
             if (otherUsername.equals(username)) {
                 usernameField.setStyle(errorFieldStyle);
-                return null;
+                usernameErrorLabel.setText("Username already taken");
+                usernameErrorLabel.setVisible(true);
+                return false;
             }
         }
 
-        // date can't be empty
-        Date dob;
-        if (date == null) {
-            dobField.setStyle(errorDateStyle);
-            return null;
-        } else {
-            dob = Date.valueOf(dobField.getValue());
+        usernameField.setStyle(normalFieldStyle);
+        usernameErrorLabel.setVisible(false);
+        return true;
+    }
+
+    private boolean validateEmail(String email) {
+        if (email.isBlank()) {
+            emailField.setStyle(errorFieldStyle);
+            emailErrorLabel.setText("This field is required");
+            emailErrorLabel.setVisible(true);
+            return false;
         }
 
         // email must be valid
         if (!(email.contains("@") && email.contains(".com"))) {
-            // something here
-            return null;
+            emailField.setStyle(errorFieldStyle);
+            emailErrorLabel.setText("Invalid email address");
+            emailErrorLabel.setVisible(true);
+            return false;
+        }
+
+        emailField.setStyle(normalFieldStyle);
+        emailErrorLabel.setVisible(false);
+        return true;
+    }
+
+    private boolean validateDob(LocalDate dob) {
+        // date can't be empty
+        if (dob == null) {
+            dobField.setStyle(errorDateStyle);
+            dobErrorLabel.setText("This field is required");
+            dobErrorLabel.setVisible(true);
+            return false;
+        }
+
+        dobField.setStyle(normalDateStyle);
+        dobErrorLabel.setVisible(false);
+        return true;
+    }
+
+    private boolean validatePassword(String password) {
+        if (password.isBlank()) {
+            passwordField.setStyle(errorFieldStyle);
+            passwordErrorLabel.setText("This field is required");
+            passwordErrorLabel.setVisible(true);
+            return false;
         }
 
         // password can't be less than 6 characters
         if (password.length() < 6) {
-            // something here
-            return null;
+            passwordField.setStyle(errorFieldStyle);
+            passwordErrorLabel.setText("Password must have at least 6 characters");
+            passwordErrorLabel.setVisible(true);
+            return false;
+        }
+
+        passwordField.setStyle(normalFieldStyle);
+        passwordErrorLabel.setVisible(false);
+        return true;
+    }
+
+    private boolean validateConfirmPw(String password, String confirmPw) {
+        if (confirmPw.isBlank()) {
+            confirmPwField.setStyle(errorFieldStyle);
+            confirmPwErrorLabel.setText("This field is required");
+            confirmPwErrorLabel.setVisible(true);
+            return false;
         }
 
         // passwords must match
         if (!confirmPw.equals(password)) {
-            // something here
-            return null;
+            confirmPwField.setStyle(errorFieldStyle);
+            confirmPwErrorLabel.setText("Passwords do not match");
+            confirmPwErrorLabel.setVisible(true);
+            return false;
         }
 
-        return new User(username, dob, email, password);
-    }
-
-    private boolean isFilled(TextField... fields) {
-        for (TextField field : fields) {
-            if (field.getText().isEmpty()) {
-                return false;
-            }
-        }
+        confirmPwField.setStyle(normalFieldStyle);
+        confirmPwErrorLabel.setVisible(false);
         return true;
     }
 
