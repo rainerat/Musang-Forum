@@ -80,27 +80,41 @@ public class UserRepository {
             throw new RuntimeException(e);
         }
 
-        return null;
+        return "";
     }
 
-    public static boolean login(String username, String hash) {
-        String query = "SELECT * FROM user WHERE username = ? AND hash = ?";
+    public static String getSaltByEmail(String email) {
+        String query = "SELECT salt FROM user WHERE email = ?";
 
         try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
-            ps.setString(1, username);
-            ps.setString(2, hash);
+            ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                CurrentUser.getInstance().set(
+                return rs.getString(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return "";
+    }
+
+    public static boolean login(String identifier, String hash) {
+        String query = "SELECT * FROM user WHERE (username = ? OR email = ?) AND hash = ?";
+
+        try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
+            ps.setString(1, identifier);
+            ps.setString(2, identifier);
+            ps.setString(3, hash);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                CurrentUser.getInstance()
+                        .set(
                         new User(
-                            rs.getInt("id"),
-                            rs.getString("username"),
-                            rs.getDate("dob"),
-                            rs.getString("email"),
-                            rs.getString("salt"),
-                            rs.getString("hash")
-                        ));
+                            rs.getInt("id"), rs.getString("username"), rs.getDate("dob"),
+                            rs.getString("email"), rs.getString("salt"), rs.getString("hash")));
                 return true;
             }
             return false;

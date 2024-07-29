@@ -1,7 +1,6 @@
 package com.musang.musang_forum.controller;
 
 import com.musang.musang_forum.Main;
-import com.musang.musang_forum.model.User;
 import com.musang.musang_forum.repo.UserRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +13,7 @@ import java.io.IOException;
 public class SignInController extends Controller {
 
     @FXML
-    private TextField usernameField;
+    private TextField identifierField;
 
     @FXML
     private PasswordField passwordField;
@@ -38,19 +37,29 @@ public class SignInController extends Controller {
         signUpLabel.setStyle("-fx-underline: false; -fx-cursor: default");
     }
 
+
     @FXML
     private void handleSignIn() throws IOException {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        String salt = UserRepository.getSaltByUsername(username);
         final String errorFieldStyle =  "-fx-background-color: #ffffff; -fx-border-color: c04431; -fx-border-radius: 5; -fx-border-width: 1.2";
+        String identifier = identifierField.getText();
+        String password = passwordField.getText();
+        String salt;
 
-        if (!UserRepository.login(username, encryptionService.getHash(password, salt))) {
+        if (identifier.isBlank()) identifierField.setStyle(errorFieldStyle);
+        if (password.isBlank()) passwordField.setStyle(errorFieldStyle);
+
+        if (identifier.contains("@")) {
+            salt = UserRepository.getSaltByEmail(identifier);
+        } else {
+            salt = UserRepository.getSaltByUsername(identifier);
+        }
+
+        boolean isValidLogin = UserRepository.login(identifier, encryptionService.getHash(password, salt));
+        if (!isValidLogin) {
             errorLabel.setVisible(true);
-            usernameField.setStyle(errorFieldStyle);
+            identifierField.setStyle(errorFieldStyle);
             passwordField.setStyle(errorFieldStyle);
         } else {
-            System.out.println(currentUser.get().getUsername());
             openForumPage();
         }
     }
