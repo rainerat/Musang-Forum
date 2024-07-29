@@ -14,4 +14,5 @@ module com.musang.musang_forum {
     exports com.musang.musang_forum.controller;
     exports com.musang.musang_forum.server;
     exports com.musang.musang_forum.model;
+    exports com.musang.musang_forum.service;
 }

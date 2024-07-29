@@ -81,7 +81,10 @@ public class SignUpController extends Controller {
             return null;
         }
 
-        return new User(username, Date.valueOf(dob), email, password);
+        String salt = encryptionService.nextSalt();
+        String hash = encryptionService.getHash(password, salt);
+
+        return new User(username, Date.valueOf(dob), email, salt, hash);
     }
 
     private boolean validateUsername(String username) {
@@ -92,22 +95,25 @@ public class SignUpController extends Controller {
             return false;
         }
 
-        // name can't be less than 4 characters
-        if (username.length() < 3) {
+        if (username.length() < 3 || username.length() > 20) {
             usernameField.setStyle(errorFieldStyle);
-            usernameErrorLabel.setText("Username must have at least 3 characters");
+            usernameErrorLabel.setText("Username must be between 3 and 20 characters.");
             usernameErrorLabel.setVisible(true);
             return false;
         }
 
-        // username must be unique
-        for (String otherUsername : UserRepository.getAllUsernames()) {
-            if (otherUsername.equals(username)) {
-                usernameField.setStyle(errorFieldStyle);
-                usernameErrorLabel.setText("Username already taken");
-                usernameErrorLabel.setVisible(true);
-                return false;
-            }
+        if (!username.matches("^[\\w.-]+(?<!\\.)$")) {
+            usernameField.setStyle(errorFieldStyle);
+            usernameErrorLabel.setText("Username can only contain letters, numbers, and symbols (' . ', ' - ', ' _ ')");
+            usernameErrorLabel.setVisible(true);
+            return false;
+        }
+
+        if (UserRepository.findByUsername(username) != null) {
+            usernameField.setStyle(errorFieldStyle);
+            usernameErrorLabel.setText("Username already taken");
+            usernameErrorLabel.setVisible(true);
+            return false;
         }
 
         usernameField.setStyle(normalFieldStyle);
@@ -123,10 +129,16 @@ public class SignUpController extends Controller {
             return false;
         }
 
-        // email must be valid
-        if (!(email.contains("@") && email.endsWith(".com"))) {
+        if (!email.contains("@") || !(email.endsWith(".com") || email.endsWith(".COM"))) {
             emailField.setStyle(errorFieldStyle);
-            emailErrorLabel.setText("Invalid email address");
+            emailErrorLabel.setText("Invalid email address. Example: name@example.com.");
+            emailErrorLabel.setVisible(true);
+            return false;
+        }
+
+        if (UserRepository.findByEmail(email) != null) {
+            emailField.setStyle(errorFieldStyle);
+            emailErrorLabel.setText("Email is already in use");
             emailErrorLabel.setVisible(true);
             return false;
         }
@@ -137,7 +149,6 @@ public class SignUpController extends Controller {
     }
 
     private boolean validateDob(LocalDate dob) {
-        // date can't be empty
         if (dob == null) {
             dobField.setStyle("-fx-font-size: 16; -fx-font-family: 'Segoe UI'; -fx-background-color: ffffff; -fx-border-color: c04431; -fx-border-radius: 5; -fx-border-width: 1.2;");
             dobErrorLabel.setText("This field is required");
@@ -158,10 +169,30 @@ public class SignUpController extends Controller {
             return false;
         }
 
-        // password can't be less than 6 characters
         if (password.length() < 6) {
             passwordField.setStyle(errorFieldStyle);
-            passwordErrorLabel.setText("Password must have at least 6 characters");
+            passwordErrorLabel.setText("Password must be at least 6 characters long");
+            passwordErrorLabel.setVisible(true);
+            return false;
+        }
+
+        if (password.contains(" ")) {
+            passwordField.setStyle(errorFieldStyle);
+            passwordErrorLabel.setText("Password can't contain spaces.");
+            passwordErrorLabel.setVisible(true);
+            return false;
+        }
+
+        if (password.equalsIgnoreCase(usernameField.getText())) {
+            passwordField.setStyle(errorFieldStyle);
+            passwordErrorLabel.setText("Password is too weak");
+            passwordErrorLabel.setVisible(true);
+            return false;
+        }
+
+        if (!password.matches(".*[A-Z].*") || !password.matches(".*[a-z].*") || !password.matches(".*\\d.*")) {
+            passwordField.setStyle(errorFieldStyle);
+            passwordErrorLabel.setText("Must contain at least one uppercase and lowercase letter and one number");
             passwordErrorLabel.setVisible(true);
             return false;
         }
@@ -179,7 +210,6 @@ public class SignUpController extends Controller {
             return false;
         }
 
-        // passwords must match
         if (!confirmPw.equals(password)) {
             confirmPwField.setStyle(errorFieldStyle);
             confirmPwErrorLabel.setText("Passwords do not match");

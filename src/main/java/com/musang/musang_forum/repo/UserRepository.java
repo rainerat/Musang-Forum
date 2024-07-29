@@ -1,5 +1,6 @@
 package com.musang.musang_forum.repo;
 
+import com.musang.musang_forum.model.CurrentUser;
 import com.musang.musang_forum.model.User;
 import com.musang.musang_forum.server.Database;
 import javafx.collections.FXCollections;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class UserRepository {
 
-    public static List<User> getAllUsers() {
+    public static List<User> getAll() {
         String query = "SELECT * FROM user";
         List<User> userList = FXCollections.observableArrayList();
 
@@ -19,8 +20,8 @@ public class UserRepository {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 userList.add(
-                        new User(rs.getInt(1), rs.getString(2),
-                                rs.getDate(3), rs.getString(4), rs.getString(5)));
+                        new User(rs.getInt(1), rs.getString(2), rs.getDate(3),
+                                rs.getString(4), rs.getString(5), rs.getString(6)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -29,21 +30,82 @@ public class UserRepository {
         return userList;
     }
 
-    public static List<String> getAllUsernames() {
-        String query = "SELECT username FROM user";
-        List<String> nameList = FXCollections.observableArrayList();
+    public static User findByUsername(String username) {
+        String query = "SELECT * FROM user WHERE username = ?";
 
         try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
+            ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                nameList.add(rs.getString(1));
+
+            if (rs.next()) {
+                return new User(rs.getInt(1), rs.getString(2), rs.getDate(3),
+                        rs.getString(4), rs.getString(5), rs.getString(6));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return nameList;
+        return null;
     }
 
+    public static User findByEmail(String email) {
+        String query = "SELECT * FROM user WHERE email = ?";
 
+        try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new User(rs.getInt(1), rs.getString(2), rs.getDate(3),
+                        rs.getString(4), rs.getString(5), rs.getString(6));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return null;
+    }
+
+    public static String getSaltByUsername(String username) {
+        String query = "SELECT salt FROM user WHERE username = ?";
+
+        try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return null;
+    }
+
+    public static boolean login(String username, String hash) {
+        String query = "SELECT * FROM user WHERE username = ? AND hash = ?";
+
+        try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
+            ps.setString(1, username);
+            ps.setString(2, hash);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                CurrentUser.getInstance().set(
+                        new User(
+                            rs.getInt("id"),
+                            rs.getString("username"),
+                            rs.getDate("dob"),
+                            rs.getString("email"),
+                            rs.getString("salt"),
+                            rs.getString("hash")
+                        ));
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

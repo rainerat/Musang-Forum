@@ -39,21 +39,19 @@ public class SignInController extends Controller {
     }
 
     @FXML
-    private void login() throws IOException {
+    private void handleSignIn() throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
+        String salt = UserRepository.getSaltByUsername(username);
         final String errorFieldStyle =  "-fx-background-color: #ffffff; -fx-border-color: c04431; -fx-border-radius: 5; -fx-border-width: 1.2";
 
-        for (User user : UserRepository.getAllUsers()) {
-            if (!(username.equals(user.getUsername()) && password.equals(user.getPassword()))) {
-                errorLabel.setVisible(true);
-                usernameField.setStyle(errorFieldStyle);
-                passwordField.setStyle(errorFieldStyle);
-            } else {
-                currentUser.set(user);
-                System.out.println(currentUser.get().getUsername());
-                openForumPage();
-            }
+        if (!UserRepository.login(username, encryptionService.getHash(password, salt))) {
+            errorLabel.setVisible(true);
+            usernameField.setStyle(errorFieldStyle);
+            passwordField.setStyle(errorFieldStyle);
+        } else {
+            System.out.println(currentUser.get().getUsername());
+            openForumPage();
         }
     }
 
