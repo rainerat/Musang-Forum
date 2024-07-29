@@ -30,7 +30,7 @@ public class UserRepository {
     }
 
     public static List<String> getAllUsernames() {
-        String query = "SELECT name FROM user";
+        String query = "SELECT username FROM user";
         List<String> nameList = FXCollections.observableArrayList();
 
         try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {

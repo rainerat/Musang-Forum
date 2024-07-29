@@ -8,21 +8,21 @@ import java.sql.SQLException;
 
 public class User {
     private int id;
-    private String name;
+    private String username;
     private Date dob;
     private String email;
     private String password;
 
     public User(int id, String name, Date dob, String email, String password) {
         this.id = id;
-        this.name = name;
+        this.username = name;
         this.dob = dob;
         this.email = email;
         this.password = password;
     }
 
     public User(String name, Date dob, String email, String password) {
-        this.name = name;
+        this.username = name;
         this.dob = dob;
         this.email = email;
         this.password = password;
@@ -36,12 +36,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Date getDob() {
@@ -69,10 +69,10 @@ public class User {
     }
 
     public void save() {
-        String query = "INSERT INTO user (name, dob, email, password) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO user (username, dob, email, password) VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = Database.getInstance().prepareStatement(query)) {
-            preparedStatement.setString(1, name);
+            preparedStatement.setString(1, username);
             preparedStatement.setDate(2, dob);
             preparedStatement.setString(3, email);
             preparedStatement.setString(4, password);
