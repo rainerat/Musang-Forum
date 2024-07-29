@@ -1,14 +1,19 @@
 package com.musang.musang_forum.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 
 public class ForumController {
     @FXML
-    private Label welcomeText;
+    private HBox myAccountBox;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    protected void onMyAccountEntered() {
+        myAccountBox.setStyle("-fx-background-color: #efefef; -fx-background-radius: 10; -fx-cursor: hand;");
+    }
+
+    @FXML
+    protected void onMyAccountExited() {
+        myAccountBox.setStyle("-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-cursor: default");
     }
 }
