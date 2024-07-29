@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1015.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.SignInController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1015.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.SignInController">
    <top>
       <HBox alignment="CENTER" prefHeight="65.0" prefWidth="415.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
@@ -72,7 +72,12 @@
                   </PasswordField>
                </children>
             </HBox>
-            <Button fx:id="submitButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="415.0" style="-fx-background-color: #605341; -fx-background-radius: 30;" text="Submit" textFill="WHITE">
+            <Label fx:id="errorLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="409.0" text="The username or password you entered is incorrect" textFill="#c04431" visible="false">
+               <font>
+                  <Font name="Segoe UI Semilight" size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#validateUser" prefHeight="50.0" prefWidth="415.0" style="-fx-background-color: #605341; -fx-background-radius: 30;" text="Submit" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Semibold" size="21.0" />
                </font>

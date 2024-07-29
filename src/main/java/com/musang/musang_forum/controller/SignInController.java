@@ -1,6 +1,8 @@
 package com.musang.musang_forum.controller;
 
 import com.musang.musang_forum.Main;
+import com.musang.musang_forum.model.User;
+import com.musang.musang_forum.repo.UserRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SignInController {
+public class SignInController extends Controller{
 
     @FXML
     private TextField usernameField;
@@ -22,6 +24,9 @@ public class SignInController {
 
     @FXML
     private Label signUpLabel;
+
+    @FXML
+    private Label errorLabel;
 
     @FXML
     protected void openSignInPage() throws IOException {
@@ -38,4 +43,29 @@ public class SignInController {
     protected void signInExit() {
         signUpLabel.setStyle("-fx-underline: false; -fx-cursor: default");
     }
+
+    @FXML
+    private void validateUser() throws IOException {
+
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+       for(User correctCredential : UserRepository.getAllUsers()){
+
+            if(username.equals(correctCredential.getName()) && password.equals(correctCredential.getPassword())){
+                openForumPage();
+
+            } else {
+                errorLabel.setVisible(true);
+            }
+       }
+
+    }
+
+
+    protected void openForumPage() throws IOException {
+        stage = (Stage) submitButton.getScene().getWindow();
+        stage.setScene(new Scene(new FXMLLoader(Main.class.getResource("view/Forum.fxml")).load()));
+    }
+
 }
