@@ -57,17 +57,17 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="159.0" prefWidth="1015.0" spacing="10.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #e6e6e6; -fx-border-width: 0 0 1 0; -fx-border-radius: 5;">
                <children>
-                  <Label prefHeight="31.0" prefWidth="242.0" text="Nama Forum">
+                  <Label fx:id="forumTitleLabel" prefHeight="31.0" prefWidth="242.0" text="Judul Forum">
                      <font>
                         <Font name="Segoe UI Semibold" size="21.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="27.0" prefWidth="603.0" text="Deskripsi Forum">
+                  <Label fx:id="forumDescLabel" prefHeight="27.0" prefWidth="603.0" text="Deskripsi Forum">
                      <font>
                         <Font name="Segoe UI" size="21.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="95.0" text="view more" textAlignment="CENTER">
+                  <Label fx:id="viewMoreLabel" alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="95.0" text="view more" textAlignment="CENTER">
                      <font>
                         <Font name="Segoe UI Semilight" size="18.0" />
                      </font>
@@ -82,12 +82,12 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="71.0" prefWidth="1015.0" spacing="10.0" style="-fx-background-color: white; -fx-border-color: e6e6e6; -fx-border-width: 1 0 0 0;" BorderPane.alignment="CENTER">
          <children>
-            <TextField prefHeight="45.0" promptText="Type a message" style="-fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 25; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS">
+            <TextField fx:id="messageField" prefHeight="45.0" promptText="Type a message" style="-fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 25; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="100.0" style="-fx-background-color: #605341; -fx-background-radius: 25;" text="Send" textFill="WHITE">
+            <Button fx:id="sendButton" mnemonicParsing="false" onAction="#sendMessage" prefHeight="45.0" prefWidth="100.0" style="-fx-background-color: #605341; -fx-background-radius: 25;" text="Send" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Semibold" size="18.0" />
                </font>
@@ -98,9 +98,9 @@
          </padding></HBox>
    </bottom>
    <center>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+      <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
          <content>
-            <VBox prefHeight="488.0" prefWidth="1000.0" />
+            <VBox fx:id="chatBox" prefHeight="488.0" prefWidth="1000.0" />
          </content>
       </ScrollPane>
    </center>

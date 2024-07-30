@@ -1,6 +1,7 @@
 package com.musang.musang_forum.controller;
 
 import com.musang.musang_forum.Main;
+import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.repo.UserRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,13 +29,8 @@ public class SignInController extends Controller {
     private Label errorLabel;
 
     @FXML
-    protected void signInEnter() {
-        signUpLabel.setStyle("-fx-underline: true; -fx-cursor: hand");
-    }
-
-    @FXML
-    protected void signInExit() {
-        signUpLabel.setStyle("-fx-underline: false; -fx-cursor: default");
+    private void initialize() {
+        stage = (Stage) submitButton.getScene().getWindow();
     }
 
 
@@ -66,12 +62,26 @@ public class SignInController extends Controller {
 
     @FXML
     protected void openSignUpPage() throws IOException {
-        Stage stage = (Stage) submitButton.getScene().getWindow();
         stage.setScene(new Scene(new FXMLLoader(Main.class.getResource("view/SignUp.fxml")).load()));
     }
 
+    // TODO: start back from here - forum controller don't have access to client
     protected void openForumPage() throws IOException {
-        stage = (Stage) submitButton.getScene().getWindow();
-        stage.setScene(new Scene(new FXMLLoader(Main.class.getResource("view/Forum.fxml")).load()));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/Forum.fxml"));
+        ForumController controller = fxmlLoader.getController();
+        Client client = new Client("localhost", 59001, controller);
+        controller.setClient(client);
+
+        stage.setScene(new Scene(fxmlLoader.load()));
+    }
+
+    @FXML
+    protected void signInEnter() {
+        signUpLabel.setStyle("-fx-underline: true; -fx-cursor: hand");
+    }
+
+    @FXML
+    protected void signInExit() {
+        signUpLabel.setStyle("-fx-underline: false; -fx-cursor: default");
     }
 }
