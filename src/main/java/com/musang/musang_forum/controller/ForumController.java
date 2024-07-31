@@ -1,10 +1,13 @@
 package com.musang.musang_forum.controller;
 
+import com.musang.musang_forum.Main;
 import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.model.Forum;
 import com.musang.musang_forum.repo.ForumRepository;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -13,6 +16,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class ForumController extends Controller {
     @FXML
@@ -114,6 +120,12 @@ public class ForumController extends Controller {
         messageBox.setAlignment(Pos.CENTER_LEFT);
 
         return messageBox;
+    }
+
+    @FXML
+    protected void openMyAccountPage() throws IOException {
+        stage = (Stage) sendButton.getScene().getWindow();
+        stage.setScene(new Scene(new FXMLLoader(Main.class.getResource("view/MyAccount.fxml")).load()));
     }
 
     @FXML

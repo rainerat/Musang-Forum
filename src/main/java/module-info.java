@@ -3,9 +3,10 @@ module com.musang.musang_forum {
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
-    requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires de.jensd.fx.glyphs.fontawesome;
+    requires de.jensd.fx.glyphs.iconsfivetwofive;
+    requires de.jensd.fx.glyphs.materialdesignicons;
 
     opens com.musang.musang_forum to javafx.fxml;
     opens com.musang.musang_forum.controller to javafx.fxml;

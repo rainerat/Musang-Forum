@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("images/musang_logo_bg.png"))));
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/SignUp.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/SignIn.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Musang Forum");
         stage.setResizable(false);

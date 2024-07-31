@@ -6,7 +6,7 @@ plugins {
   id 'org.beryx.jlink' version '2.25.0'
 }
 
-group 'org.example'
+group 'com.musang'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -36,9 +36,10 @@ javafx {
 
 dependencies {
   implementation('org.controlsfx:controlsfx:11.1.2')
-  implementation('org.kordamp.ikonli:ikonli-javafx:12.3.1')
-  implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
   implementation ('mysql:mysql-connector-java:8.0.33')
+  implementation ('de.jensd:fontawesomefx-fontawesome:4.7.0-9.1.2')
+  implementation ('de.jensd:fontawesomefx-icons525:4.2.0-9.1.2')
+  implementation ('de.jensd:fontawesomefx-materialdesignfont:2.0.26-9.1.2')
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
