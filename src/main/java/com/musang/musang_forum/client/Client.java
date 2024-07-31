@@ -41,8 +41,7 @@ public class Client {
     }
 
     public void sendMessage(String message) {
-        String userMessage = CurrentUser.getInstance().get().getUsername() + ": " + message;
-        out.println(userMessage);
+        out.println(message);
         this.saveMessage(message);
     }
 
@@ -58,7 +57,7 @@ public class Client {
             out.close();
             socket.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 }

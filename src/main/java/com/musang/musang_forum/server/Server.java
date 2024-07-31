@@ -1,16 +1,11 @@
 package com.musang.musang_forum.server;
 
 import com.musang.musang_forum.model.*;
-import javafx.collections.FXCollections;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Server {
@@ -25,12 +20,12 @@ public class Server {
                 new ClientHandler(listener.accept()).start();
             }
         } catch (IOException e) {
-            throw new RuntimeException();
+            e.printStackTrace();
         }
     }
 
     private static class ClientHandler extends Thread {
-        private Socket socket;
+        private final Socket socket;
         private PrintWriter out;
 
         public ClientHandler(Socket socket) {

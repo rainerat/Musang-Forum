@@ -29,12 +29,6 @@ public class SignInController extends Controller {
     private Label errorLabel;
 
     @FXML
-    private void initialize() {
-        stage = (Stage) submitButton.getScene().getWindow();
-    }
-
-
-    @FXML
     private void handleSignIn() throws IOException {
         final String errorFieldStyle =  "-fx-background-color: #ffffff; -fx-border-color: c04431; -fx-border-radius: 5; -fx-border-width: 1.2";
         String identifier = identifierField.getText();
@@ -62,17 +56,19 @@ public class SignInController extends Controller {
 
     @FXML
     protected void openSignUpPage() throws IOException {
+        stage = (Stage) submitButton.getScene().getWindow();
         stage.setScene(new Scene(new FXMLLoader(Main.class.getResource("view/SignUp.fxml")).load()));
     }
 
-    // TODO: start back from here - forum controller don't have access to client
     protected void openForumPage() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/Forum.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/Forum.fxml"));
+        stage = (Stage) submitButton.getScene().getWindow();
+        stage.setScene(new Scene(fxmlLoader.load()));
+
         ForumController controller = fxmlLoader.getController();
         Client client = new Client("localhost", 59001, controller);
         controller.setClient(client);
 
-        stage.setScene(new Scene(fxmlLoader.load()));
     }
 
     @FXML

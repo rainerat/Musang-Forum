@@ -4,6 +4,7 @@ import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.model.Forum;
 import com.musang.musang_forum.repo.ForumRepository;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -13,7 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
-public class ForumController {
+public class ForumController extends Controller {
     @FXML
     private HBox myAccountBox;
 
@@ -44,7 +45,6 @@ public class ForumController {
 
     @FXML
     public void initialize() {
-
         forumTitleLabel.setText(chosenForum.getTitle());
         forumDescLabel.setText(chosenForum.getDescription());
         chatBox.heightProperty().addListener((observable, oldValue, newValue) -> scrollPane.setVvalue(1.0));
@@ -53,35 +53,67 @@ public class ForumController {
     @FXML
     private void sendMessage() {
         String message = messageField.getText();
-        if (message.trim().isEmpty()) return;
+        if (message.trim().isEmpty()) {
+            return;
+        }
 
         if (client != null) {
-            System.out.println("client send success");
             client.sendMessage(message);
+            this.addMessageToUI(message, true);
         }
-        this.addMessage(message, true);
+
         messageField.clear();
     }
 
     public void receiveMessage(String message) {
-        this.addMessage(message, false);
+        this.addMessageToUI(message, false);
     }
 
-    private void addMessage(String message, boolean isOwnMessage) {
-        HBox messageBox = new HBox();
-        Text text = new Text(message);
-        TextFlow textFlow = new TextFlow(text);
+    private void addMessageToUI(String message, boolean isOwnMessage) {
+        HBox messageBox;
 
         if (isOwnMessage) {
-            messageBox.setStyle("-fx-alignment: center-right;");
-            textFlow.setStyle("-fx-background-color: #DDF2FF; -fx-background-radius: 10px; -fx-padding: 5px;");
+            messageBox = setOwnMessageBox(message);
         } else {
-            messageBox.setStyle("-fx-alignment: center-left;");
-            textFlow.setStyle("-fx-background-color: #E8E8E8; -fx-background-radius: 10px; -fx-padding: 5px;");
+            messageBox = setOthersMessageBox(message);
         }
 
-        messageBox.getChildren().add(textFlow);
         chatBox.getChildren().add(messageBox);
+    }
+
+    private HBox setOwnMessageBox(String message) {
+        Text text = new Text(message);
+        TextFlow textFlow = new TextFlow(text);
+        HBox messageBox = new HBox(textFlow);
+        text.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 16");
+        textFlow.setStyle("-fx-background-color: #DDF2FF; -fx-background-radius: 10px; -fx-padding: 10px; -fx-max-width: 600px;");
+        messageBox.setStyle("-fx-alignment: center-right");
+
+        return messageBox;
+    }
+
+    private HBox setOthersMessageBox(String message) {
+        Text messageText = new Text(message);
+        TextFlow messageTf = new TextFlow(messageText);
+        messageText.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 16");
+        messageTf.setStyle("-fx-background-color: #E8E8E8; -fx-background-radius: 0 0 10 10; -fx-padding: 0 10 10 10");
+        messageTf.setMaxWidth(600);
+        messageTf.setMinWidth(80);
+
+        Text usernameText = new Text(super.currentUser.get().getUsername());
+        TextFlow usernameTf = new TextFlow(usernameText);
+        usernameText.setStyle("-fx-font-family: 'Segoe UI Semibold'; -fx-font-size: 16; -fx-text-fill: #8300ff");
+        usernameTf.setStyle("-fx-background-color: #E8E8E8; -fx-background-radius: 10 10 0 0; -fx-padding: 10 10 0 10");
+
+        usernameTf.prefWidthProperty().bind(messageTf.widthProperty());
+
+        VBox container = new VBox(usernameTf, messageTf);
+        container.setAlignment(Pos.CENTER_LEFT);
+
+        HBox messageBox = new HBox(container);
+        messageBox.setAlignment(Pos.CENTER_LEFT);
+
+        return messageBox;
     }
 
     @FXML
@@ -95,8 +127,6 @@ public class ForumController {
     }
 
     public void setClient(Client client) {
-        System.out.println("hi");
         this.client = client;
-        if (client != null) System.out.println("client not null");
     }
 }
