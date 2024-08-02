@@ -35,18 +35,15 @@ public class Server {
         public void run() {
             try (BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
                 out = new PrintWriter(socket.getOutputStream(), true);
+
                 synchronized (clientHandlers) {
                     clientHandlers.add(this);
                 }
 
                 String message;
                 while ((message = in.readLine()) != null) {
-                    this.saveMessage(message);
-                    synchronized (clientHandlers) {
-                        for (ClientHandler handler : clientHandlers) {
-                            handler.out.println(message);
-                        }
-                    }
+//                    this.saveMessage(message);
+                    this.broadcastMessage(message);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -62,10 +59,18 @@ public class Server {
             }
         }
 
+        private void broadcastMessage(String message) {
+            synchronized (clientHandlers) {
+                for (ClientHandler handler : clientHandlers) {
+                    handler.out.println(message);
+                }
+            }
+        }
+
         private void saveMessage(String message) {
-            User currentUser = CurrentUser.getInstance().get();
-            Forum currentForum = CurrentForum.getInstance().get();
-            new Message(message, currentUser.getId(), currentForum.getId()).save();
+//            User currentUser = CurrentUser.getInstance().get();
+//            Forum currentForum = CurrentForum.getInstance().get();
+//            new Message(message, currentUser.getId(), currentForum.getId()).save();
         }
     }
 }

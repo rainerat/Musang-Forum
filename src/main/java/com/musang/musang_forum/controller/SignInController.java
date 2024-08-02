@@ -2,6 +2,7 @@ package com.musang.musang_forum.controller;
 
 import com.musang.musang_forum.Main;
 import com.musang.musang_forum.client.Client;
+import com.musang.musang_forum.model.CurrentUser;
 import com.musang.musang_forum.repo.UserRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,9 +67,8 @@ public class SignInController extends Controller {
         stage.setScene(new Scene(fxmlLoader.load()));
 
         ForumController controller = fxmlLoader.getController();
-        Client client = new Client("localhost", 59001, controller);
+        Client client = new Client("localhost", 59001, controller, CurrentUser.getInstance().get());
         controller.setClient(client);
-
     }
 
     @FXML

@@ -11,21 +11,26 @@ public class Message {
     private int id;
     private String message;
     private Timestamp time;
-    private int userID;
+    private User user;
     private int forumID;
 
-    public Message(int id, String message, Timestamp date, int userID, int forumID) {
+    public Message(int id, String message, Timestamp date, User user, int forumID) {
         this.id = id;
         this.message = message;
         this.time = date;
-        this.userID = userID;
+        this.user = user;
         this.forumID = forumID;
     }
 
-    public Message(String message, int userID, int forumID) {
+    public Message(String message, User user, int forumID) {
         this.message = message;
-        this.userID = userID;
+        this.user = user;
         this.forumID = forumID;
+    }
+
+    public Message(String message, User user) {
+        this.message = message;
+        this.user = user;
     }
 
     public int getId() {
@@ -52,12 +57,12 @@ public class Message {
         this.time = time;
     }
 
-    public int getUserID() {
-        return userID;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getForumID() {
@@ -68,13 +73,27 @@ public class Message {
         this.forumID = forumID;
     }
 
+    @Override
+    public String toString() {
+        return user.getUsername() + "::" + message;
+    }
+
+    public String serialize() {
+        return user.getId() + "::" + user.getUsername() + "::" + message;
+    }
+
+    public static Message deserialize(String message) {
+        String[] parts = message.split("::", 3);
+        return new Message(parts[2], new User(Integer.parseInt(parts[0]), parts[1]));
+    }
+
     public void save() {
         String query = "INSERT INTO message (message, time, user_id, forum_id) VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
             ps.setString(1, message);
             ps.setTimestamp(2, new java.sql.Timestamp(System.currentTimeMillis()));
-            ps.setInt(3, userID);
+            ps.setInt(3, user.getId());
             ps.setInt(4, forumID);
             ps.executeUpdate();
         } catch (SQLException e) {

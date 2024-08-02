@@ -14,21 +14,26 @@ public class User {
     private String salt;
     private String hash;
 
-    public User(int id, String name, Date dob, String email, String salt, String hash) {
+    public User(int id, String username, Date dob, String email, String salt, String hash) {
         this.id = id;
-        this.username = name;
+        this.username = username;
         this.dob = dob;
         this.email = email;
         this.salt = salt;
         this.hash = hash;
     }
 
-    public User(String name, Date dob, String email, String salt, String hash) {
-        this.username = name;
+    public User(String username, Date dob, String email, String salt, String hash) {
+        this.username = username;
         this.dob = dob;
         this.email = email;
         this.salt = salt;
         this.hash = hash;
+    }
+
+    public User(int id, String username) {
+        this.id = id;
+        this.username = username;
     }
 
     public int getId() {

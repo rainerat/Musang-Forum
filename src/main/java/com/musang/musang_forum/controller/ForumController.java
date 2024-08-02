@@ -3,6 +3,7 @@ package com.musang.musang_forum.controller;
 import com.musang.musang_forum.Main;
 import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.model.Forum;
+import com.musang.musang_forum.model.Message;
 import com.musang.musang_forum.repo.ForumRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -59,29 +60,30 @@ public class ForumController extends Controller {
     @FXML
     private void sendMessage() {
         String message = messageField.getText();
+
         if (message.trim().isEmpty()) {
             return;
         }
 
         if (client != null) {
             client.sendMessage(message);
-            this.addMessageToUI(message, true);
+
         }
 
         messageField.clear();
     }
 
-    public void receiveMessage(String message) {
+    public void receiveMessage(Message message) {
         this.addMessageToUI(message, false);
     }
 
-    private void addMessageToUI(String message, boolean isOwnMessage) {
+    public void addMessageToUI(Message message, boolean isOwnMessage) {
         HBox messageBox;
 
         if (isOwnMessage) {
-            messageBox = setOwnMessageBox(message);
+            messageBox = setOwnMessageBox(message.getMessage());
         } else {
-            messageBox = setOthersMessageBox(message);
+            messageBox = setOthersMessageBox(message.getUser().getUsername(), message.getMessage());
         }
 
         chatBox.getChildren().add(messageBox);
@@ -98,7 +100,7 @@ public class ForumController extends Controller {
         return messageBox;
     }
 
-    private HBox setOthersMessageBox(String message) {
+    private HBox setOthersMessageBox(String username, String message) {
         Text messageText = new Text(message);
         TextFlow messageTf = new TextFlow(messageText);
         messageText.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 16");
@@ -106,7 +108,7 @@ public class ForumController extends Controller {
         messageTf.setMaxWidth(600);
         messageTf.setMinWidth(80);
 
-        Text usernameText = new Text(super.currentUser.get().getUsername());
+        Text usernameText = new Text(username);
         TextFlow usernameTf = new TextFlow(usernameText);
         usernameText.setStyle("-fx-font-family: 'Segoe UI Semibold'; -fx-font-size: 16; -fx-text-fill: #8300ff");
         usernameTf.setStyle("-fx-background-color: #E8E8E8; -fx-background-radius: 10 10 0 0; -fx-padding: 10 10 0 10");
