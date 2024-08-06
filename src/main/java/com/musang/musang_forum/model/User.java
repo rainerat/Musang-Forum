@@ -31,6 +31,13 @@ public class User {
         this.hash = hash;
     }
 
+    public User(int id, String username, Date dob, String email) {
+        this.id = id;
+        this.username = username;
+        this.dob = dob;
+        this.email = email;
+    }
+
     public User(int id, String username) {
         this.id = id;
         this.username = username;

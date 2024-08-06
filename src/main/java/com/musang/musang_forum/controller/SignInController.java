@@ -3,7 +3,7 @@ package com.musang.musang_forum.controller;
 import com.musang.musang_forum.Main;
 import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.model.CurrentUser;
-import com.musang.musang_forum.repo.UserRepository;
+import com.musang.musang_forum.repository.UserRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -32,7 +32,7 @@ public class SignInController extends Controller {
     @FXML
     private void handleSignIn() throws IOException {
         final String errorFieldStyle =  "-fx-background-color: #ffffff; -fx-border-color: c04431; -fx-border-radius: 5; -fx-border-width: 1.2";
-        String identifier = identifierField.getText();
+        String identifier = identifierField.getText().trim();
         String password = passwordField.getText();
         String salt;
 

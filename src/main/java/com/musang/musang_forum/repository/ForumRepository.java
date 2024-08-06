@@ -1,4 +1,4 @@
-package com.musang.musang_forum.repo;
+package com.musang.musang_forum.repository;
 
 import com.musang.musang_forum.model.CurrentForum;
 import com.musang.musang_forum.model.Forum;

@@ -20,4 +20,8 @@ public class CurrentUser {
     public void set(User user) {
         this.currentUser = user;
     }
+
+    public void clear() {
+        this.currentUser = null;
+    }
 }

@@ -19,13 +19,21 @@ public class MyAccountController extends Controller {
 
     @FXML
     protected void handleLogout() throws IOException {
+        if (super.client != null) {
+            super.client.close();
+            System.out.println(currentUser.get().getUsername() + " client connection closed");
+        }
+
+        currentUser.clear();
         this.openSignInPage();
     }
 
     @FXML
     protected void openSignInPage() throws IOException {
         stage = (Stage) myAccountBox.getScene().getWindow();
-        stage.setScene(new Scene(new FXMLLoader(Main.class.getResource("view/SignIn.fxml")).load()));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/SignIn.fxml"));
+        Scene signInScene = new Scene(loader.load());
+        stage.setScene(signInScene);
     }
 
     @FXML
@@ -37,4 +45,5 @@ public class MyAccountController extends Controller {
     protected void onMyAccountExited() {
         myAccountBox.setStyle("-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-cursor: default");
     }
+
 }

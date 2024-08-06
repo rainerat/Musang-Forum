@@ -9,9 +9,9 @@ import java.sql.Timestamp;
 public class Message {
 
     private int id;
-    private String message;
+    private final String message;
     private Timestamp time;
-    private User user;
+    private final User user;
     private int forumID;
 
     public Message(int id, String message, Timestamp date, User user, int forumID) {
@@ -37,40 +37,20 @@ public class Message {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getMessage() {
         return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
-        this.time = time;
-    }
-
     public User getUser() {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public int getForumID() {
         return forumID;
-    }
-
-    public void setForumID(int forumID) {
-        this.forumID = forumID;
     }
 
     @Override

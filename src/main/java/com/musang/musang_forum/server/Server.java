@@ -1,7 +1,5 @@
 package com.musang.musang_forum.server;
 
-import com.musang.musang_forum.model.*;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -42,7 +40,6 @@ public class Server {
 
                 String message;
                 while ((message = in.readLine()) != null) {
-//                    this.saveMessage(message);
                     this.broadcastMessage(message);
                 }
             } catch (IOException e) {
@@ -65,12 +62,6 @@ public class Server {
                     handler.out.println(message);
                 }
             }
-        }
-
-        private void saveMessage(String message) {
-//            User currentUser = CurrentUser.getInstance().get();
-//            Forum currentForum = CurrentForum.getInstance().get();
-//            new Message(message, currentUser.getId(), currentForum.getId()).save();
         }
     }
 }

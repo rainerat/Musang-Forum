@@ -34,6 +34,7 @@ public class Client {
                 String serializedMessage;
                 while ((serializedMessage = in.readLine()) != null) {
                     Message message = Message.deserialize(serializedMessage);
+
                     Platform.runLater(() -> {
                         if (message.getUser().getId() != user.getId()) {
                             controller.receiveMessage(message);
@@ -47,16 +48,11 @@ public class Client {
     }
 
     public void sendMessage(String text) {
-        Message message = new Message(text, user);
+        Forum currentForum = CurrentForum.getInstance().get();
+        Message message = new Message(text, user, currentForum.getId());
         out.println(message.serialize());
         controller.addMessageToUI(message, true);
-//        this.saveMessage(message);
-    }
-
-    private void saveMessage(String message) {
-//        User currentUser = CurrentUser.getInstance().get();
-//        Forum currentForum = CurrentForum.getInstance().get();
-//        new Message(message, currentUser.getId(), currentForum.getId()).save();
+        message.save();
     }
 
     public void close() {

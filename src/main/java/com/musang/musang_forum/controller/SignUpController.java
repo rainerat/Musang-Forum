@@ -2,7 +2,7 @@ package com.musang.musang_forum.controller;
 
 import com.musang.musang_forum.Main;
 import com.musang.musang_forum.model.User;
-import com.musang.musang_forum.repo.UserRepository;
+import com.musang.musang_forum.repository.UserRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

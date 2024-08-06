@@ -1,5 +1,6 @@
 package com.musang.musang_forum.controller;
 
+import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.model.CurrentUser;
 import com.musang.musang_forum.model.User;
 import com.musang.musang_forum.server.Database;
@@ -11,6 +12,7 @@ public abstract class Controller {
     protected Database database;
     protected CurrentUser currentUser;
     protected EncryptionService encryptionService;
+    protected Client client;
 
     public Controller() {
         database = Database.getInstance();
