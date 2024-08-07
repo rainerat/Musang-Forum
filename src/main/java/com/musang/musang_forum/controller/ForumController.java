@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -53,6 +54,11 @@ public class ForumController extends Controller {
         forumTitleLabel.setText(chosenForum.getTitle());
         forumDescLabel.setText(chosenForum.getDescription());
         chatBox.heightProperty().addListener((observable, oldValue, newValue) -> scrollPane.setVvalue(1.0));
+        messageField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                this.sendMessage();
+            }
+        });
 
         List<Message> messages = MessageRepository.loadMessages(chosenForum.getId());
         this.displayPreviousMessages(messages);
