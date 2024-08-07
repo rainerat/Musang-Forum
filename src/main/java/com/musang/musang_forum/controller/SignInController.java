@@ -1,14 +1,14 @@
 package com.musang.musang_forum.controller;
 
+import com.musang.musang_forum.App;
 import com.musang.musang_forum.Main;
 import com.musang.musang_forum.client.Client;
-import com.musang.musang_forum.model.CurrentUser;
 import com.musang.musang_forum.repository.UserRepository;
+import com.musang.musang_forum.util.ClientManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -45,30 +45,28 @@ public class SignInController extends Controller {
             salt = UserRepository.getSaltByUsername(identifier);
         }
 
-        boolean isValidLogin = UserRepository.login(identifier, encryptionService.getHash(password, salt));
+        boolean isValidLogin = UserRepository.login(identifier, app().getEncryptionService().getHash(password, salt));
         if (!isValidLogin) {
             errorLabel.setVisible(true);
             identifierField.setStyle(errorFieldStyle);
             passwordField.setStyle(errorFieldStyle);
         } else {
-            openForumPage();
+            this.openForumPage();
         }
     }
 
     @FXML
     protected void openSignUpPage() throws IOException {
-        stage = (Stage) submitButton.getScene().getWindow();
-        stage.setScene(new Scene(new FXMLLoader(Main.class.getResource("view/SignUp.fxml")).load()));
+        super.getStage().setScene(new Scene(new FXMLLoader(Main.class.getResource(App.SIGNUP_PATH)).load()));
     }
 
     protected void openForumPage() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/Forum.fxml"));
-        stage = (Stage) submitButton.getScene().getWindow();
-        stage.setScene(new Scene(fxmlLoader.load()));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(App.FORUM_PATH));
+        super.getStage().setScene(new Scene(fxmlLoader.load()));
 
         ForumController controller = fxmlLoader.getController();
-        Client client = new Client("localhost", 59001, controller, CurrentUser.getInstance().get());
-        controller.setClient(client);
+        Client client = new Client("localhost", 59001, controller, app().getCurrentUser());
+        ClientManager.setClient(client);
     }
 
     @FXML

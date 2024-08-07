@@ -1,0 +1,37 @@
+package com.musang.musang_forum;
+
+import com.musang.musang_forum.client.Client;
+import com.musang.musang_forum.model.CurrentUser;
+import com.musang.musang_forum.model.User;
+import com.musang.musang_forum.service.EncryptionService;
+import com.musang.musang_forum.util.ClientManager;
+
+public class App {
+    public static final String SIGNUP_PATH = "view/general/SignUp.fxml";
+    public static final String SIGNIN_PATH = "view/general/SignIn.fxml";
+    public static final String POPUP_PATH = "view/general/PopUp.fxml";
+    public static final String FORUM_PATH = "view/main/Forum.fxml";
+    public static final String HOME_PATH = "view/main/Home.fxml";
+    public static final String SETTINGS_PATH = "view/settings/Settings.fxml";
+    public static final String MYACCOUNT_PATH = "view/settings/MyAccount.fxml";
+    public static final String PERSONALIZE_PATH = "view/settings/Personalize.fxml";
+    public static final String INFORMATION_PATH = "view/settings/Information.fxml";
+
+    private final EncryptionService encryptionService;
+
+    public App() {
+        encryptionService = new EncryptionService();
+    }
+
+    public EncryptionService getEncryptionService() {
+        return encryptionService;
+    }
+
+    public User getCurrentUser() {
+        return CurrentUser.get();
+    }
+
+    public Client getClient() {
+        return ClientManager.getClient();
+    }
+}

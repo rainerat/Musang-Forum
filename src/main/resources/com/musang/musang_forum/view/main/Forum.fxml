@@ -13,22 +13,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1015.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.ForumController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1015.0" style="-fx-background-color: f3f3f3;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.ForumController">
    <top>
       <VBox prefHeight="110.0" prefWidth="1015.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="1015.0" spacing="10.0" style="-fx-background-color: #ffffff; -fx-border-color: #dbdbdb; -fx-border-width: 0 0 1 0; -fx-border-radius: 5;">
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="1015.0" spacing="10.0" style="-fx-background-color: f3f3f3; -fx-border-color: #dbdbdb; -fx-border-width: 0 0 1 0;">
                <children>
                   <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Musang_Logo.png" />
+                        <Image url="@../../images/Musang_Logo.png" />
                      </image></ImageView>
                   <Label prefHeight="60.0" prefWidth="194.0" text="Musang Forum">
                      <font>
                         <Font name="Segoe UI Semibold" size="21.0" />
                      </font>
                   </Label>
-                  <HBox fx:id="myAccountBox" alignment="CENTER" onMouseClicked="#openMyAccountPage" onMouseEntered="#onMyAccountEntered" onMouseExited="#onMyAccountExited" prefHeight="55.0" prefWidth="167.0" spacing="10.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+                  <HBox fx:id="myAccountBox" alignment="CENTER" onMouseClicked="#openMyAccountPage" onMouseEntered="#onMyAccountEntered" onMouseExited="#onMyAccountExited" prefHeight="55.0" prefWidth="167.0" spacing="10.0" style="-fx-background-color: f3f3f3; -fx-background-radius: 10;">
                      <children>
                         <Label alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="91.0" text="My Account">
                            <font>
@@ -49,7 +49,7 @@
                   <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="159.0" prefWidth="1015.0" spacing="10.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #e6e6e6; -fx-border-width: 0 0 1 0; -fx-border-radius: 5;">
+            <HBox alignment="CENTER_LEFT" prefHeight="159.0" prefWidth="1015.0" spacing="10.0" style="-fx-background-color: f3f3f3;">
                <children>
                   <Label fx:id="forumTitleLabel" prefHeight="31.0" prefWidth="242.0" text="Judul Forum">
                      <font>
@@ -74,9 +74,9 @@
       </VBox>
    </top>
    <bottom>
-      <HBox alignment="CENTER" prefHeight="71.0" prefWidth="1015.0" spacing="10.0" style="-fx-background-color: white; -fx-border-color: e6e6e6; -fx-border-width: 1 0 0 0;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="954.0" spacing="10.0" style="-fx-background-color: fefefe; -fx-background-radius: 0 0 20 20;" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="messageField" prefHeight="45.0" promptText="Type a message" style="-fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 25; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS">
+            <TextField fx:id="messageField" prefHeight="45.0" promptText="Type a message" style="-fx-background-color: fcfcfc; -fx-border-color: acacac; -fx-border-radius: 25; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
@@ -89,16 +89,25 @@
          </children>
          <padding>
             <Insets left="30.0" right="30.0" />
-         </padding></HBox>
+         </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets bottom="30.0" left="30.0" right="30.0" />
+         </BorderPane.margin></HBox>
    </bottom>
    <center>
-      <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background: transparent;">
+      <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" styleClass="edge-to-edge" stylesheets="@../../styles/scrollpane-style.css" vbarPolicy="ALWAYS">
          <content>
-            <VBox fx:id="chatBox" alignment="TOP_CENTER" prefHeight="537.0" prefWidth="1013.0" spacing="10.0" style="-fx-background-color: transparent;">
+            <VBox fx:id="chatBox" alignment="TOP_CENTER" prefHeight="498.0" prefWidth="954.0" spacing="10.0" style="-fx-background-color: transparent;">
                <padding>
-                  <Insets left="20.0" right="20.0" />
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding></VBox>
          </content>
+         <BorderPane.margin>
+            <Insets left="30.0" right="15.0" />
+         </BorderPane.margin>
       </ScrollPane>
    </center>
 </BorderPane>

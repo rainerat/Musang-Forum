@@ -1,25 +1,18 @@
 package com.musang.musang_forum.controller;
 
-import com.musang.musang_forum.client.Client;
-import com.musang.musang_forum.model.CurrentUser;
-import com.musang.musang_forum.model.User;
-import com.musang.musang_forum.server.Database;
-import com.musang.musang_forum.service.EncryptionService;
+import com.musang.musang_forum.App;
+import com.musang.musang_forum.Main;
+import com.musang.musang_forum.util.StageManager;
 import javafx.stage.Stage;
 
 public abstract class Controller {
-    protected Stage stage;
-    protected Database database;
-    protected CurrentUser currentUser;
-    protected EncryptionService encryptionService;
-    protected Client client;
+    private final App app = Main.MUSANG_APP;;
 
-    public Controller() {
-        database = Database.getInstance();
-        currentUser = CurrentUser.getInstance();
-        encryptionService = new EncryptionService();
+    protected Stage getStage() {
+        return StageManager.getPrimaryStage();
     }
 
-
-
+    protected App app() {
+        return app;
+    }
 }

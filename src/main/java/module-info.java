@@ -17,4 +17,6 @@ module com.musang.musang_forum {
     exports com.musang.musang_forum.model;
     exports com.musang.musang_forum.service;
     exports com.musang.musang_forum.client;
+    exports com.musang.musang_forum.controller.settings;
+    opens com.musang.musang_forum.controller.settings to javafx.fxml;
 }

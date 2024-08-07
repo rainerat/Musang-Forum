@@ -1,5 +1,6 @@
 package com.musang.musang_forum.controller;
 
+import com.musang.musang_forum.App;
 import com.musang.musang_forum.Main;
 import com.musang.musang_forum.model.User;
 import com.musang.musang_forum.repository.UserRepository;
@@ -46,9 +47,6 @@ public class SignUpController extends Controller {
     private Label confirmPwErrorLabel;
 
     @FXML
-    private Button submitButton;
-
-    @FXML
     private Label signInLabel;
 
     @FXML
@@ -81,8 +79,8 @@ public class SignUpController extends Controller {
             return null;
         }
 
-        String salt = encryptionService.nextSalt();
-        String hash = encryptionService.getHash(password, salt);
+        String salt = app().getEncryptionService().nextSalt();
+        String hash = app().getEncryptionService().getHash(password, salt);
 
         return new User(username, Date.valueOf(dob), email, salt, hash);
     }
@@ -223,14 +221,12 @@ public class SignUpController extends Controller {
     }
 
     private void openOpenPopUpPage() throws IOException {
-        stage = (Stage) submitButton.getScene().getWindow();
-        stage.setScene(new Scene(new FXMLLoader(Main.class.getResource("view/PopUp.fxml")).load()));
+        super.getStage().setScene(new Scene(new FXMLLoader(Main.class.getResource(App.POPUP_PATH)).load()));
     }
 
     @FXML
     protected void openSignInPage() throws IOException {
-        stage = (Stage) submitButton.getScene().getWindow();
-        stage.setScene(new Scene(new FXMLLoader(Main.class.getResource("view/SignIn.fxml")).load()));
+        super.getStage().setScene(new Scene(new FXMLLoader(Main.class.getResource(App.SIGNIN_PATH)).load()));
     }
 
     @FXML

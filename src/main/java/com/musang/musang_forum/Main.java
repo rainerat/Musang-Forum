@@ -1,5 +1,6 @@
 package com.musang.musang_forum;
 
+import com.musang.musang_forum.util.StageManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,10 +12,13 @@ import java.util.Objects;
 
 public class Main extends Application {
 
+    public static final App MUSANG_APP = new App();
+
     @Override
     public void start(Stage stage) throws IOException {
+        StageManager.setPrimaryStage(stage);
         stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("images/musang_logo_bg.png"))));
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/SignIn.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/general/SignIn.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Musang Forum");
         stage.setResizable(false);

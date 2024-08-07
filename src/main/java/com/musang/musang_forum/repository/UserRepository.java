@@ -110,11 +110,11 @@ public class UserRepository {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                CurrentUser.getInstance()
-                        .set(
+                CurrentUser.set(
                         new User(
                             rs.getInt("id"), rs.getString("username"), rs.getDate("dob"),
-                            rs.getString("email"), rs.getString("salt"), rs.getString("hash")));
+                            rs.getString("email"), rs.getString("salt"), rs.getString("hash"))
+                        );
                 return true;
             }
             return false;

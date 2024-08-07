@@ -1,5 +1,6 @@
 package com.musang.musang_forum.controller;
 
+import com.musang.musang_forum.App;
 import com.musang.musang_forum.Main;
 import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.component.MessageComponent;
@@ -17,7 +18,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
@@ -71,8 +71,8 @@ public class ForumController extends Controller {
             return;
         }
 
-        if (client != null) {
-            client.sendMessage(message);
+        if (app().getClient() != null) {
+            app().getClient().sendMessage(message);
         }
 
         messageField.clear();
@@ -94,7 +94,7 @@ public class ForumController extends Controller {
 
     public void displayPreviousMessages(List<Message> messageList) {
         for (Message message : messageList) {
-            if (message.getUser().getId() == currentUser.get().getId()) {
+            if (message.getUser().getId() == app().getCurrentUser().getId()) {
                 chatBox.getChildren().add(MessageComponent.setOwnMessageBox(message.getMessage()));
             } else {
                 chatBox.getChildren().add(MessageComponent.setOthersMessageBox(message.getUser().getUsername(), message.getMessage()));
@@ -104,21 +104,16 @@ public class ForumController extends Controller {
 
     @FXML
     protected void openMyAccountPage() throws IOException {
-        stage = (Stage) sendButton.getScene().getWindow();
-        stage.setScene(new Scene(new FXMLLoader(Main.class.getResource("view/MyAccount.fxml")).load()));
+        super.getStage().setScene(new Scene(new FXMLLoader(Main.class.getResource(App.SETTINGS_PATH)).load()));
     }
 
     @FXML
     protected void onMyAccountEntered() {
-        myAccountBox.setStyle("-fx-background-color: #efefef; -fx-background-radius: 10; -fx-cursor: hand;");
+        myAccountBox.setStyle("-fx-background-color: #eaeaea; -fx-background-radius: 10; -fx-cursor: hand;");
     }
 
     @FXML
     protected void onMyAccountExited() {
-        myAccountBox.setStyle("-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-cursor: default");
-    }
-
-    public void setClient(Client client) {
-        super.client = client;
+        myAccountBox.setStyle("-fx-background-color: #f3f3f3; -fx-background-radius: 10; -fx-cursor: default");
     }
 }

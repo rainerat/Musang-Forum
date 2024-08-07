@@ -14,6 +14,8 @@ public class Client {
     private final ForumController controller;
     private final User user;
 
+    private volatile boolean running = true;
+
     public Client(String serverAddress, int port, ForumController controller, User user) {
         this.controller = controller;
         this.user = user;
@@ -32,7 +34,7 @@ public class Client {
         new Thread(() -> {
             try {
                 String serializedMessage;
-                while ((serializedMessage = in.readLine()) != null) {
+                while (running & (serializedMessage = in.readLine()) != null) {
                     Message message = Message.deserialize(serializedMessage);
 
                     Platform.runLater(() -> {
@@ -56,10 +58,18 @@ public class Client {
     }
 
     public void close() {
+        running = false;
+
         try {
-            in.close();
-            out.close();
-            socket.close();
+            if (out != null) {
+                out.close();
+            }
+            if (in != null) {
+                in.close();
+            }
+            if (socket != null) {
+                socket.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

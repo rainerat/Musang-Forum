@@ -16,7 +16,7 @@
          <children>
             <ImageView fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/Musang_Logo.png" />
+                  <Image url="@../../images/Musang_Logo.png" />
                </image>
             </ImageView>
             <Label prefWidth="491.0" text="Your Musang account has been successfully created" textAlignment="CENTER" wrapText="true">

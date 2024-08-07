@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1015.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.ForumController">
+    <top>
+        <VBox prefHeight="110.0" prefWidth="1015.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="1015.0" spacing="10.0" style="-fx-background-color: #ffffff; -fx-border-color: #dbdbdb; -fx-border-width: 0 0 1 0; -fx-border-radius: 5;">
+                    <children>
+                        <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../images/Musang_Logo.png" />
+                            </image></ImageView>
+                        <Label prefHeight="60.0" prefWidth="194.0" text="Musang Forum">
+                            <font>
+                                <Font name="Segoe UI Semibold" size="21.0" />
+                            </font>
+                        </Label>
+                        <HBox fx:id="myAccountBox" alignment="CENTER" onMouseClicked="#openMyAccountPage" onMouseEntered="#onMyAccountEntered" onMouseExited="#onMyAccountExited" prefHeight="55.0" prefWidth="167.0" spacing="10.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+                            <children>
+                                <Label alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="91.0" text="My Account">
+                                    <font>
+                                        <Font name="Segoe UI Light" size="18.0" />
+                                    </font>
+                                </Label>
+                                <FontAwesomeIconView fill="#4c4c4c" glyphName="USER_CIRCLE" size="40" />
+                            </children>
+                            <padding>
+                                <Insets left="5.0" right="5.0" />
+                            </padding>
+                            <HBox.margin>
+                                <Insets left="540.0" />
+                            </HBox.margin>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="159.0" prefWidth="1015.0" spacing="10.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #e6e6e6; -fx-border-width: 0 0 1 0; -fx-border-radius: 5;">
+                    <children>
+                        <Label fx:id="forumTitleLabel" prefHeight="31.0" prefWidth="242.0" text="Judul Forum">
+                            <font>
+                                <Font name="Segoe UI Semibold" size="21.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="forumDescLabel" prefHeight="27.0" prefWidth="603.0" text="Deskripsi Forum">
+                            <font>
+                                <Font name="Segoe UI" size="21.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="viewMoreLabel" alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="95.0" text="view more" textAlignment="CENTER">
+                            <font>
+                                <Font name="Segoe UI Semilight" size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="20.0" right="20.0" />
+                    </padding></HBox>
+            </children>
+        </VBox>
+    </top>
+    <bottom>
+        <HBox alignment="CENTER" prefHeight="71.0" prefWidth="1015.0" spacing="10.0" style="-fx-background-color: white; -fx-border-color: e6e6e6; -fx-border-width: 1 0 0 0;" BorderPane.alignment="CENTER">
+            <children>
+                <TextField fx:id="messageField" prefHeight="45.0" promptText="Type a message" style="-fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 25; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font name="Segoe UI" size="18.0" />
+                    </font>
+                </TextField>
+                <Button fx:id="sendButton" mnemonicParsing="false" onAction="#sendMessage" prefHeight="45.0" prefWidth="100.0" style="-fx-background-color: #605341; -fx-background-radius: 25;" text="Send" textFill="WHITE">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="18.0" />
+                    </font>
+                </Button>
+            </children>
+            <padding>
+                <Insets left="30.0" right="30.0" />
+            </padding></HBox>
+    </bottom>
+    <center>
+        <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background: transparent;">
+            <content>
+                <VBox fx:id="chatBox" alignment="TOP_CENTER" prefHeight="537.0" prefWidth="1013.0" spacing="10.0" style="-fx-background-color: transparent;">
+                    <padding>
+                        <Insets left="20.0" right="20.0" />
+                    </padding></VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
