@@ -6,6 +6,7 @@ import com.musang.musang_forum.controller.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
@@ -73,6 +74,18 @@ public class SettingsController extends Controller {
         informationButton.setStyle("-fx-background-color: transparent;");
 
         activeButton.setStyle("-fx-background-color: #f3f3f3; -fx-background-radius: 10;");
+    }
+
+    @FXML
+    protected void onButtonEntered(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        button.setStyle("-fx-background-color: #e5e5e5; -fx-background-radius: 5;");
+    }
+
+    @FXML
+    protected void onButtonExited(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        button.setStyle("-fx-background-color: transparent; -fx-background-radius: 5;");
     }
 
     @FXML

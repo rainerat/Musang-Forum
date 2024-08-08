@@ -2,6 +2,7 @@ package com.musang.musang_forum.controller.main;
 
 import com.musang.musang_forum.App;
 import com.musang.musang_forum.Main;
+import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.component.MessageComponent;
 import com.musang.musang_forum.controller.Controller;
 import com.musang.musang_forum.model.Forum;
@@ -72,8 +73,9 @@ public class ForumController extends Controller {
             return;
         }
 
-        if (app().getClient() != null) {
-            app().getClient().sendMessage(message);
+        Client client = app().getClient();
+        if (client != null) {
+            client.sendMessage(message);
         }
 
         messageField.clear();
