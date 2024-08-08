@@ -53,7 +53,8 @@ public class SignInController extends Controller {
             identifierField.setStyle(errorFieldStyle);
             passwordField.setStyle(errorFieldStyle);
         } else {
-            this.openForumPage();
+            this.openHomePage();
+//            this.openForumPage();
         }
     }
 
@@ -62,7 +63,12 @@ public class SignInController extends Controller {
         super.getStage().setScene(new Scene(new FXMLLoader(Main.class.getResource(App.SIGNUP_PATH)).load()));
     }
 
-    protected void openForumPage() throws IOException {
+    private void openHomePage() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(App.HOME_PATH));
+        super.getStage().setScene(new Scene(fxmlLoader.load()));
+    }
+
+    private void openForumPage() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(App.FORUM_PATH));
         super.getStage().setScene(new Scene(fxmlLoader.load()));
 

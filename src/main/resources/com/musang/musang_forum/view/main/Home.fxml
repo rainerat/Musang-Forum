@@ -9,88 +9,88 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1015.0" style="-fx-background-color: f3f3f3;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.main.ForumController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1015.0" style="-fx-background-color: f3f3f3;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.main.HomeController">
     <top>
-          <HBox alignment="CENTER_LEFT" prefHeight="86.0" prefWidth="1015.0" spacing="10.0" style="-fx-background-color: EAEAEA; -fx-border-color: #dbdbdb; -fx-border-width: 0 0 1 0;">
-              <children>
-                  <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                          <Image url="@../../images/Musang_Logo.png" />
-                      </image>
-            </ImageView>
-                  <Label prefHeight="60.0" prefWidth="194.0" text="Musang Forum">
-                      <font>
-                          <Font name="Segoe UI Semibold" size="21.0" />
-                      </font>
-                  </Label>
-                  <HBox fx:id="myAccountBox" alignment="CENTER" onMouseClicked="#openMyAccountPage" onMouseEntered="#onMyAccountEntered" onMouseExited="#onMyAccountExited" prefHeight="55.0" prefWidth="167.0" spacing="10.0" style="-fx-background-color: f3f3f3; -fx-background-radius: 10;">
-                      <children>
-                          <Label alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="91.0" text="My Account">
-                              <font>
-                                  <Font name="Segoe UI Light" size="18.0" />
-                              </font>
-                          </Label>
-                          <FontAwesomeIconView fill="#4c4c4c" glyphName="USER_CIRCLE" size="40" />
-                      </children>
-                      <padding>
-                          <Insets left="5.0" right="5.0" />
-                      </padding>
-                      <HBox.margin>
-                          <Insets left="540.0" />
-                      </HBox.margin>
-                  </HBox>
-              </children>
-              <padding>
-                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-              </padding>
-          </HBox>
+        <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="1015.0" spacing="15.0" style="-fx-background-color: f3f3f3;" BorderPane.alignment="CENTER">
+            <children>
+                <HBox spacing="5.0">
+                    <children>
+                        <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../images/Musang_Logo.png" />
+                            </image>
+                        </ImageView>
+                        <Label prefHeight="60.0" text="Musang Forum">
+                            <font>
+                                <Font name="Segoe UI Semibold" size="21.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <Pane HBox.hgrow="ALWAYS" />
+                <HBox fx:id="myAccountBox" alignment="CENTER" onMouseClicked="#openMyAccountPage" onMouseEntered="#onMyAccountEntered" onMouseExited="#onMyAccountExited" prefHeight="55.0" prefWidth="167.0" spacing="10.0" style="-fx-background-color: transparent; -fx-background-radius: 10;">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="100.0" text="My Account">
+                            <font>
+                                <Font name="Segoe UI" size="18.0" />
+                            </font>
+                        </Label>
+                        <FontAwesomeIconView fill="#4c4c4c" glyphName="USER_CIRCLE" size="40" />
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            </padding>
+        </HBox>
     </top>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="653.0" prefWidth="255.0" spacing="20.0" style="-fx-background-color: EAEAEA;" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="653.0" prefWidth="255.0" spacing="25.0" style="-fx-background-color: f3f3f3;" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="226.0" style="-fx-background-color: #655140; -fx-border-radius: 5;" text="Start a discussion" textFill="WHITE">
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: #605341; -fx-background-radius: 5;" text="Start a discussion" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Segoe UI Semibold" size="18.0" />
                </font>
             </Button>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+            <VBox spacing="10.0">
                <children>
-                  <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="215.0" style="-fx-background-color: EAEAEA;" text="All discussion">
+                  <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onMouseEntered="#onButtonEntered" onMouseExited="#onButtonExited" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: transparent; -fx-background-radius: 5;" text="All discussion">
                      <font>
                         <Font name="Segoe UI Semibold" size="18.0" />
                      </font>
                      <graphic>
-                        <MaterialDesignIconView glyphName="MESSAGE_TEXT_OUTLINE" size="24" />
+                        <MaterialDesignIconView glyphName="MESSAGE_TEXT_OUTLINE" size="24" textAlignment="CENTER" wrappingWidth="30.0" />
                      </graphic>
                   </Button>
-                  <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="215.0" style="-fx-background-color: EAEAEA;" text="Following">
+                  <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onMouseEntered="#onButtonEntered" onMouseExited="#onButtonExited" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: transparent; -fx-background-radius: 5;" text="Following">
                      <font>
                         <Font name="Segoe UI Semibold" size="18.0" />
                      </font>
                      <graphic>
-                        <MaterialDesignIconView glyphName="STAR_OUTLINE" size="24" text="" />
+                        <MaterialDesignIconView glyphName="STAR_OUTLINE" size="27" text="" wrappingWidth="30.0" />
                      </graphic>
                   </Button>
-                  <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="215.0" style="-fx-background-color: EAEAEA;" text="Tags">
+                  <Button alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onMouseEntered="#onButtonEntered" onMouseExited="#onButtonExited" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: transparent; -fx-background-radius: 5;" text="Tags">
                      <font>
                         <Font name="Segoe UI Semibold" size="18.0" />
                      </font>
                      <graphic>
-                        <MaterialDesignIconView glyphName="TAG_OUTLINE" />
+                        <MaterialDesignIconView glyphName="TAG_OUTLINE" size="23" textAlignment="CENTER" wrappingWidth="30.0" />
                      </graphic>
                   </Button>
                </children>
-               <padding>
-                  <Insets left="10.0" right="10.0" top="20.0" />
-               </padding>
             </VBox>
          </children>
          <padding>
-            <Insets left="10.0" right="10.0" top="30.0" />
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </VBox>
    </left>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fefefe; -fx-background-radius: 15 0 0 0; -fx-border-radius: 15 0 0 0; -fx-border-color: dddddd; -fx-border-width: 0.7 0.7 0 0.7;" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>
