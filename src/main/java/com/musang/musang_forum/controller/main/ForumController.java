@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -108,12 +109,24 @@ public class ForumController extends Controller {
     }
 
     @FXML
+    protected void onButtonEntered(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        button.setStyle("-fx-background-color: #e5e5e5; -fx-background-radius: 5;");
+    }
+
+    @FXML
+    protected void onButtonExited(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        button.setStyle("-fx-background-color: transparent; -fx-background-radius: 5;");
+    }
+
+    @FXML
     protected void onMyAccountEntered() {
-        myAccountBox.setStyle("-fx-background-color: #eaeaea; -fx-background-radius: 10; -fx-cursor: hand;");
+        myAccountBox.setStyle("-fx-background-color: #e5e5e5; -fx-background-radius: 10;");
     }
 
     @FXML
     protected void onMyAccountExited() {
-        myAccountBox.setStyle("-fx-background-color: #f3f3f3; -fx-background-radius: 10; -fx-cursor: default");
+        myAccountBox.setStyle("-fx-background-color: transparent; -fx-background-radius: 10;");
     }
 }

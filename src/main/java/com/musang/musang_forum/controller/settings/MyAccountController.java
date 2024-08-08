@@ -5,7 +5,6 @@ import com.musang.musang_forum.Main;
 import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.controller.Controller;
 import com.musang.musang_forum.model.CurrentUser;
-import com.musang.musang_forum.util.ClientManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
