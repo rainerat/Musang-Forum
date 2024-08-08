@@ -12,8 +12,8 @@ public class MessageComponent {
         Text text = new Text(message);
         TextFlow textFlow = new TextFlow(text);
         HBox messageBox = new HBox(textFlow);
-        text.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 16");
-        textFlow.setStyle("-fx-background-color: #DDF2FF; -fx-background-radius: 10px; -fx-padding: 10px; -fx-max-width: 600px;");
+        text.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 16; -fx-fill: white");
+        textFlow.setStyle("-fx-background-color: #7d6c54; -fx-background-radius: 10px; -fx-padding: 10px; -fx-max-width: 600px; ");
         messageBox.setStyle("-fx-alignment: center-right");
 
         return messageBox;

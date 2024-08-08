@@ -2,6 +2,7 @@ package com.musang.musang_forum.controller.settings;
 
 import com.musang.musang_forum.App;
 import com.musang.musang_forum.Main;
+import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.controller.Controller;
 import com.musang.musang_forum.model.CurrentUser;
 import com.musang.musang_forum.util.ClientManager;
@@ -28,8 +29,9 @@ public class MyAccountController extends Controller {
 
     @FXML
     protected void handleLogout() throws IOException {
-        if (app().getClient() != null) {
-            app().getClient().close();
+        Client client = app().getClient();
+        if (client != null) {
+            client.close();
             System.out.println(app().getCurrentUser().getUsername() + " client connection closed");
         }
 

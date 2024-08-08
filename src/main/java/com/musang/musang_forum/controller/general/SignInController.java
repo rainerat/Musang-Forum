@@ -1,8 +1,10 @@
-package com.musang.musang_forum.controller;
+package com.musang.musang_forum.controller.general;
 
 import com.musang.musang_forum.App;
 import com.musang.musang_forum.Main;
 import com.musang.musang_forum.client.Client;
+import com.musang.musang_forum.controller.Controller;
+import com.musang.musang_forum.controller.main.ForumController;
 import com.musang.musang_forum.repository.UserRepository;
 import com.musang.musang_forum.util.ClientManager;
 import javafx.fxml.FXML;

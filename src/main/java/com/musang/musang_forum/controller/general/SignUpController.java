@@ -1,14 +1,14 @@
-package com.musang.musang_forum.controller;
+package com.musang.musang_forum.controller.general;
 
 import com.musang.musang_forum.App;
 import com.musang.musang_forum.Main;
+import com.musang.musang_forum.controller.Controller;
 import com.musang.musang_forum.model.User;
 import com.musang.musang_forum.repository.UserRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Date;

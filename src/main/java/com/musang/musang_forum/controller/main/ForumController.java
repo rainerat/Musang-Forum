@@ -1,9 +1,9 @@
-package com.musang.musang_forum.controller;
+package com.musang.musang_forum.controller.main;
 
 import com.musang.musang_forum.App;
 import com.musang.musang_forum.Main;
-import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.component.MessageComponent;
+import com.musang.musang_forum.controller.Controller;
 import com.musang.musang_forum.model.Forum;
 import com.musang.musang_forum.model.Message;
 import com.musang.musang_forum.repository.ForumRepository;
