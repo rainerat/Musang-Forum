@@ -62,6 +62,7 @@ public class SettingsController extends Controller {
     private void loadPage(final String PATH) {
         try {
             Pane newPane = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(PATH)));
+
             centerPane.getChildren().setAll(newPane);
         } catch (IOException e) {
             e.printStackTrace();

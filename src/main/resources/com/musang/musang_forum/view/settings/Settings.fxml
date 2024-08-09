@@ -7,17 +7,19 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1015.0" style="-fx-background-color: #f3f3f3;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.settings.SettingsController">
     <top>
-        <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="1015.0" spacing="15.0" style="-fx-background-color: ffffff; -fx-border-color: d5d5d5; -fx-border-width: 0 0 0.7 0;" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="1015.0" spacing="15.0" style="-fx-background-color: f3f4f7;" BorderPane.alignment="CENTER">
             <children>
                 <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseEntered="#onButtonEntered" onMouseExited="#onButtonExited" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: transparent; -fx-background-radius: 5;">
                     <graphic>
@@ -56,12 +58,19 @@
         </HBox>
     </top>
     <left>
-        <VBox alignment="TOP_CENTER" prefHeight="654.0" prefWidth="170.0" spacing="20.0" style="-fx-background-color: ffffff; -fx-border-color: dbdbdb90; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_CENTER" prefHeight="654.0" prefWidth="170.0" spacing="20.0" style="-fx-background-color: f3f4f7;" BorderPane.alignment="CENTER">
             <children>
-                <FontAwesomeIconView fill="#5c4f3f" glyphName="COG" size="100">
+                <FontAwesomeIconView fill="#fcfcfc" glyphName="COG" size="100" stroke="#dddddd">
                     <VBox.margin>
                         <Insets bottom="10.0" />
                     </VBox.margin>
+               <effect>
+                  <DropShadow height="0.0" offsetY="1.0" radius="0.0" width="0.0">
+                     <color>
+                        <Color opacity="0.1450381726026535" />
+                     </color>
+                  </DropShadow>
+               </effect>
                 </FontAwesomeIconView>
                 <Button fx:id="myAccountButton" alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" mnemonicParsing="false" onAction="#showMyAccountPage" prefHeight="80.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-background-radius: 10;" text="My Account" textFill="#4c4c4c">
                     <graphic>
@@ -106,6 +115,6 @@
             </padding></VBox>
     </left>
    <center>
-      <Pane fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fcfcfc; -fx-background-radius: 15 0 0 0; -fx-border-radius: 15 0 0 0; -fx-border-color: dddddd; -fx-border-width: 0.7 0 0 0.7;" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
