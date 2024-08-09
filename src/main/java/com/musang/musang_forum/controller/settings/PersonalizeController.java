@@ -1,4 +1,6 @@
 package com.musang.musang_forum.controller.settings;
 
-public class PersonalizeController {
+import com.musang.musang_forum.controller.Controller;
+
+public class PersonalizeController extends Controller {
 }

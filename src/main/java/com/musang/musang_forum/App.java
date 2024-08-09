@@ -14,6 +14,7 @@ public class App {
     public static final String HOME_PATH = "view/main/Home.fxml";
     public static final String SETTINGS_PATH = "view/settings/Settings.fxml";
     public static final String MYACCOUNT_PATH = "view/settings/MyAccount.fxml";
+    public static final String CHANGEPW_PATH = "view/settings/UpdatePassword.fxml";
     public static final String PERSONALIZE_PATH = "view/settings/Personalize.fxml";
     public static final String INFORMATION_PATH = "view/settings/Information.fxml";
 

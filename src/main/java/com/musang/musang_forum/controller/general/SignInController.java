@@ -23,9 +23,6 @@ public class SignInController extends Controller {
     private PasswordField passwordField;
 
     @FXML
-    private Button submitButton;
-
-    @FXML
     private Label signUpLabel;
 
     @FXML
@@ -53,8 +50,8 @@ public class SignInController extends Controller {
             identifierField.setStyle(errorFieldStyle);
             passwordField.setStyle(errorFieldStyle);
         } else {
-            this.openHomePage();
-//            this.openForumPage();
+//            this.openHomePage();
+            this.openForumPage();
         }
     }
 
@@ -86,4 +83,5 @@ public class SignInController extends Controller {
     protected void signInExit() {
         signUpLabel.setStyle("-fx-underline: false; -fx-cursor: default");
     }
+
 }

@@ -4,17 +4,18 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="654.0" prefWidth="845.0" spacing="20.0" style="-fx-background-color: fcfcfc; -fx-background-radius: 15 0 0 0; -fx-border-radius: 15 0 0 0; -fx-border-color: dddddd; -fx-border-width: 0.7 0 0 0.7;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.settings.MyAccountController">
+<VBox prefHeight="654.0" prefWidth="845.0" spacing="20.0" style="-fx-background-color: fefefe; -fx-background-radius: 15 0 0 0; -fx-border-radius: 15 0 0 0; -fx-border-color: dddddd; -fx-border-width: 0.7 0 0 0.7;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.settings.MyAccountController">
    <children>
       <Label text="My Account">
          <font>
-            <Font name="Segoe UI Semibold" size="35.0" />
+            <Font name="Segoe UI Semibold" size="33.0" />
          </font>
       </Label>
       <HBox spacing="50.0" VBox.vgrow="ALWAYS">
@@ -22,7 +23,7 @@
             <VBox alignment="TOP_CENTER" spacing="20.0" HBox.hgrow="ALWAYS">
                <children>
                   <Circle fill="#f3f3f3" radius="67.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="165.0" style="-fx-background-color: fcfcfc; -fx-background-radius: 5; -fx-border-color: ececec ececec d6d6d6d6 ececec; -fx-border-radius: 5; -fx-border-width: 1 1 1.5 1;" text="Choose photo">
+                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="165.0" stylesheets="@../../styles/button-style.css" text="Choose photo">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
                      </font></Button>
@@ -39,7 +40,7 @@
                                     <Font name="Segoe UI" size="21.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="45.0" prefWidth="285.0" promptText="Username" style="-fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS">
+                              <TextField prefHeight="40.0" prefWidth="285.0" promptText="Username" stylesheets="@../../styles/textfield-style.css" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Segoe UI" size="16.0" />
                                  </font>
@@ -53,7 +54,7 @@
                                     <Font name="Segoe UI" size="21.0" />
                                  </font>
                               </Label>
-                              <DatePicker editable="false" prefHeight="45.0" prefWidth="285.0" promptText="DD/MM/YYYY" style="-fx-font-size: 16; -fx-font-family: 'Segoe UI'; -fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;" />
+                              <DatePicker editable="false" prefHeight="40.0" prefWidth="285.0" promptText="DD/MM/YYYY" style="-fx-font-size: 16; -fx-font-family: 'Segoe UI';" stylesheets="@../../styles/datepicker-style.css" />
                            </children>
                         </VBox>
                      </children>
@@ -65,7 +66,7 @@
                               <Font name="Segoe UI" size="21.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="45.0" promptText="Display name" style="-fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                        <TextField prefHeight="40.0" promptText="Display name" stylesheets="@../../styles/textfield-style.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                            <font>
                               <Font name="Segoe UI" size="16.0" />
                            </font>
@@ -74,18 +75,41 @@
                   </VBox>
                   <VBox spacing="5.0">
                      <children>
-                        <Label text="Display name">
+                        <Label text="Email">
                            <font>
                               <Font name="Segoe UI" size="21.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="45.0" promptText="Display name" style="-fx-background-color: ffffff; -fx-border-color: acacac; -fx-border-radius: 5; -fx-border-width: 1.2;" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                        <TextField prefHeight="40.0" promptText="Email" stylesheets="@../../styles/textfield-style.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                            <font>
                               <Font name="Segoe UI" size="16.0" />
                            </font>
                         </TextField>
                      </children>
                   </VBox>
+                  <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="142.0" stylesheets="@../../styles/button-style.css" text="Save">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Separator prefWidth="200.0" />
+                  <HBox spacing="20.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#openChangePasswordPage" prefHeight="42.0" prefWidth="204.0" stylesheets="@../../styles/button-style.css" text="Change password">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#handleLogout" prefHeight="42.0" prefWidth="165.0" styleClass="critical-button" stylesheets="@../../styles/button-style.css" text="Log out" textFill="#c42b1c">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

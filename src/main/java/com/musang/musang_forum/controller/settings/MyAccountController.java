@@ -8,22 +8,15 @@ import com.musang.musang_forum.model.CurrentUser;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-
 import java.io.IOException;
 
 public class MyAccountController extends Controller {
 
-    @FXML
-    private Label usernameLabel;
-
-    @FXML
-    private Label emailLabel;
+    private SettingsController settingsController;
 
     @FXML
     private void initialize() {
-        usernameLabel.setText(app().getCurrentUser().getUsername());
-        emailLabel.setText(app().getCurrentUser().getEmail());
+        // maybe load the photo here
     }
 
     @FXML
@@ -39,7 +32,18 @@ public class MyAccountController extends Controller {
     }
 
     @FXML
+    protected void openChangePasswordPage() {
+        if (settingsController != null) {
+            settingsController.showChangePasswordPage();
+        }
+    }
+
+    @FXML
     protected void openSignInPage() throws IOException {
         super.getStage().setScene(new Scene(new FXMLLoader(Main.class.getResource(App.SIGNIN_PATH)).load()));
+    }
+
+    public void setSettingsController(SettingsController settingsController) {
+        this.settingsController = settingsController;
     }
 }

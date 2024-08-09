@@ -34,9 +34,6 @@ public class SettingsController extends Controller {
     private Button backButton;
 
     @FXML
-    private Button returnButton;
-
-    @FXML
     private void initialize() {
         this.showMyAccountPage();
     }
@@ -45,6 +42,11 @@ public class SettingsController extends Controller {
     private void showMyAccountPage() {
         this.loadPage(App.MYACCOUNT_PATH);
         this.updateButtonStyles(myAccountButton);
+    }
+
+    @FXML
+    public void showChangePasswordPage() {
+        this.loadPage(App.CHANGEPW_PATH);
     }
 
     @FXML
@@ -61,9 +63,14 @@ public class SettingsController extends Controller {
 
     private void loadPage(final String PATH) {
         try {
-            Pane newPane = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(PATH)));
-
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(Main.class.getResource(PATH)));
+            Pane newPane = loader.load();
             centerPane.getChildren().setAll(newPane);
+
+            Object controller = loader.getController();
+            if (controller instanceof MyAccountController) {
+                ((MyAccountController) controller).setSettingsController(this);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -73,8 +80,7 @@ public class SettingsController extends Controller {
         myAccountButton.setStyle("-fx-background-color: transparent;");
         personalizeButton.setStyle("-fx-background-color: transparent;");
         informationButton.setStyle("-fx-background-color: transparent;");
-
-        activeButton.setStyle("-fx-background-color: #f3f3f3; -fx-background-radius: 10;");
+        activeButton.setStyle("-fx-background-color: #eaeaea; -fx-background-radius: 10;");
     }
 
     @FXML
@@ -91,11 +97,12 @@ public class SettingsController extends Controller {
 
     @FXML
     protected void onMyAccountEntered() {
-        myAccountBox.setStyle("-fx-background-color: #efefef; -fx-background-radius: 10; -fx-cursor: hand;");
+        myAccountBox.setStyle("-fx-background-color: #efefef; -fx-background-radius: 10;");
     }
 
     @FXML
     protected void onMyAccountExited() {
-        myAccountBox.setStyle("-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-cursor: default");
+        myAccountBox.setStyle("-fx-background-color: #f3f4f7; -fx-background-radius: 10; -fx-cursor: default");
     }
+
 }

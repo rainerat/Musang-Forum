@@ -13,10 +13,8 @@ import java.io.IOException;
 public class PopUpController extends Controller {
 
     @FXML
-    Button button;
-
-    @FXML
     protected void openSignInPage() throws IOException {
         super.getStage().setScene(new Scene(new FXMLLoader(Main.class.getResource(App.SIGNIN_PATH)).load()));
     }
+
 }

@@ -1,4 +1,6 @@
 package com.musang.musang_forum.controller.settings;
 
-public class InformationController {
+import com.musang.musang_forum.controller.Controller;
+
+public class InformationController extends Controller {
 }

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="654.0" prefWidth="845.0" spacing="31.0" style="-fx-background-color: fefefe; -fx-background-radius: 15 0 0 0; -fx-border-radius: 15 0 0 0; -fx-border-color: dddddd; -fx-border-width: 0.7 0 0 0.7;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.settings.MyAccountController">
+<VBox prefHeight="654.0" prefWidth="845.0" spacing="31.0" style="-fx-background-color: fefefe; -fx-background-radius: 15 0 0 0; -fx-border-radius: 15 0 0 0; -fx-border-color: dddddd; -fx-border-width: 0.7 0 0 0.7;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.settings.MyAccountController">
    <children>
       <Label text="Information">
          <font>

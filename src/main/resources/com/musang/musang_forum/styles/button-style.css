@@ -1,0 +1,22 @@
+.button {
+    -fx-background-color: ffffff;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: f0f0f0 f0f0f0 d0d0d0 f0f0f0;
+    -fx-border-width: 1;
+}
+
+.critical-button {
+    -fx-text-fill: #c42b1c;
+}
+
+.button:hover {
+    -fx-background-color: fcfcfc;
+    -fx-text-fill: #1b1b1b;
+}
+
+.button:pressed {
+    -fx-background-color: fdfdfd;
+    -fx-border-color: f0f0f0;
+    -fx-text-fill: #767676;
+}
