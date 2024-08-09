@@ -91,6 +91,6 @@
       </VBox>
    </left>
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fefefe; -fx-background-radius: 15 0 0 0; -fx-border-radius: 15 0 0 0; -fx-border-color: dddddd; -fx-border-width: 0.7 0.7 0 0.7;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fefefe; -fx-background-radius: 15 0 0 0; -fx-border-radius: 15 0 0 0; -fx-border-color: dddddd; -fx-border-width: 0.7 0 0 0.7;" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
