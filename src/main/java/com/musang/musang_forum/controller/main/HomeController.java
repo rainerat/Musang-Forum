@@ -4,8 +4,6 @@ import com.musang.musang_forum.App;
 import com.musang.musang_forum.Main;
 import com.musang.musang_forum.controller.Controller;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -16,9 +14,13 @@ public class HomeController extends Controller {
     @FXML
     private HBox myAccountBox;
 
+    public HomeController() {
+        super(App.HOME_PATH);
+    }
+
     @FXML
-    protected void openMyAccountPage() throws IOException {
-        super.getStage().setScene(new Scene(new FXMLLoader(Main.class.getResource(App.SETTINGS_PATH)).load()));
+    protected void handleMyAccountHBox() throws IOException {
+        super.loadPage(App.SETTINGS_PATH);
     }
 
     @FXML

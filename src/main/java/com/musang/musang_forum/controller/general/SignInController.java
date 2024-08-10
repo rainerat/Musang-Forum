@@ -1,15 +1,12 @@
 package com.musang.musang_forum.controller.general;
 
 import com.musang.musang_forum.App;
-import com.musang.musang_forum.Main;
 import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.controller.Controller;
 import com.musang.musang_forum.controller.main.ForumController;
 import com.musang.musang_forum.repository.UserRepository;
 import com.musang.musang_forum.util.ClientManager;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import java.io.IOException;
@@ -27,6 +24,10 @@ public class SignInController extends Controller {
 
     @FXML
     private Label errorLabel;
+
+    public SignInController() {
+        super(App.SIGNIN_PATH);
+    }
 
     @FXML
     private void handleSignIn() throws IOException {
@@ -50,26 +51,22 @@ public class SignInController extends Controller {
             identifierField.setStyle(errorFieldStyle);
             passwordField.setStyle(errorFieldStyle);
         } else {
-//            this.openHomePage();
-            this.openForumPage();
+            this.loadHomePage();
+//            this.loadForumPage();
         }
     }
 
     @FXML
-    protected void openSignUpPage() throws IOException {
-        super.getStage().setScene(new Scene(new FXMLLoader(Main.class.getResource(App.SIGNUP_PATH)).load()));
+    protected void loadSignUpPage() throws IOException {
+        super.loadPage(App.SIGNUP_PATH);
     }
 
-    private void openHomePage() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(App.HOME_PATH));
-        super.getStage().setScene(new Scene(fxmlLoader.load()));
+    private void loadHomePage() throws IOException {
+        super.loadPage(App.HOME_PATH);
     }
 
-    private void openForumPage() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(App.FORUM_PATH));
-        super.getStage().setScene(new Scene(fxmlLoader.load()));
-
-        ForumController controller = fxmlLoader.getController();
+    private void loadForumPage() throws IOException {
+        ForumController controller = (ForumController) super.loadPage(App.FORUM_PATH);
         Client client = new Client("localhost", 59001, controller, app().getCurrentUser());
         ClientManager.setClient(client);
     }

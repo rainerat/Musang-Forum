@@ -151,7 +151,7 @@
                   <Font name="Segoe UI Semilight" size="12.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" onAction="#saveUser" prefHeight="50.0" prefWidth="415.0" style="-fx-background-color: #605341; -fx-background-radius: 30;" text="Submit" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#handleSubmitButton" prefHeight="50.0" prefWidth="415.0" style="-fx-background-color: #605341; -fx-background-radius: 30;" text="Submit" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Semibold" size="21.0" />
                </font>
@@ -171,7 +171,7 @@
                         <Font name="Segoe UI" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="signInLabel" onMouseClicked="#openSignInPage" onMouseEntered="#signInEnter" onMouseExited="#signInExit" text="Sign in" textFill="BLUE">
+                  <Label fx:id="signInLabel" onMouseClicked="#loadSignInPage" onMouseEntered="#signInEnter" onMouseExited="#signInExit" text="Sign in" textFill="BLUE">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>

@@ -14,13 +14,17 @@ public class MyAccountController extends Controller {
 
     private SettingsController settingsController;
 
+    public MyAccountController() {
+        super(App.SETTINGS_PATH);
+    }
+
     @FXML
     private void initialize() {
         // maybe load the photo here
     }
 
     @FXML
-    protected void handleLogout() throws IOException {
+    protected void handleLogoutButton() throws IOException {
         Client client = app().getClient();
         if (client != null) {
             client.close();
@@ -28,7 +32,7 @@ public class MyAccountController extends Controller {
         }
 
         CurrentUser.clear();
-        this.openSignInPage();
+        super.loadPage(App.SIGNIN_PATH);
     }
 
     @FXML
@@ -36,11 +40,6 @@ public class MyAccountController extends Controller {
         if (settingsController != null) {
             settingsController.showChangePasswordPage();
         }
-    }
-
-    @FXML
-    protected void openSignInPage() throws IOException {
-        super.getStage().setScene(new Scene(new FXMLLoader(Main.class.getResource(App.SIGNIN_PATH)).load()));
     }
 
     public void setSettingsController(SettingsController settingsController) {

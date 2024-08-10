@@ -1,7 +1,6 @@
 package com.musang.musang_forum.controller.main;
 
 import com.musang.musang_forum.App;
-import com.musang.musang_forum.Main;
 import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.component.MessageComponent;
 import com.musang.musang_forum.controller.Controller;
@@ -10,8 +9,6 @@ import com.musang.musang_forum.model.Message;
 import com.musang.musang_forum.repository.ForumRepository;
 import com.musang.musang_forum.repository.MessageRepository;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -51,6 +48,10 @@ public class ForumController extends Controller {
 
     private Forum chosenForum = ForumRepository.findByTitle("Forum Pertama");
 
+    public ForumController() {
+        super(App.FORUM_PATH);
+    }
+
     @FXML
     public void initialize() {
         forumTitleLabel.setText(chosenForum.getTitle());
@@ -58,7 +59,7 @@ public class ForumController extends Controller {
         chatBox.heightProperty().addListener((observable, oldValue, newValue) -> scrollPane.setVvalue(1.0));
         messageField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                this.sendMessage();
+                this.handleSendButton();
             }
         });
 
@@ -67,7 +68,7 @@ public class ForumController extends Controller {
     }
 
     @FXML
-    private void sendMessage() {
+    private void handleSendButton() {
         String message = messageField.getText();
         if (message.trim().isEmpty()) {
             return;
@@ -106,8 +107,8 @@ public class ForumController extends Controller {
     }
 
     @FXML
-    protected void openMyAccountPage() throws IOException {
-        super.getStage().setScene(new Scene(new FXMLLoader(Main.class.getResource(App.SETTINGS_PATH)).load()));
+    protected void handleMyAccountHBox() throws IOException {
+        super.loadPage(App.SETTINGS_PATH);
     }
 
     @FXML

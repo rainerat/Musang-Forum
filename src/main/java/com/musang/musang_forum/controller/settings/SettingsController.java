@@ -30,8 +30,9 @@ public class SettingsController extends Controller {
     @FXML
     private Button informationButton;
 
-    @FXML
-    private Button backButton;
+    public SettingsController() {
+        super(App.SETTINGS_PATH);
+    }
 
     @FXML
     private void initialize() {
@@ -40,34 +41,34 @@ public class SettingsController extends Controller {
 
     @FXML
     private void showMyAccountPage() {
-        this.loadPage(App.MYACCOUNT_PATH);
+        this.loadNestedPage(App.MYACCOUNT_PATH);
         this.updateButtonStyles(myAccountButton);
     }
 
     @FXML
     public void showChangePasswordPage() {
-        this.loadPage(App.CHANGEPW_PATH);
+        this.loadNestedPage(App.CHANGEPW_PATH);
     }
 
     @FXML
     private void showPersonalizePage() {
-        this.loadPage(App.PERSONALIZE_PATH);
+        this.loadNestedPage(App.PERSONALIZE_PATH);
         this.updateButtonStyles(personalizeButton);
     }
 
     @FXML
     private void showInformationPage() {
-        this.loadPage(App.INFORMATION_PATH);
+        this.loadNestedPage(App.INFORMATION_PATH);
         this.updateButtonStyles(informationButton);
     }
 
-    private void loadPage(final String PATH) {
+    protected void loadNestedPage(final String NESTED_PATH) {
         try {
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(Main.class.getResource(PATH)));
-            Pane newPane = loader.load();
-            centerPane.getChildren().setAll(newPane);
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(Main.class.getResource(NESTED_PATH)));
+            Pane pane = loader.load();
+            centerPane.getChildren().setAll(pane);
 
-            Object controller = loader.getController();
+            Controller controller = loader.getController();
             if (controller instanceof MyAccountController) {
                 ((MyAccountController) controller).setSettingsController(this);
             }
@@ -81,6 +82,11 @@ public class SettingsController extends Controller {
         personalizeButton.setStyle("-fx-background-color: transparent;");
         informationButton.setStyle("-fx-background-color: transparent;");
         activeButton.setStyle("-fx-background-color: #eaeaea; -fx-background-radius: 10;");
+    }
+
+    @FXML
+    protected void handleBackButton() throws IOException {
+        super.loadPreviousPage();
     }
 
     @FXML

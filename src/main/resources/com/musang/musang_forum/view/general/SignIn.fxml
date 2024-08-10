@@ -100,7 +100,7 @@
                         <Font name="Segoe UI" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="signUpLabel" onMouseClicked="#openSignUpPage" onMouseEntered="#signInEnter" onMouseExited="#signInExit" text="Sign up" textFill="BLUE">
+                  <Label fx:id="signUpLabel" onMouseClicked="#loadSignUpPage" onMouseEntered="#signInEnter" onMouseExited="#signInExit" text="Sign up" textFill="BLUE">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>

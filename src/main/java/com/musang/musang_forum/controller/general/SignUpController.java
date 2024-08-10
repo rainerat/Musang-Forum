@@ -49,13 +49,17 @@ public class SignUpController extends Controller {
     @FXML
     private Label signInLabel;
 
+    public SignUpController() {
+        super(App.SIGNUP_PATH);
+    }
+
     @FXML
-    protected void saveUser() throws IOException {
+    protected void handleSubmitButton() throws IOException {
         User user = validateUser();
 
         if (user != null) {
             user.save();
-            this.openOpenPopUpPage();
+            this.loadPopupPage();
         }
     }
 
@@ -220,13 +224,13 @@ public class SignUpController extends Controller {
         return true;
     }
 
-    private void openOpenPopUpPage() throws IOException {
-        super.getStage().setScene(new Scene(new FXMLLoader(Main.class.getResource(App.POPUP_PATH)).load()));
+    private void loadPopupPage() throws IOException {
+        super.loadPage(App.POPUP_PATH);
     }
 
     @FXML
-    protected void openSignInPage() throws IOException {
-        super.getStage().setScene(new Scene(new FXMLLoader(Main.class.getResource(App.SIGNIN_PATH)).load()));
+    protected void loadSignInPage() throws IOException {
+        super.loadPage(App.SIGNIN_PATH);
     }
 
     @FXML

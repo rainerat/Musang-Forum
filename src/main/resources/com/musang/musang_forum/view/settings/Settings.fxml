@@ -21,7 +21,7 @@
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="1015.0" spacing="15.0" style="-fx-background-color: f3f3f3;" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseEntered="#onButtonEntered" onMouseExited="#onButtonExited" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: transparent; -fx-background-radius: 5;">
+                <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleBackButton" onMouseEntered="#onButtonEntered" onMouseExited="#onButtonExited" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: transparent; -fx-background-radius: 5;">
                     <graphic>
                         <MaterialDesignIconView fill="#5b5b5b" glyphName="ARROW_LEFT" scaleX="1.2" size="25" />
                     </graphic>

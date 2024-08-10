@@ -32,7 +32,7 @@
                   <Font name="Segoe UI" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="button" mnemonicParsing="false" onAction="#openSignInPage" prefHeight="60.0" prefWidth="301.0" style="-fx-background-color: #605341; -fx-background-radius: 30;" text="Continue" textFill="WHITE">
+            <Button fx:id="button" mnemonicParsing="false" onAction="#handleContinueButton" prefHeight="60.0" prefWidth="301.0" style="-fx-background-color: #605341; -fx-background-radius: 30;" text="Continue" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Semibold" size="24.0" />
                </font>
