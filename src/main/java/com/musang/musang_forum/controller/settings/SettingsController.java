@@ -6,6 +6,8 @@ import com.musang.musang_forum.controller.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -22,13 +24,13 @@ public class SettingsController extends Controller {
     private Pane centerPane;
 
     @FXML
-    private Button myAccountButton;
+    private ToggleButton myAccountButton;
 
     @FXML
-    private Button personalizeButton;
+    private ToggleButton personalizeButton;
 
     @FXML
-    private Button informationButton;
+    private ToggleButton informationButton;
 
     public SettingsController() {
         super(App.SETTINGS_PATH);
@@ -36,6 +38,18 @@ public class SettingsController extends Controller {
 
     @FXML
     private void initialize() {
+        ToggleGroup toggleGroup = new ToggleGroup();
+        myAccountButton.setToggleGroup(toggleGroup);
+        personalizeButton.setToggleGroup(toggleGroup);
+        informationButton.setToggleGroup(toggleGroup);
+
+        toggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
+            if (newToggle == null) {
+                toggleGroup.selectToggle(oldToggle);
+            }
+        });
+
+        myAccountButton.setSelected(true);
         this.showMyAccountPage();
     }
 
@@ -43,7 +57,6 @@ public class SettingsController extends Controller {
     public void showMyAccountPage() {
         Controller controller = this.loadNestedPage(App.MYACCOUNT_PATH);
         ((MyAccountController) controller).setMainController(this);
-        this.updateButtonStyles(myAccountButton);
     }
 
     @FXML
@@ -55,13 +68,11 @@ public class SettingsController extends Controller {
     @FXML
     private void showPersonalizePage() {
         this.loadNestedPage(App.PERSONALIZE_PATH);
-        this.updateButtonStyles(personalizeButton);
     }
 
     @FXML
     private void showInformationPage() {
         this.loadNestedPage(App.INFORMATION_PATH);
-        this.updateButtonStyles(informationButton);
     }
 
     protected Controller loadNestedPage(final String NESTED_PATH) {
@@ -76,13 +87,6 @@ public class SettingsController extends Controller {
         return null;
     }
 
-    private void updateButtonStyles(Button activeButton) {
-        myAccountButton.setStyle("-fx-background-color: transparent;");
-        personalizeButton.setStyle("-fx-background-color: transparent;");
-        informationButton.setStyle("-fx-background-color: transparent;");
-        activeButton.setStyle("-fx-background-color: #eaeaea; -fx-background-radius: 10;");
-    }
-
     @FXML
     protected void handleBackButton() throws IOException {
         super.loadPreviousPage();
@@ -91,7 +95,7 @@ public class SettingsController extends Controller {
     @FXML
     protected void onButtonEntered(MouseEvent event) {
         Button button = (Button) event.getSource();
-        button.setStyle("-fx-background-color: #e5e5e5; -fx-background-radius: 5;");
+        button.setStyle("-fx-background-color: #eaeaea; -fx-background-radius: 5;");
     }
 
     @FXML

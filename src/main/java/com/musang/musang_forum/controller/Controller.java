@@ -12,7 +12,7 @@ import java.io.IOException;
 
 
 public abstract class Controller {
-    private final App app = Main.MUSANG_APP;;
+    private final App app = Main.MUSANG_APP;
 
     public Controller(final String PATH) {
         PageManager.setCurrentPage(PATH);

@@ -30,10 +30,8 @@ public class MyAccountController extends NestedController {
     @FXML
     private TextField emailTf;
 
-    private SettingsController settingsController;
-
     public MyAccountController() {
-        super(App.SETTINGS_PATH);
+        super(App.MYACCOUNT_PATH);
     }
 
     @FXML
@@ -60,13 +58,7 @@ public class MyAccountController extends NestedController {
 
     @FXML
     protected void openChangePasswordPage() {
-        if (settingsController != null) {
-            settingsController.showChangePasswordPage();
-        }
+        ((SettingsController) super.getMainController()).showChangePasswordPage();
     }
 
-    @Override
-    protected void setMainController(Controller mainController) {
-        this.settingsController = (SettingsController) mainController;
-    }
 }
