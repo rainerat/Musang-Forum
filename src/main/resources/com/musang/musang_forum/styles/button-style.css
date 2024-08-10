@@ -6,6 +6,14 @@
     -fx-border-width: 1;
 }
 
+.link-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
 .critical-button {
     -fx-text-fill: #c42b1c;
 }
@@ -15,8 +23,13 @@
     -fx-text-fill: #1b1b1b;
 }
 
+.link-button:hover {
+    -fx-underline: true;
+}
+
 .button:pressed {
     -fx-background-color: fdfdfd;
     -fx-border-color: f0f0f0;
     -fx-text-fill: #767676;
+    -fx-underline: false;
 }

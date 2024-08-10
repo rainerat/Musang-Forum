@@ -4,13 +4,31 @@ import com.musang.musang_forum.App;
 import com.musang.musang_forum.Main;
 import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.controller.Controller;
+import com.musang.musang_forum.controller.NestedController;
 import com.musang.musang_forum.model.CurrentUser;
+import com.musang.musang_forum.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import java.io.IOException;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 
-public class MyAccountController extends Controller {
+import java.io.IOException;
+import java.time.LocalDate;
+
+public class MyAccountController extends NestedController {
+
+    @FXML
+    private TextField usernameTf;
+
+    @FXML
+    private DatePicker dobTf;
+
+    @FXML
+    private TextField displayNameTf;
+
+    @FXML
+    private TextField emailTf;
 
     private SettingsController settingsController;
 
@@ -20,7 +38,12 @@ public class MyAccountController extends Controller {
 
     @FXML
     private void initialize() {
-        // maybe load the photo here
+        User currentUser = app().getCurrentUser();
+        usernameTf.setText(currentUser.getUsername());
+        String displayName = currentUser.getDisplayName();
+        if (displayName != null) displayNameTf.setText(displayName);
+        dobTf.setValue(currentUser.getDob().toLocalDate());
+        emailTf.setText(currentUser.getEmail());
     }
 
     @FXML
@@ -42,7 +65,8 @@ public class MyAccountController extends Controller {
         }
     }
 
-    public void setSettingsController(SettingsController settingsController) {
-        this.settingsController = settingsController;
+    @Override
+    protected void setMainController(Controller mainController) {
+        this.settingsController = (SettingsController) mainController;
     }
 }

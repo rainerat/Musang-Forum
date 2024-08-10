@@ -40,14 +40,16 @@ public class SettingsController extends Controller {
     }
 
     @FXML
-    private void showMyAccountPage() {
-        this.loadNestedPage(App.MYACCOUNT_PATH);
+    public void showMyAccountPage() {
+        Controller controller = this.loadNestedPage(App.MYACCOUNT_PATH);
+        ((MyAccountController) controller).setMainController(this);
         this.updateButtonStyles(myAccountButton);
     }
 
     @FXML
     public void showChangePasswordPage() {
-        this.loadNestedPage(App.CHANGEPW_PATH);
+        Controller controller = this.loadNestedPage(App.CHANGEPW_PATH);
+        ((UpdatePasswordController) controller).setMainController(this);
     }
 
     @FXML
@@ -62,19 +64,16 @@ public class SettingsController extends Controller {
         this.updateButtonStyles(informationButton);
     }
 
-    protected void loadNestedPage(final String NESTED_PATH) {
+    protected Controller loadNestedPage(final String NESTED_PATH) {
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(Main.class.getResource(NESTED_PATH)));
             Pane pane = loader.load();
             centerPane.getChildren().setAll(pane);
-
-            Controller controller = loader.getController();
-            if (controller instanceof MyAccountController) {
-                ((MyAccountController) controller).setSettingsController(this);
-            }
+            return loader.getController();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     private void updateButtonStyles(Button activeButton) {

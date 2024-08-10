@@ -40,7 +40,7 @@
                                     <Font name="Segoe UI" size="21.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="40.0" prefWidth="285.0" promptText="Username" stylesheets="@../../styles/textfield-style.css" HBox.hgrow="ALWAYS">
+                              <TextField fx:id="usernameTf" prefHeight="40.0" prefWidth="285.0" promptText="Username" stylesheets="@../../styles/textfield-style.css" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Segoe UI" size="16.0" />
                                  </font>
@@ -54,7 +54,7 @@
                                     <Font name="Segoe UI" size="21.0" />
                                  </font>
                               </Label>
-                              <DatePicker editable="false" prefHeight="40.0" prefWidth="285.0" promptText="DD/MM/YYYY" style="-fx-font-size: 16; -fx-font-family: 'Segoe UI';" stylesheets="@../../styles/datepicker-style.css" />
+                              <DatePicker fx:id="dobTf" editable="false" prefHeight="40.0" prefWidth="285.0" promptText="DD/MM/YYYY" style="-fx-font-size: 16; -fx-font-family: 'Segoe UI';" stylesheets="@../../styles/datepicker-style.css" />
                            </children>
                         </VBox>
                      </children>
@@ -66,7 +66,7 @@
                               <Font name="Segoe UI" size="21.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="40.0" promptText="Display name" stylesheets="@../../styles/textfield-style.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                        <TextField fx:id="displayNameTf" prefHeight="40.0" promptText="Display name" stylesheets="@../../styles/textfield-style.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                            <font>
                               <Font name="Segoe UI" size="16.0" />
                            </font>
@@ -80,7 +80,7 @@
                               <Font name="Segoe UI" size="21.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="40.0" promptText="Email" stylesheets="@../../styles/textfield-style.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                        <TextField fx:id="emailTf" prefHeight="40.0" promptText="Email" stylesheets="@../../styles/textfield-style.css" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                            <font>
                               <Font name="Segoe UI" size="16.0" />
                            </font>

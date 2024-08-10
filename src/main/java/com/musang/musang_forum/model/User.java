@@ -9,14 +9,16 @@ import java.sql.SQLException;
 public class User {
     private int id;
     private String username;
+    private String displayName;
     private Date dob;
     private String email;
     private String salt;
     private String hash;
 
-    public User(int id, String username, Date dob, String email, String salt, String hash) {
+    public User(int id, String username, String displayName, Date dob, String email, String salt, String hash) {
         this.id = id;
         this.username = username;
+        this.displayName = displayName;
         this.dob = dob;
         this.email = email;
         this.salt = salt;
@@ -34,6 +36,13 @@ public class User {
     public User(int id, String username, Date dob, String email) {
         this.id = id;
         this.username = username;
+        this.dob = dob;
+        this.email = email;
+    }
+
+    public User(String username, String displayName, Date dob, String email) {
+        this.username = username;
+        this.displayName = displayName;
         this.dob = dob;
         this.email = email;
     }
@@ -57,6 +66,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public Date getDob() {

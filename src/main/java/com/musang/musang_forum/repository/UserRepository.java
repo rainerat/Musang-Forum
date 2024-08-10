@@ -19,9 +19,11 @@ public class UserRepository {
         try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                userList.add(
-                        new User(rs.getInt(1), rs.getString(2), rs.getDate(3),
-                                rs.getString(4), rs.getString(5), rs.getString(6)));
+                userList.add(new User(
+                        rs.getInt("id"), rs.getString("username"), rs.getString("display_name"),
+                        rs.getDate("dob"), rs.getString("email"), rs.getString("salt"),
+                        rs.getString("hash"))
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,8 +40,11 @@ public class UserRepository {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                return new User(rs.getInt(1), rs.getString(2), rs.getDate(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6));
+                return new User(
+                        rs.getInt("id"), rs.getString("username"), rs.getString("display_name"),
+                        rs.getDate("dob"), rs.getString("email"), rs.getString("salt"),
+                        rs.getString("hash")
+                );
             }
         } catch (SQLException e) {
             throw new RuntimeException();
@@ -56,8 +61,11 @@ public class UserRepository {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                return new User(rs.getInt(1), rs.getString(2), rs.getDate(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6));
+                return new User(
+                        rs.getInt("id"), rs.getString("username"), rs.getString("display_name"),
+                        rs.getDate("dob"), rs.getString("email"), rs.getString("salt"),
+                        rs.getString("hash")
+                );
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -112,8 +120,9 @@ public class UserRepository {
             if (rs.next()) {
                 CurrentUser.set(
                         new User(
-                            rs.getInt("id"), rs.getString("username"), rs.getDate("dob"),
-                            rs.getString("email"), rs.getString("salt"), rs.getString("hash"))
+                            rs.getInt("id"), rs.getString("username"), rs.getString("display_name"),
+                            rs.getDate("dob"), rs.getString("email"), rs.getString("salt"),
+                            rs.getString("hash"))
                         );
                 return true;
             }
