@@ -1,22 +1,17 @@
 package com.musang.musang_forum.controller.settings;
 
 import com.musang.musang_forum.App;
-import com.musang.musang_forum.Main;
 import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.controller.Controller;
-import com.musang.musang_forum.controller.NestedController;
 import com.musang.musang_forum.model.CurrentUser;
 import com.musang.musang_forum.model.User;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
-public class MyAccountController extends NestedController {
+public class MyAccountController extends Controller {
 
     @FXML
     private TextField usernameTf;
@@ -58,7 +53,7 @@ public class MyAccountController extends NestedController {
 
     @FXML
     protected void openChangePasswordPage() {
-        ((SettingsController) super.getMainController()).showChangePasswordPage();
+        ((SettingsController) super.getController()).showChangePasswordPage();
     }
 
 }

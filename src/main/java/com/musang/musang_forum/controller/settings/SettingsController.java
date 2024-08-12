@@ -1,11 +1,9 @@
 package com.musang.musang_forum.controller.settings;
 
 import com.musang.musang_forum.App;
-import com.musang.musang_forum.Main;
 import com.musang.musang_forum.controller.Controller;
 import com.musang.musang_forum.customfx.ToggleGroup;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
@@ -13,7 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class SettingsController extends Controller {
 
@@ -48,24 +45,22 @@ public class SettingsController extends Controller {
 
     @FXML
     public void showMyAccountPage() {
-        Controller controller = super.loadNestedPage(App.MYACCOUNT_PATH, centerPane);
-        ((MyAccountController) controller).setMainController(this);
+        super.loadNestedPage(App.MYACCOUNT_PATH, centerPane, this);
     }
 
     @FXML
     public void showChangePasswordPage() {
-        Controller controller = super.loadNestedPage(App.CHANGEPW_PATH, centerPane);
-        ((UpdatePasswordController) controller).setMainController(this);
+        super.loadNestedPage(App.CHANGEPW_PATH, centerPane, this);
     }
 
     @FXML
     private void showPersonalizePage() {
-        super.loadNestedPage(App.PERSONALIZE_PATH, centerPane);
+        super.loadNestedPage(App.PERSONALIZE_PATH, centerPane, this);
     }
 
     @FXML
     private void showInformationPage() {
-        super.loadNestedPage(App.INFORMATION_PATH, centerPane);
+        super.loadNestedPage(App.INFORMATION_PATH, centerPane, this);
     }
 
     @FXML

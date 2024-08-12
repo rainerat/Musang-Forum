@@ -1,4 +1,4 @@
-package com.musang.musang_forum.controller.settings;
+package com.musang.musang_forum.controller.main;
 
 import com.musang.musang_forum.App;
 import com.musang.musang_forum.controller.Controller;

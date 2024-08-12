@@ -5,7 +5,6 @@ import com.musang.musang_forum.controller.Controller;
 import com.musang.musang_forum.customfx.ToggleGroup;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
-
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
@@ -42,7 +41,7 @@ public class HomeController extends Controller {
 
     @FXML
     public void showAllDiscussionsPage() {
-        super.loadNestedPage(App.DISCUSSION_PATH, centerPane);
+        super.loadNestedPage(App.DISCUSSION_PATH, centerPane, this);
     }
 
     @FXML
