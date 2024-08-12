@@ -58,7 +58,7 @@
                         <Font name="Segoe UI Semibold" size="16.0" />
                     </font>
                 </Button>
-                <ToggleButton fx:id="allDiscussionButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" selected="true" stylesheets="@../../styles/togglebutton-style.css" text="All discussion" textFill="#4c4c4c">
+                <ToggleButton fx:id="allDiscussionButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#showAllDiscussionsPage" prefHeight="80.0" prefWidth="150.0" selected="true" stylesheets="@../../styles/togglebutton-style.css" text="All discussion" textFill="#4c4c4c">
                     <graphic>
                         <MaterialDesignIconView fill="#4c4c4c" glyphName="MESSAGE_TEXT_OUTLINE" size="35" />
                     </graphic>

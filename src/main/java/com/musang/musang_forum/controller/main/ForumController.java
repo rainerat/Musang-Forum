@@ -2,13 +2,14 @@ package com.musang.musang_forum.controller.main;
 
 import com.musang.musang_forum.App;
 import com.musang.musang_forum.client.Client;
-import com.musang.musang_forum.component.MessageComponent;
 import com.musang.musang_forum.controller.Controller;
+import com.musang.musang_forum.controller.component.MessageBubbleController;
 import com.musang.musang_forum.model.Forum;
 import com.musang.musang_forum.model.Message;
 import com.musang.musang_forum.repository.ForumRepository;
 import com.musang.musang_forum.repository.MessageRepository;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -87,21 +88,34 @@ public class ForumController extends Controller {
     }
 
     public void addMessageToUI(Message message, boolean isOwnMessage) {
-        HBox messageBox;
-        if (isOwnMessage) {
-            messageBox = MessageComponent.setOwnMessageBox(message.getMessage());
-        } else {
-            messageBox = MessageComponent.setOthersMessageBox(message.getUser().getUsername(), message.getMessage());
+        try {
+            FXMLLoader loader = super.getLoader(App.MESSAGE_BUBBLE_PATH);
+            HBox messageBox = loader.load();
+            MessageBubbleController controller = loader.getController();
+            controller.setMessage(message.getUser().getUsername(), message.getMessage(), isOwnMessage);
+
+            chatBox.getChildren().add(messageBox);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        chatBox.getChildren().add(messageBox);
     }
 
     public void displayPreviousMessages(List<Message> messageList) {
         for (Message message : messageList) {
-            if (message.getUser().getId() == app().getCurrentUser().getId()) {
-                chatBox.getChildren().add(MessageComponent.setOwnMessageBox(message.getMessage()));
-            } else {
-                chatBox.getChildren().add(MessageComponent.setOthersMessageBox(message.getUser().getUsername(), message.getMessage()));
+            try {
+                FXMLLoader loader = super.getLoader(App.MESSAGE_BUBBLE_PATH);
+                HBox messageBox = loader.load();
+                MessageBubbleController controller = loader.getController();
+
+                if (message.getUser().getId() == app().getCurrentUser().getId()) {
+                    controller.setMessage(null, message.getMessage(), true);
+                } else {
+                    controller.setMessage(message.getUser().getUsername(), message.getMessage(), false);
+                }
+
+                chatBox.getChildren().add(messageBox);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

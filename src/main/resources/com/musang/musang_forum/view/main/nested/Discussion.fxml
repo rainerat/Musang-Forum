@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="654.0" prefWidth="845.0" spacing="20.0" style="-fx-background-color: fefefe; -fx-background-radius: 15 0 0 0; -fx-border-radius: 15 0 0 0; -fx-border-color: dddddd; -fx-border-width: 0.7 0 0 0.7;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.settings.DiscussionController">
+    <padding>
+        <Insets left="15.0" right="15.0" top="15.0" />
+    </padding>
+   <children>
+      <HBox prefHeight="45.0">
+         <children>
+            <ComboBox prefHeight="45.0" prefWidth="165.0" promptText="Recent" stylesheets="@../../../styles/combobox-style.css" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <TextField prefHeight="45.0" prefWidth="300.0" promptText="Search post" stylesheets="@../../../styles/textfield-style.css">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0" />
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox alignment="TOP_CENTER">
+               <children>
+                  <FlowPane prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+         </content>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </ScrollPane>
+   </children>
+</VBox>

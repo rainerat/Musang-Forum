@@ -3,11 +3,11 @@ package com.musang.musang_forum.controller.settings;
 import com.musang.musang_forum.App;
 import com.musang.musang_forum.Main;
 import com.musang.musang_forum.controller.Controller;
+import com.musang.musang_forum.customfx.ToggleGroup;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -42,49 +42,30 @@ public class SettingsController extends Controller {
         myAccountButton.setToggleGroup(toggleGroup);
         personalizeButton.setToggleGroup(toggleGroup);
         informationButton.setToggleGroup(toggleGroup);
-
-        toggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
-            if (newToggle == null) {
-                toggleGroup.selectToggle(oldToggle);
-            }
-        });
-
         myAccountButton.setSelected(true);
         this.showMyAccountPage();
     }
 
     @FXML
     public void showMyAccountPage() {
-        Controller controller = this.loadNestedPage(App.MYACCOUNT_PATH);
+        Controller controller = super.loadNestedPage(App.MYACCOUNT_PATH, centerPane);
         ((MyAccountController) controller).setMainController(this);
     }
 
     @FXML
     public void showChangePasswordPage() {
-        Controller controller = this.loadNestedPage(App.CHANGEPW_PATH);
+        Controller controller = super.loadNestedPage(App.CHANGEPW_PATH, centerPane);
         ((UpdatePasswordController) controller).setMainController(this);
     }
 
     @FXML
     private void showPersonalizePage() {
-        this.loadNestedPage(App.PERSONALIZE_PATH);
+        super.loadNestedPage(App.PERSONALIZE_PATH, centerPane);
     }
 
     @FXML
     private void showInformationPage() {
-        this.loadNestedPage(App.INFORMATION_PATH);
-    }
-
-    protected Controller loadNestedPage(final String NESTED_PATH) {
-        try {
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(Main.class.getResource(NESTED_PATH)));
-            Pane pane = loader.load();
-            centerPane.getChildren().setAll(pane);
-            return loader.getController();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        super.loadNestedPage(App.INFORMATION_PATH, centerPane);
     }
 
     @FXML

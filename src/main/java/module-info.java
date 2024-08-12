@@ -23,4 +23,6 @@ module com.musang.musang_forum {
     opens com.musang.musang_forum.controller.main to javafx.fxml;
     exports com.musang.musang_forum.controller.general;
     opens com.musang.musang_forum.controller.general to javafx.fxml;
+    exports com.musang.musang_forum.controller.component;
+    opens com.musang.musang_forum.controller.component to javafx.fxml;
 }

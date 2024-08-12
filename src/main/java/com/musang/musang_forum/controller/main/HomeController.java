@@ -2,16 +2,21 @@ package com.musang.musang_forum.controller.main;
 
 import com.musang.musang_forum.App;
 import com.musang.musang_forum.controller.Controller;
+import com.musang.musang_forum.customfx.ToggleGroup;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
+
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
 public class HomeController extends Controller {
     @FXML
     private HBox myAccountBox;
+
+    @FXML
+    private Pane centerPane;
 
     @FXML
     private ToggleButton allDiscussionButton;
@@ -32,6 +37,12 @@ public class HomeController extends Controller {
         allDiscussionButton.setToggleGroup(toggleGroup);
         followingButton.setToggleGroup(toggleGroup);
         tagsButton.setToggleGroup(toggleGroup);
+        this.showAllDiscussionsPage();
+    }
+
+    @FXML
+    public void showAllDiscussionsPage() {
+        super.loadNestedPage(App.DISCUSSION_PATH, centerPane);
     }
 
     @FXML
