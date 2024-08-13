@@ -146,4 +146,9 @@ public class ForumController extends Controller {
     protected void onMyAccountExited() {
         myAccountBox.setStyle("-fx-background-color: transparent; -fx-background-radius: 10;");
     }
+
+    @FXML
+    protected void handleBackButton() throws IOException {
+        super.loadPreviousPage();
+    }
 }

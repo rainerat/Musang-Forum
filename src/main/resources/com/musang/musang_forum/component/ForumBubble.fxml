@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="200.0" spacing="5.0" style="-fx-background-color: white; -fx-border-color: eaeaea; -fx-border-radius: 10;" styleClass="forum-bubble" stylesheets="@../styles/forum-bubble-style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.component.ForumBubbleController">
+<VBox maxHeight="200.0" onMouseClicked="#handleForumBubble" spacing="5.0" style="-fx-background-color: white; -fx-border-color: eaeaea; -fx-border-radius: 10;" styleClass="forum-bubble" stylesheets="@../styles/forum-bubble-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.component.ForumBubbleController">
     <children>
         <FlowPane hgap="10.0" rowValignment="TOP" vgap="5.0">
             <children>

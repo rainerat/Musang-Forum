@@ -32,7 +32,7 @@ public class AllDiscussionsController extends Controller {
                 VBox forumBubble = loader.load();
                 ForumBubbleController controller = loader.getController();
 
-//                controller.setMessage(null, message.getMessage(), true);
+                controller.setDiscussion(forum.getTitle(), forum.getDescription());
 
                 discussionContainer.getChildren().add(forumBubble);
             } catch (IOException e) {
