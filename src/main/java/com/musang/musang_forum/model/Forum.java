@@ -3,7 +3,6 @@ package com.musang.musang_forum.model;
 import java.sql.Date;
 
 public class Forum {
-
     private int id;
     private String title;
     private String description;

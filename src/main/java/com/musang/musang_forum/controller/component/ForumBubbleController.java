@@ -1,12 +1,17 @@
 package com.musang.musang_forum.controller.component;
 
-import com.musang.musang_forum.App;
-import com.musang.musang_forum.controller.Controller;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 
-public class ForumBubbleController extends Controller {
+public class ForumBubbleController {
+    @FXML
+    private Label titleLabel;
 
-    public ForumBubbleController() {
-        super(App.FORUM_BUBBLE_PATH);
+    @FXML
+    private Label descriptionLabel;
 
-    }
+    @FXML
+    private Label totalReplyLabel;
+
+
 }

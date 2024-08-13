@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="654.0" prefWidth="845.0" spacing="20.0" style="-fx-background-color: fefefe; -fx-background-radius: 15 0 0 0; -fx-border-radius: 15 0 0 0; -fx-border-color: dddddd; -fx-border-width: 0.7 0 0 0.7;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.musang_forum.controller.main.AllDiscussionsController">
+    <padding>
+        <Insets left="15.0" right="15.0" top="15.0" />
+    </padding>
+   <children>
+      <HBox minHeight="45.0">
+         <children>
+            <ComboBox prefHeight="45.0" prefWidth="165.0" promptText="Recent" stylesheets="@../../../styles/combobox-style.css" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <TextField prefHeight="45.0" prefWidth="300.0" promptText="Search post" stylesheets="@../../../styles/textfield-style.css">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <Separator />
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="home-scroll-pane" stylesheets="@../../../styles/scrollpane-style.css" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox fx:id="discussionContainer" alignment="TOP_CENTER" spacing="10.0">
+               <children>
+                  <VBox maxHeight="200.0" spacing="5.0" style="-fx-background-color: white; -fx-border-color: eaeaea; -fx-border-radius: 10;" stylesheets="@../../../styles/forum-bubble-style.css">
+                     <children>
+                        <FlowPane hgap="10.0" rowValignment="TOP" vgap="5.0">
+                           <children>
+                              <Label alignment="CENTER" styleClass="genre-label" text="Genre" />
+                              <Label alignment="CENTER" styleClass="genre-label" text="BDSM" />
+                              <Label alignment="CENTER" styleClass="genre-label" text="Futanari" />
+                           </children>
+                        </FlowPane>
+                        <Label alignment="TOP_LEFT" text="Forum Pertama" textFill="#1b1b1b">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label text="Lorem ipsum dolor sit amet" textFill="#5d5d5d" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER_RIGHT" spacing="5.0">
+                           <children>
+                              <MaterialDesignIconView fill="#5d5d5d" glyphName="COMMENT_OUTLINE" size="16" />
+                              <Label text="999" textFill="#5d5d5d">
+                                 <font>
+                                    <Font name="Segoe UI" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Separator maxHeight="20.0" orientation="VERTICAL" />
+                              <Label text="1m ago" textFill="#5d5d5d">
+                                 <font>
+                                    <Font name="Segoe UI" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </ScrollPane>
+   </children>
+</VBox>

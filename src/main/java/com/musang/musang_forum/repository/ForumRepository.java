@@ -2,13 +2,31 @@ package com.musang.musang_forum.repository;
 
 import com.musang.musang_forum.model.CurrentForum;
 import com.musang.musang_forum.model.Forum;
+import com.musang.musang_forum.model.User;
 import com.musang.musang_forum.server.Database;
+import javafx.collections.FXCollections;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ForumRepository {
+    public static List<Forum> getAll() {
+        String query = "SELECT * FROM forum";
+        List<Forum> forumList = FXCollections.observableArrayList();
+
+        try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                forumList.add(getForum(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return forumList;
+    }
 
     public static Forum findByTitle(String title) {
         String query = "SELECT * FROM forum WHERE title = ?";
@@ -18,8 +36,7 @@ public class ForumRepository {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                Forum forum = new Forum(rs.getInt(1), rs.getString(2), rs.getString(3),
-                        rs.getDate(4), rs.getInt(5));
+                Forum forum = getForum(rs);
                 CurrentForum.getInstance().set(forum);
                 return forum;
             }
@@ -28,5 +45,15 @@ public class ForumRepository {
         }
 
         return null;
+    }
+
+    private static Forum getForum(ResultSet rs) throws SQLException {
+        return new Forum(
+                rs.getInt("id"),
+                rs.getString("title"),
+                rs.getString("description"),
+                rs.getDate("date_created"),
+                rs.getInt("user_id")
+        );
     }
 }
