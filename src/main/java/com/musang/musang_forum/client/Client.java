@@ -1,5 +1,7 @@
 package com.musang.musang_forum.client;
 
+import com.musang.musang_forum.controller.Controller;
+import com.musang.musang_forum.controller.main.AllDiscussionsController;
 import com.musang.musang_forum.controller.main.ForumController;
 import com.musang.musang_forum.model.*;
 import javafx.application.Platform;
@@ -11,13 +13,13 @@ public class Client {
     private Socket socket;
     private BufferedReader in;
     private PrintWriter out;
-    private final ForumController controller;
+    private AllDiscussionsController discussionsController;
+    private ForumController forumController;
     private final User user;
 
     private volatile boolean running = false;
 
-    public Client(String serverAddress, int port, ForumController controller, User user) {
-        this.controller = controller;
+    public Client(String serverAddress, int port, User user) {
         this.user = user;
 
         try {
@@ -36,12 +38,23 @@ public class Client {
             try {
                 String serializedMessage;
                 while (running && (serializedMessage = in.readLine()) != null) {
-                    Message message = Message.deserialize(serializedMessage);
-                    Platform.runLater(() -> {
-                        if (message.getUser().getId() != user.getId()) {
-                            controller.receiveMessage(message);
-                        }
-                    });
+                    if (serializedMessage.startsWith("NEW_FORUM:")) {
+                        // Deserialize the new forum
+                        String forumData = serializedMessage.substring("NEW_FORUM:".length());
+                        Forum newForum = Forum.deserialize(forumData);  // Assuming you have a deserialize method
+
+                        // Refresh the forum list
+                        Platform.runLater(() -> {
+                            discussionsController.addNewForum(newForum);
+                        });
+                    } else {
+                        Message message = Message.deserialize(serializedMessage);
+                        Platform.runLater(() -> {
+                            if (message.getUser().getId() != user.getId()) {
+                                forumController.receiveMessage(message);
+                            }
+                        });
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -53,7 +66,7 @@ public class Client {
         Forum currentForum = CurrentForum.getInstance().get();
         Message message = new Message(text, user, currentForum.getId());
         out.println(message.serialize());
-        controller.addMessageToUI(message, true);
+        forumController.addMessageToUI(message, true);
         message.save();
     }
 
@@ -77,4 +90,13 @@ public class Client {
             e.printStackTrace();
         }
     }
+
+    public void setForumController(ForumController forumController) {
+        this.forumController = forumController;
+    }
+
+    public void setDiscussionsController(AllDiscussionsController discussionsController) {
+        this.discussionsController = discussionsController;
+    }
+
 }

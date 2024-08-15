@@ -3,6 +3,7 @@ package com.musang.musang_forum.controller.general;
 import com.musang.musang_forum.App;
 import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.controller.Controller;
+import com.musang.musang_forum.controller.main.AllDiscussionsController;
 import com.musang.musang_forum.controller.main.ForumController;
 import com.musang.musang_forum.controller.main.HomeController;
 import com.musang.musang_forum.repository.UserRepository;
@@ -63,14 +64,18 @@ public class SignInController extends Controller {
     }
 
     private void loadHomePage() throws IOException {
-        super.loadPage(App.HOME_PATH);
-    }
-
-    private void loadForumPage() throws IOException {
-        ForumController controller = (ForumController) super.loadPage(App.FORUM_PATH);
-        Client client = new Client("localhost", 59001, controller, app().getCurrentUser());
+        HomeController homeController = (HomeController) super.loadPage(App.HOME_PATH);
+        AllDiscussionsController controller = homeController.getDiscussionsController();
+        Client client = new Client("localhost", 59001, app().getCurrentUser());
+        client.setDiscussionsController(controller);
         ClientManager.setClient(client);
     }
+
+//    private void loadForumPage() throws IOException {
+//        ForumController controller = (ForumController) super.loadPage(App.FORUM_PATH);
+//        Client client = new Client("localhost", 59001, controller, app().getCurrentUser());
+//        ClientManager.setClient(client);
+//    }
 
     @FXML
     protected void signInEnter() {

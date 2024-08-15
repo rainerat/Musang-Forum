@@ -62,8 +62,8 @@ public class Message {
         return user.getId() + "::" + user.getUsername() + "::" + message;
     }
 
-    public static Message deserialize(String message) {
-        String[] parts = message.split("::", 3);
+    public static Message deserialize(String serializedMessage) {
+        String[] parts = serializedMessage.split("::", 3);
         return new Message(parts[2], new User(Integer.parseInt(parts[0]), parts[1]));
     }
 

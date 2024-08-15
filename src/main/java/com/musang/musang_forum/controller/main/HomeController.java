@@ -26,6 +26,8 @@ public class HomeController extends Controller {
     @FXML
     private ToggleButton tagsButton;
 
+    private AllDiscussionsController discussionsController;
+
     public HomeController() {
         super(App.HOME_PATH);
     }
@@ -41,7 +43,7 @@ public class HomeController extends Controller {
 
     @FXML
     public void showAllDiscussionsPage() {
-        super.loadNestedPage(App.DISCUSSION_PATH, centerPane, this);
+        this.discussionsController = (AllDiscussionsController) super.loadNestedPage(App.DISCUSSION_PATH, centerPane, this);
     }
 
     @FXML
@@ -58,4 +60,9 @@ public class HomeController extends Controller {
     protected void onMyAccountExited() {
         myAccountBox.setStyle("-fx-background-color: transparent; -fx-background-radius: 10;");
     }
+
+    public AllDiscussionsController getDiscussionsController() {
+        return discussionsController;
+    }
+
 }

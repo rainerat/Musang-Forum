@@ -48,25 +48,30 @@ public class ForumController extends Controller {
     @FXML
     private Button sendButton;
 
-    private Forum chosenForum = ForumRepository.findByTitle("Forum Pertama");
+    private Forum chosenForum;
 
     public ForumController() {
         super(App.FORUM_PATH);
     }
 
-    @FXML
-    public void initialize() {
+    private void setForumDetail(){
         forumTitleLabel.setText(chosenForum.getTitle());
         forumDescLabel.setText(chosenForum.getDescription());
+    }
+
+    private void getMessages(){
+        List<Message> messages = MessageRepository.loadMessages(chosenForum.getId());
+        this.displayPreviousMessages(messages);
+    }
+
+    @FXML
+    public void initialize() {
         chatBox.heightProperty().addListener((observable, oldValue, newValue) -> scrollPane.setVvalue(1.0));
         messageField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 this.handleSendButton();
             }
         });
-
-        List<Message> messages = MessageRepository.loadMessages(chosenForum.getId());
-        this.displayPreviousMessages(messages);
     }
 
     @FXML
@@ -151,5 +156,11 @@ public class ForumController extends Controller {
     @FXML
     protected void handleBackButton() throws IOException {
         super.loadPreviousPage();
+    }
+
+    public void setChosenForum(Forum chosenForum) {
+        this.chosenForum = chosenForum;
+        this.setForumDetail();
+        this.getMessages();
     }
 }

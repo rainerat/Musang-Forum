@@ -1,5 +1,7 @@
 package com.musang.musang_forum.model;
 
+import jdk.jshell.execution.JdiExecutionControl;
+
 import java.sql.Date;
 
 public class Forum {
@@ -57,4 +59,12 @@ public class Forum {
         this.userID = userID;
     }
 
+    public String serialize() {
+        return id + "::" + title + "::" + description + "::" + dateCreated + "::" + userID;
+    }
+
+    public static Forum deserialize(String serializedForum) {
+        String[] parts = serializedForum.split("::", 5);
+        return new Forum(Integer.parseInt(parts[0]), parts[1], parts[2], Date.valueOf(parts[3]), Integer.parseInt(parts[4]));
+    }
 }

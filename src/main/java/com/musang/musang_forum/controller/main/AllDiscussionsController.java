@@ -31,11 +31,23 @@ public class AllDiscussionsController extends Controller {
                 FXMLLoader loader = super.getLoader(App.FORUM_BUBBLE_PATH);
                 VBox forumBubble = loader.load();
                 ForumBubbleController controller = loader.getController();
-                controller.setDiscussion(forum.getTitle(), forum.getDescription());
+                controller.setDiscussion(forum);
                 discussionContainer.getChildren().add(forumBubble);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void addNewForum(Forum newForum) {
+        try {
+            FXMLLoader loader = super.getLoader(App.FORUM_BUBBLE_PATH);
+            VBox forumBubble = loader.load();
+            ForumBubbleController controller = loader.getController();
+            controller.setDiscussion(newForum);
+            discussionContainer.getChildren().add(0, forumBubble);  // Add the new forum at the top
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

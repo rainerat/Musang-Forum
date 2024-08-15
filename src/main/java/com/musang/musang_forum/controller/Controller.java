@@ -32,16 +32,17 @@ public abstract class Controller {
         return loader.getController();
     }
 
-    protected void loadNestedPage(final String NESTED_PATH, Pane centerPane, Controller mainController) {
+    protected Controller loadNestedPage(final String NESTED_PATH, Pane centerPane, Controller mainController) {
         try {
             FXMLLoader loader = getLoader(NESTED_PATH);
             Pane pane = loader.load();
             Controller loadedController = loader.getController();
             loadedController.setController(mainController);
             centerPane.getChildren().setAll(pane);
+            return loadedController;
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } return null;
     }
 
     @FXML

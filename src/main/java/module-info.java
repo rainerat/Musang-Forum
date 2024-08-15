@@ -7,6 +7,7 @@ module com.musang.musang_forum {
     requires de.jensd.fx.glyphs.fontawesome;
     requires de.jensd.fx.glyphs.iconsfivetwofive;
     requires de.jensd.fx.glyphs.materialdesignicons;
+    requires jdk.jshell;
 
     opens com.musang.musang_forum to javafx.fxml;
     opens com.musang.musang_forum.controller to javafx.fxml;

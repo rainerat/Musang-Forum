@@ -1,5 +1,7 @@
 package com.musang.musang_forum.server;
 
+import com.musang.musang_forum.model.Forum;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -58,6 +60,10 @@ public class Server {
             }
         }
 
+        private  void  broadcastNewForum(Forum forum){
+            String serializedForum = forum.serialize();
+            broadcastMessage("NEW_FORUM:" + serializedForum);
+        }
         private void broadcastMessage(String message) {
             synchronized (clientHandlers) {
                 for (ClientHandler handler : clientHandlers) {
