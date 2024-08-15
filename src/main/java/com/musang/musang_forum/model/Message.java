@@ -59,12 +59,12 @@ public class Message {
     }
 
     public String serialize() {
-        return user.getId() + "::" + user.getUsername() + "::" + message;
+        return message + "::" + user.getId() + "::" + user.getUsername() + "::" + forumID;
     }
 
     public static Message deserialize(String serializedMessage) {
-        String[] parts = serializedMessage.split("::", 3);
-        return new Message(parts[2], new User(Integer.parseInt(parts[0]), parts[1]));
+        String[] parts = serializedMessage.split("::", 4);
+        return new Message(parts[0], new User(Integer.parseInt(parts[1]), parts[2]), Integer.parseInt(parts[3]));
     }
 
     public void save() {

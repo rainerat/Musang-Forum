@@ -1,7 +1,5 @@
 package com.musang.musang_forum.model;
 
-import jdk.jshell.execution.JdiExecutionControl;
-
 import java.sql.Date;
 
 public class Forum {

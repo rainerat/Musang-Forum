@@ -4,6 +4,7 @@ import com.musang.musang_forum.App;
 import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.controller.Controller;
 import com.musang.musang_forum.controller.main.ForumController;
+import com.musang.musang_forum.model.CurrentForum;
 import com.musang.musang_forum.model.Forum;
 import com.musang.musang_forum.util.ClientManager;
 import javafx.fxml.FXML;
@@ -27,8 +28,7 @@ public class ForumBubbleController extends Controller{
         super(App.HOME_PATH);
     }
 
-
-    public void setDiscussion(Forum forum){
+    public void setDiscussion(Forum forum) {
         this.forum = forum;
         titleLabel.setText(this.forum.getTitle());
         descriptionLabel.setText(this.forum.getDescription());
@@ -36,10 +36,9 @@ public class ForumBubbleController extends Controller{
 
     @FXML
     public void handleForumBubble() throws IOException {
-        Client client = ClientManager.getClient();
+        CurrentForum.getInstance().set(forum);
         ForumController controller = (ForumController) super.loadPage(App.FORUM_PATH);
-        controller.setChosenForum(forum);
-        client.setForumController(controller);
+        ClientManager.getClient().setForumController(controller);
     }
 
 }

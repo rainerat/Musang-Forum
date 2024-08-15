@@ -1,6 +1,5 @@
 package com.musang.musang_forum.client;
 
-import com.musang.musang_forum.controller.Controller;
 import com.musang.musang_forum.controller.main.AllDiscussionsController;
 import com.musang.musang_forum.controller.main.ForumController;
 import com.musang.musang_forum.model.*;
@@ -50,7 +49,7 @@ public class Client {
                     } else {
                         Message message = Message.deserialize(serializedMessage);
                         Platform.runLater(() -> {
-                            if (message.getUser().getId() != user.getId()) {
+                            if (message.getUser().getId() != user.getId() && message.getForumID() == CurrentForum.getInstance().get().getId()) {
                                 forumController.receiveMessage(message);
                             }
                         });
@@ -72,20 +71,13 @@ public class Client {
 
     public void close() {
         running = false;
-
         try {
-            if (out != null) {
+            if (out != null)
                 out.close();
-            }
-            System.out.println("pass 1");
-            if (in != null) {
+            if (in != null)
                 in.close();
-            }
-            System.out.println("pass 2");
-            if (socket != null) {
+            if (socket != null)
                 socket.close();
-            }
-            System.out.println("pass 3");
         } catch (IOException e) {
             e.printStackTrace();
         }

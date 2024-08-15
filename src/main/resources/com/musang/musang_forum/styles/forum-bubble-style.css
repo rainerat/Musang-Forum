@@ -1,7 +1,14 @@
-.genre-label {
-    -fx-background-color: #605341;
-    -fx-text-fill: white;
-    -fx-font-family: 'Segoe UI';
-    -fx-background-radius: 20;
-    -fx-padding: 3 15 3 15;
+.forum-bubble {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #eaeaea;
+    -fx-border-radius: 10;
+}
+
+.forum-bubble:hover {
+    -fx-background-color: #f5f5f5;
+}
+
+.forum-bubble:pressed {
+    -fx-background-color: #e5e5e5;
 }

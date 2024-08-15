@@ -4,6 +4,7 @@ import com.musang.musang_forum.App;
 import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.controller.Controller;
 import com.musang.musang_forum.controller.component.MessageBubbleController;
+import com.musang.musang_forum.model.CurrentForum;
 import com.musang.musang_forum.model.Forum;
 import com.musang.musang_forum.model.Message;
 import com.musang.musang_forum.repository.ForumRepository;
@@ -45,23 +46,10 @@ public class ForumController extends Controller {
     @FXML
     private TextField messageField;
 
-    @FXML
-    private Button sendButton;
-
-    private Forum chosenForum;
+    private final Forum chosenForum = CurrentForum.getInstance().get();
 
     public ForumController() {
         super(App.FORUM_PATH);
-    }
-
-    private void setForumDetail(){
-        forumTitleLabel.setText(chosenForum.getTitle());
-        forumDescLabel.setText(chosenForum.getDescription());
-    }
-
-    private void getMessages(){
-        List<Message> messages = MessageRepository.loadMessages(chosenForum.getId());
-        this.displayPreviousMessages(messages);
     }
 
     @FXML
@@ -72,6 +60,19 @@ public class ForumController extends Controller {
                 this.handleSendButton();
             }
         });
+
+        this.setForumDetail();
+        this.getMessages();
+    }
+
+    private void setForumDetail(){
+        forumTitleLabel.setText(chosenForum.getTitle());
+        forumDescLabel.setText(chosenForum.getDescription());
+    }
+
+    private void getMessages() {
+        List<Message> messages = MessageRepository.loadMessages(chosenForum.getId());
+        this.displayPreviousMessages(messages);
     }
 
     @FXML
@@ -156,11 +157,5 @@ public class ForumController extends Controller {
     @FXML
     protected void handleBackButton() throws IOException {
         super.loadPreviousPage();
-    }
-
-    public void setChosenForum(Forum chosenForum) {
-        this.chosenForum = chosenForum;
-        this.setForumDetail();
-        this.getMessages();
     }
 }
