@@ -4,6 +4,7 @@ import com.musang.musang_forum.App;
 import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.controller.Controller;
 import com.musang.musang_forum.controller.main.ForumController;
+import com.musang.musang_forum.controller.main.HomeController;
 import com.musang.musang_forum.repository.UserRepository;
 import com.musang.musang_forum.util.ClientManager;
 import javafx.fxml.FXML;

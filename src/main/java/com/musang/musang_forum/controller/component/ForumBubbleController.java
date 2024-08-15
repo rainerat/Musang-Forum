@@ -1,7 +1,10 @@
 package com.musang.musang_forum.controller.component;
 
 import com.musang.musang_forum.App;
+import com.musang.musang_forum.client.Client;
 import com.musang.musang_forum.controller.Controller;
+import com.musang.musang_forum.controller.main.ForumController;
+import com.musang.musang_forum.util.ClientManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -28,8 +31,8 @@ public class ForumBubbleController extends Controller{
     }
 
     public void handleForumBubble() throws IOException {
-        super.loadPage(App.FORUM_PATH);
+        Client client = ClientManager.getClient();
+        ForumController controller = (ForumController) super.loadPage(App.FORUM_PATH);
     }
-
 
 }

@@ -16,6 +16,7 @@ public class Server {
         try (ServerSocket listener = new ServerSocket(PORT)) {
             while (true) {
                 new ClientHandler(listener.accept()).start();
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -30,6 +31,7 @@ public class Server {
             this.socket = socket;
         }
 
+        @Override
         public void run() {
             try (BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
                 out = new PrintWriter(socket.getOutputStream(), true);

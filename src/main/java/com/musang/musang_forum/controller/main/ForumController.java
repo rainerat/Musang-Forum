@@ -8,6 +8,7 @@ import com.musang.musang_forum.model.Forum;
 import com.musang.musang_forum.model.Message;
 import com.musang.musang_forum.repository.ForumRepository;
 import com.musang.musang_forum.repository.MessageRepository;
+import com.musang.musang_forum.util.ClientManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -75,7 +76,7 @@ public class ForumController extends Controller {
             return;
         }
 
-        Client client = app().getClient();
+        Client client = ClientManager.getClient();
         if (client != null) {
             client.sendMessage(message);
         }

@@ -31,9 +31,7 @@ public class AllDiscussionsController extends Controller {
                 FXMLLoader loader = super.getLoader(App.FORUM_BUBBLE_PATH);
                 VBox forumBubble = loader.load();
                 ForumBubbleController controller = loader.getController();
-
                 controller.setDiscussion(forum.getTitle(), forum.getDescription());
-
                 discussionContainer.getChildren().add(forumBubble);
             } catch (IOException e) {
                 e.printStackTrace();
