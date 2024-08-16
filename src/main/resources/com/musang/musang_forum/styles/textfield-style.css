@@ -1,10 +1,16 @@
 .text-field {
-    -fx-background-color: #ffffff;
+    -fx-background-color: white;
     -fx-background-radius: 5;
     -fx-border-style: solid outside;
     -fx-border-color: #eaeaea #eaeaea #d5d5d5 #eaeaea;
     -fx-border-radius: 5;
     -fx-border-width: 1;
+    -fx-font-family: 'Segoe UI';
+    -fx-font-size: 16;
+}
+
+.text-field .content {
+    -fx-background-color: white;
 }
 
 .text-field:hover {

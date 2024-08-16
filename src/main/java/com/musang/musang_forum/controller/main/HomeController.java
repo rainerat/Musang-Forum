@@ -3,6 +3,7 @@ package com.musang.musang_forum.controller.main;
 import com.musang.musang_forum.App;
 import com.musang.musang_forum.controller.Controller;
 import com.musang.musang_forum.customfx.ToggleGroup;
+import com.musang.musang_forum.util.PageManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
@@ -30,6 +31,7 @@ public class HomeController extends Controller {
 
     public HomeController() {
         super(App.HOME_PATH);
+        PageManager.setPreviousPagePath(App.HOME_PATH);
     }
 
     @FXML
@@ -38,12 +40,28 @@ public class HomeController extends Controller {
         allDiscussionButton.setToggleGroup(toggleGroup);
         followingButton.setToggleGroup(toggleGroup);
         tagsButton.setToggleGroup(toggleGroup);
+        allDiscussionButton.setSelected(true);
         this.showAllDiscussionsPage();
     }
 
     @FXML
-    public void showAllDiscussionsPage() {
+    protected void handleStartDiscussionButton() {
+        super.loadNestedPage(App.START_DISCUSSION_PATH, centerPane, this);
+    }
+
+    @FXML
+    protected void showAllDiscussionsPage() {
         this.discussionsController = (AllDiscussionsController) super.loadNestedPage(App.DISCUSSION_PATH, centerPane, this);
+    }
+
+    @FXML
+    protected void handleFollowingButton() {
+        super.loadNestedPage(App.FOLLOWING_PATH, centerPane, this);
+    }
+
+    @FXML
+    protected void handleTagsButton() {
+        super.loadNestedPage(App.TAGS_PATH, centerPane, this);
     }
 
     @FXML

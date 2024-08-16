@@ -1,7 +1,14 @@
 .genre-label {
     -fx-background-color: #605341;
     -fx-text-fill: white;
-    -fx-font-family: 'Segoe UI';
     -fx-background-radius: 20;
-    -fx-padding: 3 15 3 15;
+    -fx-padding: 3 12 3 12;
+}
+
+.genre-label:hover {
+    -fx-background-color: #4f4436;
+}
+
+.genre-label:pressed {
+    -fx-background-color: #5d503f;
 }

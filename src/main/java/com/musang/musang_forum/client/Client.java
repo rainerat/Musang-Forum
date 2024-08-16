@@ -28,7 +28,7 @@ public class Client {
             running = true;
             this.listenForMessages();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("[ Can't connect to the server ]");
         }
     }
 

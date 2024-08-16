@@ -53,12 +53,11 @@
     <left>
         <VBox alignment="TOP_CENTER" prefHeight="654.0" prefWidth="170.0" spacing="20.0" style="-fx-background-color: f3f3f3;" BorderPane.alignment="CENTER">
             <children>
-                <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="main-button" stylesheets="@../../styles/mainbutton-style.css" text="Start a discussion" textFill="#fefefe">
-                    <font>
-                        <Font name="Segoe UI Semibold" size="16.0" />
-                    </font>
-                </Button>
-                <ToggleButton fx:id="allDiscussionButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#showAllDiscussionsPage" prefHeight="80.0" prefWidth="150.0" selected="true" stylesheets="@../../styles/togglebutton-style.css" text="All discussion" textFill="#4c4c4c">
+                <Button mnemonicParsing="false" onAction="#handleStartDiscussionButton" prefHeight="40.0" prefWidth="150.0" styleClass="main-button" stylesheets="@../../styles/mainbutton-style.css" text="Start a discussion">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font></Button>
+                <ToggleButton fx:id="allDiscussionButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#showAllDiscussionsPage" prefHeight="80.0" prefWidth="150.0" stylesheets="@../../styles/togglebutton-style.css" text="All discussion" textFill="#4c4c4c">
                     <graphic>
                         <MaterialDesignIconView fill="#4c4c4c" glyphName="MESSAGE_TEXT_OUTLINE" size="35" />
                     </graphic>
@@ -66,7 +65,7 @@
                         <Font name="Segoe UI" size="16.0" />
                     </font>
                 </ToggleButton>
-                <ToggleButton fx:id="followingButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" stylesheets="@../../styles/togglebutton-style.css" text="Following" textFill="#4c4c4c">
+                <ToggleButton fx:id="followingButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleFollowingButton" prefHeight="80.0" prefWidth="150.0" stylesheets="@../../styles/togglebutton-style.css" text="Following" textFill="#4c4c4c">
                     <graphic>
                         <MaterialDesignIconView fill="#4c4c4c" glyphName="STAR_OUTLINE" size="40" />
                     </graphic>
@@ -74,7 +73,7 @@
                         <Font name="Segoe UI" size="16.0" />
                     </font>
                 </ToggleButton>
-                <ToggleButton fx:id="tagsButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" stylesheets="@../../styles/togglebutton-style.css" text="Tags" textFill="#4c4c4c">
+                <ToggleButton fx:id="tagsButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleTagsButton" prefHeight="80.0" prefWidth="150.0" stylesheets="@../../styles/togglebutton-style.css" text="Tags" textFill="#4c4c4c">
                     <graphic>
                         <MaterialDesignIconView fill="#4c4c4c" glyphName="TAG_OUTLINE" size="35" />
                     </graphic>

@@ -1,5 +1,5 @@
-.combo-box {
-    -fx-background-color: #fefefe;
+.combo-box-base {
+    -fx-background-color: white;
     -fx-background-radius: 5;
     -fx-border-color:  #eaeaea #eaeaea #d5d5d5 #eaeaea;
     -fx-border-radius: 5;
@@ -18,7 +18,7 @@
     -fx-border-color: #eaeaea;
 }
 
-.list-view {
+.combo-box .list-view {
     -fx-background-color: #f9f9f9;
     -fx-background-radius: 5;
 }

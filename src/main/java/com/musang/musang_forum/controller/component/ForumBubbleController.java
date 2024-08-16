@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 
-public class ForumBubbleController extends Controller{
+public class ForumBubbleController extends Controller {
     @FXML
     private Label titleLabel;
 
