@@ -89,7 +89,7 @@
                   <Icons525View fill="#4c4c4c" glyphName="PENCIL" size="35" />
                </graphic>
             </ToggleButton>
-            <ToggleButton fx:id="informationButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#showInformationPage" prefHeight="80.0" prefWidth="150.0" stylesheets="@../../styles/togglebutton-style.css" text="Personalize" textFill="#4c4c4c">
+            <ToggleButton fx:id="informationButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#showInformationPage" prefHeight="80.0" prefWidth="150.0" stylesheets="@../../styles/togglebutton-style.css" text="Information" textFill="#4c4c4c">
                <font>
                   <Font name="Segoe UI" size="16.0" />
                </font>

@@ -12,7 +12,10 @@ public class App {
     public static final String POPUP_PATH = "view/general/PopUp.fxml";
     public static final String FORUM_PATH = "view/main/Forum.fxml";
     public static final String HOME_PATH = "view/main/Home.fxml";
+    public static final String START_DISCUSSION_PATH = "view/main/nested/StartDiscussion.fxml";
     public static final String DISCUSSION_PATH = "view/main/nested/AllDiscussions.fxml";
+    public static final String FOLLOWING_PATH = "view/main/nested/Following.fxml";
+    public static final String TAGS_PATH = "view/main/nested/Tags.fxml";
     public static final String SETTINGS_PATH = "view/settings/Settings.fxml";
     public static final String MYACCOUNT_PATH = "view/settings/nested/MyAccount.fxml";
     public static final String CHANGEPW_PATH = "view/settings/nested/UpdatePassword.fxml";

@@ -26,7 +26,7 @@ public class MyAccountController extends Controller {
     private TextField emailTf;
 
     public MyAccountController() {
-        super(App.MYACCOUNT_PATH);
+        super(App.SETTINGS_PATH);
     }
 
     @FXML

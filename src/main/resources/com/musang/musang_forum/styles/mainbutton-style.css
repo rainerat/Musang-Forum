@@ -1,6 +1,7 @@
 .main-button {
     -fx-background-color: #605341;
     -fx-background-radius: 5;
+    -fx-text-fill: #fefefe;
 }
 
 .main-button:hover {

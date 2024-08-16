@@ -19,6 +19,9 @@ public abstract class Controller {
     public Controller(final String PATH) {
         PageManager.setCurrentPage(PATH);
         ThemeManager.setCurrentTheme(ThemeManager.getAll().getFirst());
+
+//        System.out.println("\nCurrent page: " + PageManager.getCurrentPagePath());
+//        System.out.println("Previous page: " + PageManager.getPreviousPagePath());
     }
 
     protected FXMLLoader getLoader(final String PATH) throws IOException {
@@ -37,20 +40,20 @@ public abstract class Controller {
             FXMLLoader loader = getLoader(NESTED_PATH);
             Pane pane = loader.load();
             Controller loadedController = loader.getController();
-            loadedController.setController(mainController);
+            loadedController.setMainController(mainController);
             centerPane.getChildren().setAll(pane);
             return loadedController;
         } catch (IOException e) {
             e.printStackTrace();
-        } return null;
+        }
+        return null;
     }
 
-    @FXML
     protected void loadPreviousPage() throws IOException {
         StageManager.getPrimaryStage().setScene(new Scene(getLoader(PageManager.getPreviousPagePath()).load()));
     }
 
-    protected void setController(Controller controller) {
+    protected void setMainController(Controller controller) {
         this.controller = controller;
     }
 
