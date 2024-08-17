@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="200.0" onMouseClicked="#handleForumBubble" spacing="5.0" styleClass="forum-bubble" stylesheets="@../styles/forum-bubble-style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.forum.controller.component.ForumBubbleController">
+    <children>
+        <FlowPane hgap="10.0" rowValignment="TOP" stylesheets="@../styles/genre-style.css" vgap="5.0">
+            <children>
+                <Label alignment="CENTER" styleClass="genre-label" text="Genre" />
+                <Label alignment="CENTER" styleClass="genre-label" text="BDSM" />
+                <Label alignment="CENTER" styleClass="genre-label" text="Futanari" />
+            </children>
+        </FlowPane>
+        <Label fx:id="titleLabel" alignment="TOP_LEFT" text="Title" textFill="#1b1b1b">
+            <font>
+                <Font name="Segoe UI Semibold" size="21.0" />
+            </font>
+        </Label>
+        <Label fx:id="descriptionLabel" text="Description" textFill="#5d5d5d" wrapText="true">
+            <font>
+                <Font name="Segoe UI" size="18.0" />
+            </font>
+        </Label>
+        <HBox alignment="CENTER_RIGHT" spacing="5.0">
+            <children>
+                <MaterialDesignIconView fill="#5d5d5d" glyphName="COMMENT_OUTLINE" size="16" />
+                <Label fx:id="totalReplyLabel" text="999" textFill="#5d5d5d">
+                    <font>
+                        <Font name="Segoe UI" size="16.0" />
+                    </font>
+                </Label>
+                <Separator maxHeight="20.0" orientation="VERTICAL" />
+                <Label text="1m ago" textFill="#5d5d5d">
+                    <font>
+                        <Font name="Segoe UI" size="16.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+    </padding>
+</VBox>
