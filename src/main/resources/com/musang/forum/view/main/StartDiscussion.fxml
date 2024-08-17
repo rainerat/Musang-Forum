@@ -22,8 +22,8 @@
             <Font name="Segoe UI Semibold" size="30.0" />
          </font>
       </Label>
-      <TextField prefHeight="40.0" promptText="Title" stylesheets="@../../../styles/textfield-style.css" />
-      <HBox prefHeight="40.0" prefWidth="814.0" stylesheets="@../../../styles/searchbar-style.css">
+      <TextField prefHeight="40.0" promptText="Title" stylesheets="@../../styles/textfield-style.css" />
+      <HBox prefHeight="40.0" prefWidth="814.0" stylesheets="@../../styles/searchbar-style.css">
          <children>
             <ComboBox cache="true" editable="true" prefHeight="40.0" prefWidth="744.0" promptText="Tags" visibleRowCount="5" />
             <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
@@ -33,7 +33,7 @@
             </Button>
          </children>
       </HBox>
-      <FlowPane hgap="10.0" stylesheets="@../../../styles/genre-style.css" vgap="10.0">
+      <FlowPane hgap="10.0" stylesheets="@../../styles/genre-style.css" vgap="10.0">
          <children>
             <Label alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="5.0" prefHeight="30.0" styleClass="genre-label" text="Tag short">
                <graphic>
@@ -55,17 +55,17 @@
             </Label>
          </children>
       </FlowPane>
-      <TextArea promptText="Enter description here" styleClass="text-field" stylesheets="@../../../styles/textfield-style.css">
+      <TextArea promptText="Enter description here" styleClass="text-field" stylesheets="@../../styles/textfield-style.css">
          <font>
             <Font name="Segoe UI" size="16.0" />
          </font></TextArea>
       <HBox alignment="CENTER_RIGHT" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="42.0" prefWidth="180.0" style="-fx-background-color: transparent;" styleClass="link-button" stylesheets="@../../../styles/button-style.css" text="Cancel" textFill="#1b1b1b">
+            <Button mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="42.0" prefWidth="180.0" style="-fx-background-color: transparent;" styleClass="link-button" stylesheets="@../../styles/button-style.css" text="Cancel" textFill="#1b1b1b">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="180.0" styleClass="main-button" stylesheets="@../../../styles/mainbutton-style.css" text="Create Topic">
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="180.0" styleClass="main-button" stylesheets="@../../styles/mainbutton-style.css" text="Create Topic">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font></Button>

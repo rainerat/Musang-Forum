@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="654.0" prefWidth="845.0" spacing="30.0" style="-fx-background-color: fefefe; -fx-background-radius: 15 0 0 0; -fx-border-radius: 15 0 0 0; -fx-border-color: dddddd; -fx-border-width: 0.7 0 0 0.7;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.forum.controller.main.TagsController">
+    <children>
+        <Label text="Tags">
+            <font>
+                <Font name="Segoe UI Semibold" size="36.0" />
+            </font>
+        </Label>
+        <ScrollPane hbarPolicy="NEVER" prefHeight="565.0" prefWidth="805.0" style="-fx-background-color: transparent; -fx-background: transparent;">
+            <content>
+                <FlowPane alignment="TOP_CENTER" hgap="20.0" prefHeight="527.0" prefWidth="801.0" vgap="20.0">
+                    <children>
+                        <Button alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="60.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" style="-fx-background-radius: 5; -fx-background-color: #655140;" text="Femboy" textFill="WHITE">
+                            <graphic>
+                                <Label text="0" />
+                            </graphic>
+                        </Button>
+                        <Button alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="50.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" style="-fx-background-radius: 5; -fx-background-color: #655140;" text="Nugget" textFill="WHITE">
+                            <graphic>
+                                <Label text="0" />
+                            </graphic>
+                        </Button>
+                        <Button alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="50.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" style="-fx-background-radius: 5; -fx-background-color: #655140;" text="Rainer" textFill="WHITE">
+                            <graphic>
+                                <Label text="0" />
+                            </graphic>
+                        </Button>
+                        <Button alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="50.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" style="-fx-background-radius: 5; -fx-background-color: #655140;" text="Loli" textFill="WHITE">
+                            <graphic>
+                                <Label text="0" />
+                            </graphic>
+                        </Button>
+                        <Button alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="50.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" style="-fx-background-radius: 5; -fx-background-color: #655140;" text="Futanari" textFill="WHITE">
+                            <graphic>
+                                <Label text="0" />
+                            </graphic>
+                        </Button>
+                        <Button alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="50.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" style="-fx-background-radius: 5; -fx-background-color: #655140;" text="Timtohy" textFill="WHITE">
+                            <graphic>
+                                <Label text="0" />
+                            </graphic>
+                        </Button>
+                        <Button alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="50.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" style="-fx-background-radius: 5; -fx-background-color: #655140;" text="Yuri" textFill="WHITE">
+                            <graphic>
+                                <Label text="0" />
+                            </graphic>
+                        </Button>
+                        <Button alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="50.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" style="-fx-background-radius: 5; -fx-background-color: #655140;" text="Vanilla" textFill="WHITE">
+                            <graphic>
+                                <Label text="0" />
+                            </graphic>
+                        </Button>
+                        <Button alignment="BASELINE_RIGHT" contentDisplay="RIGHT" graphicTextGap="50.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" style="-fx-background-radius: 5; -fx-background-color: #655140;" text="Blackmail" textFill="WHITE">
+                            <graphic>
+                                <Label text="0" />
+                            </graphic>
+                        </Button>
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                    </children>
+                </FlowPane>
+            </content>
+        </ScrollPane>
+    </children>
+    <padding>
+        <Insets left="20.0" right="20.0" top="30.0" />
+    </padding>
+</VBox>

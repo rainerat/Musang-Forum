@@ -1,4 +1,4 @@
-module com.musang.musang_forum {
+module com.musang.forum {
     requires javafx.controls;
     requires javafx.fxml;
 

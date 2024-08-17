@@ -17,9 +17,9 @@
    <children>
       <HBox minHeight="45.0">
          <children>
-            <ComboBox prefHeight="45.0" prefWidth="165.0" promptText="Recent" stylesheets="@../../../styles/combobox-style.css" />
+            <ComboBox prefHeight="45.0" prefWidth="165.0" promptText="Recent" stylesheets="@../../styles/combobox-style.css" />
             <Pane HBox.hgrow="ALWAYS" />
-            <TextField prefHeight="45.0" prefWidth="300.0" promptText="Search post" stylesheets="@../../../styles/textfield-style.css">
+            <TextField prefHeight="45.0" prefWidth="300.0" promptText="Search post" stylesheets="@../../styles/textfield-style.css">
                <font>
                   <Font name="Segoe UI" size="16.0" />
                </font>
@@ -27,7 +27,7 @@
          </children>
       </HBox>
       <Separator />
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="home-scroll-pane" stylesheets="@../../../styles/scrollpane-style.css" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="home-scroll-pane" stylesheets="@../../styles/scrollpane-style.css" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
          <content>
             <VBox fx:id="discussionContainer" alignment="TOP_CENTER" spacing="10.0" />
          </content>
