@@ -1,10 +1,10 @@
 package com.musang.forum.controller.settings;
 
-import com.musang.forum.App;
 import com.musang.forum.client.Client;
 import com.musang.forum.controller.Controller;
 import com.musang.forum.model.CurrentUser;
 import com.musang.forum.model.User;
+import com.musang.forum.util.Path;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -26,7 +26,7 @@ public class MyAccountController extends Controller {
     private TextField emailTf;
 
     public MyAccountController() {
-        super(App.SETTINGS_PATH);
+        super(Path.SETTINGS);
     }
 
     @FXML
@@ -48,7 +48,7 @@ public class MyAccountController extends Controller {
         }
 
         CurrentUser.clear();
-        super.loadPage(App.SIGNIN_PATH);
+        super.loadPage(Path.SIGNIN);
     }
 
     @FXML

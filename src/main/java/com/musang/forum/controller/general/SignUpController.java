@@ -1,9 +1,9 @@
 package com.musang.forum.controller.general;
 
-import com.musang.forum.App;
 import com.musang.forum.controller.Controller;
 import com.musang.forum.model.User;
 import com.musang.forum.repository.UserRepository;
+import com.musang.forum.util.Path;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -47,7 +47,7 @@ public class SignUpController extends Controller {
     private Label signInLabel;
 
     public SignUpController() {
-        super(App.SIGNUP_PATH);
+        super(Path.SIGNUP);
     }
 
     @FXML
@@ -222,12 +222,12 @@ public class SignUpController extends Controller {
     }
 
     private void loadPopupPage() throws IOException {
-        super.loadPage(App.POPUP_PATH);
+        super.loadPage(Path.POPUP);
     }
 
     @FXML
     protected void loadSignInPage() throws IOException {
-        super.loadPage(App.SIGNIN_PATH);
+        super.loadPage(Path.SIGNIN);
     }
 
     @FXML

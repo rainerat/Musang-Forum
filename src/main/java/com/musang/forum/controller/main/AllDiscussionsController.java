@@ -1,10 +1,10 @@
 package com.musang.forum.controller.main;
 
-import com.musang.forum.App;
 import com.musang.forum.controller.Controller;
 import com.musang.forum.controller.component.ForumBubbleController;
 import com.musang.forum.model.Forum;
 import com.musang.forum.repository.ForumRepository;
+import com.musang.forum.util.Path;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
@@ -17,7 +17,7 @@ public class AllDiscussionsController extends Controller {
     private VBox discussionContainer;
 
     public AllDiscussionsController() {
-        super(App.HOME_PATH);
+        super(Path.HOME);
     }
 
     @FXML
@@ -28,7 +28,7 @@ public class AllDiscussionsController extends Controller {
     public void displayAllDiscussions(List<Forum> forumList) {
         for (Forum forum : forumList) {
             try {
-                FXMLLoader loader = super.getLoader(App.FORUM_BUBBLE_PATH);
+                FXMLLoader loader = super.getLoader(Path.FORUM_BUBBLE);
                 VBox forumBubble = loader.load();
                 ForumBubbleController controller = loader.getController();
                 controller.setDiscussion(forum);
@@ -41,7 +41,7 @@ public class AllDiscussionsController extends Controller {
 
     public void addNewForum(Forum newForum) {
         try {
-            FXMLLoader loader = super.getLoader(App.FORUM_BUBBLE_PATH);
+            FXMLLoader loader = super.getLoader(Path.FORUM_BUBBLE);
             VBox forumBubble = loader.load();
             ForumBubbleController controller = loader.getController();
             controller.setDiscussion(newForum);

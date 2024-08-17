@@ -1,8 +1,8 @@
 package com.musang.forum.controller.settings;
 
-import com.musang.forum.App;
 import com.musang.forum.controller.Controller;
 import com.musang.forum.customfx.ToggleGroup;
+import com.musang.forum.util.Path;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
@@ -30,7 +30,7 @@ public class SettingsController extends Controller {
     private ToggleButton informationButton;
 
     public SettingsController() {
-        super(App.SETTINGS_PATH);
+        super(Path.SETTINGS);
     }
 
     @FXML
@@ -45,22 +45,22 @@ public class SettingsController extends Controller {
 
     @FXML
     public void showMyAccountPage() {
-        super.loadNestedPage(App.MYACCOUNT_PATH, centerPane, this);
+        super.loadNestedPage(Path.MY_ACCOUNT, centerPane, this);
     }
 
     @FXML
     public void showChangePasswordPage() {
-        super.loadNestedPage(App.CHANGEPW_PATH, centerPane, this);
+        super.loadNestedPage(Path.CHANGE_PASSWORD, centerPane, this);
     }
 
     @FXML
     private void showPersonalizePage() {
-        super.loadNestedPage(App.PERSONALIZE_PATH, centerPane, this);
+        super.loadNestedPage(Path.PERSONALIZE, centerPane, this);
     }
 
     @FXML
     private void showInformationPage() {
-        super.loadNestedPage(App.INFORMATION_PATH, centerPane, this);
+        super.loadNestedPage(Path.INFORMATION, centerPane, this);
     }
 
     @FXML

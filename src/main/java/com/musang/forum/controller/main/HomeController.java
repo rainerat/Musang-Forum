@@ -1,9 +1,9 @@
 package com.musang.forum.controller.main;
 
-import com.musang.forum.App;
 import com.musang.forum.controller.Controller;
 import com.musang.forum.customfx.ToggleGroup;
 import com.musang.forum.util.PageManager;
+import com.musang.forum.util.Path;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
@@ -30,8 +30,8 @@ public class HomeController extends Controller {
     private AllDiscussionsController discussionsController;
 
     public HomeController() {
-        super(App.HOME_PATH);
-        PageManager.setPreviousPagePath(App.HOME_PATH);
+        super(Path.HOME);
+        PageManager.setPreviousPagePath(Path.HOME);
     }
 
     @FXML
@@ -46,27 +46,27 @@ public class HomeController extends Controller {
 
     @FXML
     protected void handleStartDiscussionButton() {
-        super.loadNestedPage(App.START_DISCUSSION_PATH, centerPane, this);
+        super.loadNestedPage(Path.START_DISCUSSION, centerPane, this);
     }
 
     @FXML
     protected void showAllDiscussionsPage() {
-        this.discussionsController = (AllDiscussionsController) super.loadNestedPage(App.DISCUSSION_PATH, centerPane, this);
+        this.discussionsController = (AllDiscussionsController) super.loadNestedPage(Path.DISCUSSION, centerPane, this);
     }
 
     @FXML
     protected void handleFollowingButton() {
-        super.loadNestedPage(App.FOLLOWING_PATH, centerPane, this);
+        super.loadNestedPage(Path.FOLLOWING, centerPane, this);
     }
 
     @FXML
     protected void handleTagsButton() {
-        super.loadNestedPage(App.TAGS_PATH, centerPane, this);
+        super.loadNestedPage(Path.TAGS, centerPane, this);
     }
 
     @FXML
     protected void handleMyAccountHBox() throws IOException {
-        super.loadPage(App.SETTINGS_PATH);
+        super.loadPage(Path.SETTINGS);
     }
 
     @FXML

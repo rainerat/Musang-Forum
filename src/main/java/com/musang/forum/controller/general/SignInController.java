@@ -1,12 +1,12 @@
 package com.musang.forum.controller.general;
 
-import com.musang.forum.App;
 import com.musang.forum.client.Client;
 import com.musang.forum.controller.Controller;
 import com.musang.forum.controller.main.AllDiscussionsController;
 import com.musang.forum.controller.main.HomeController;
 import com.musang.forum.repository.UserRepository;
 import com.musang.forum.util.ClientManager;
+import com.musang.forum.util.Path;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -27,7 +27,7 @@ public class SignInController extends Controller {
     private Label errorLabel;
 
     public SignInController() {
-        super(App.SIGNIN_PATH);
+        super(Path.SIGNIN);
     }
 
     @FXML
@@ -59,11 +59,11 @@ public class SignInController extends Controller {
 
     @FXML
     protected void loadSignUpPage() throws IOException {
-        super.loadPage(App.SIGNUP_PATH);
+        super.loadPage(Path.SIGNUP);
     }
 
     private void loadHomePage() throws IOException {
-        HomeController homeController = (HomeController) super.loadPage(App.HOME_PATH);
+        HomeController homeController = (HomeController) super.loadPage(Path.HOME);
         AllDiscussionsController controller = homeController.getDiscussionsController();
         Client client = new Client("localhost", 59001, app().getCurrentUser());
         client.setDiscussionsController(controller);

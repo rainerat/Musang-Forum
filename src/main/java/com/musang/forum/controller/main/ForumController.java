@@ -1,6 +1,5 @@
 package com.musang.forum.controller.main;
 
-import com.musang.forum.App;
 import com.musang.forum.client.Client;
 import com.musang.forum.controller.Controller;
 import com.musang.forum.controller.component.MessageBubbleController;
@@ -9,6 +8,7 @@ import com.musang.forum.model.Forum;
 import com.musang.forum.model.Message;
 import com.musang.forum.repository.MessageRepository;
 import com.musang.forum.util.ClientManager;
+import com.musang.forum.util.Path;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -48,7 +48,7 @@ public class ForumController extends Controller {
     private final Forum chosenForum = CurrentForum.getInstance().get();
 
     public ForumController() {
-        super(App.FORUM_PATH);
+        super(Path.FORUM);
     }
 
     @FXML
@@ -95,7 +95,7 @@ public class ForumController extends Controller {
 
     public void addMessageToUI(Message message, boolean isOwnMessage) {
         try {
-            FXMLLoader loader = super.getLoader(App.MESSAGE_BUBBLE_PATH);
+            FXMLLoader loader = super.getLoader(Path.MESSAGE_BUBBLE);
             HBox messageBox = loader.load();
             MessageBubbleController controller = loader.getController();
             controller.setMessage(message.getUser().getUsername(), message.getMessage(), isOwnMessage);
@@ -109,7 +109,7 @@ public class ForumController extends Controller {
     public void displayPreviousMessages(List<Message> messageList) {
         for (Message message : messageList) {
             try {
-                FXMLLoader loader = super.getLoader(App.MESSAGE_BUBBLE_PATH);
+                FXMLLoader loader = super.getLoader(Path.MESSAGE_BUBBLE);
                 HBox messageBox = loader.load();
                 MessageBubbleController controller = loader.getController();
 
@@ -128,7 +128,7 @@ public class ForumController extends Controller {
 
     @FXML
     protected void handleMyAccountHBox() throws IOException {
-        super.loadPage(App.SETTINGS_PATH);
+        super.loadPage(Path.SETTINGS);
     }
 
     @FXML

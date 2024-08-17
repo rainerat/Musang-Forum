@@ -1,11 +1,11 @@
 package com.musang.forum.controller.component;
 
-import com.musang.forum.App;
 import com.musang.forum.controller.Controller;
 import com.musang.forum.controller.main.ForumController;
 import com.musang.forum.model.CurrentForum;
 import com.musang.forum.model.Forum;
 import com.musang.forum.util.ClientManager;
+import com.musang.forum.util.Path;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -24,7 +24,7 @@ public class ForumBubbleController extends Controller {
     private Forum forum;
 
     public ForumBubbleController() {
-        super(App.HOME_PATH);
+        super(Path.HOME);
     }
 
     public void setDiscussion(Forum forum) {
@@ -36,7 +36,7 @@ public class ForumBubbleController extends Controller {
     @FXML
     public void handleForumBubble() throws IOException {
         CurrentForum.getInstance().set(forum);
-        ForumController controller = (ForumController) super.loadPage(App.FORUM_PATH);
+        ForumController controller = (ForumController) super.loadPage(Path.FORUM);
         ClientManager.getClient().setForumController(controller);
     }
 
