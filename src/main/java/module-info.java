@@ -8,6 +8,7 @@ module com.musang.forum {
     requires de.jensd.fx.glyphs.iconsfivetwofive;
     requires de.jensd.fx.glyphs.materialdesignicons;
     requires jdk.jshell;
+    requires java.desktop;
 
     opens com.musang.forum to javafx.fxml;
     opens com.musang.forum.controller to javafx.fxml;

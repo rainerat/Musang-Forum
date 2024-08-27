@@ -5,9 +5,12 @@ import com.musang.forum.model.User;
 import com.musang.forum.server.Database;
 import javafx.collections.FXCollections;
 
+import java.io.ByteArrayInputStream;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class UserRepository {
@@ -130,5 +133,46 @@ public class UserRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    public static void updateUserProfile(int userID, String username, String displayName, Date dob, String email, byte[] userProfilePicture){
+
+        String query = "UPDATE user SET username=?, display_name=?, dob=?, email=?, profile_picture=? WHERE id=?";
+
+        try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
+            ps.setString(1, username);
+            ps.setString(2, displayName);
+            ps.setDate(3, dob);
+            ps.setString(4, email);
+            ps.setBytes(5, userProfilePicture);
+            ps.setInt(6, userID);
+
+
+            ps.executeUpdate();
+
+        }  catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static byte[] getPhotoProfile(int userID){
+
+        String query = "SELECT profile_picture FROM user where id=?";
+
+        try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
+            ps.setInt(1, userID);
+
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()){
+                return rs.getBytes("profile_picture");
+            }
+            return null;
+        }  catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 }

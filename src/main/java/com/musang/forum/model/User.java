@@ -15,6 +15,9 @@ public class User {
     private String salt;
     private String hash;
 
+
+
+
     public User(int id, String username, String displayName, Date dob, String email, String salt, String hash) {
         this.id = id;
         this.username = username;
