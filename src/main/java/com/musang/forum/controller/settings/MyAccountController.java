@@ -66,7 +66,6 @@ public class MyAccountController extends Controller {
 
             profilePicture.setFill(new ImagePattern(img));
         } else {
-
             profilePicture.setFill(Color.TRANSPARENT);
         }
 
@@ -112,12 +111,13 @@ public class MyAccountController extends Controller {
         Date dob =  Date.valueOf(dobTf.getValue());
         String displayName = displayNameTf.getText();
         String email = emailTf.getText();
-        UserRepository.updateUserProfile(CurrentUser.get().getId(), username, displayName, dob, email);
-
+        //CurrentUser.set(new User(username,displayName,dob,email));
+        CurrentUser.get().setUsername(username);
         CurrentUser.get().setEmail(email);
         CurrentUser.get().setDob(dob);
         CurrentUser.get().setDisplayName(displayName);
-        CurrentUser.get().setUsername(username);
+        UserRepository.updateUserProfile(CurrentUser.get().getId(), username, displayName, dob, email);
+
 
     }
 
