@@ -92,7 +92,7 @@ public class MyAccountController extends Controller {
 
         File file = fhs.openFileChooser(fileChooserStage);
 
-        final long MAX_FILE_SIZE_BYTES = 8 * 1024 * 1024;
+        final long MAX_FILE_SIZE_BYTES = 7 * 1024 * 1024;
         if(file!=null) {
             System.out.println(file.length());
             if(file.length()<MAX_FILE_SIZE_BYTES){
@@ -108,23 +108,16 @@ public class MyAccountController extends Controller {
 
     @FXML
     protected void updateProfile() throws IOException {
-
-
-
         String username = usernameTf.getText();
         Date dob =  Date.valueOf(dobTf.getValue());
         String displayName = displayNameTf.getText();
         String email = emailTf.getText();
-        ImagePattern ip = (ImagePattern) profilePicture.getFill();
-        byte[] userPhoto;
-        if(ip!=null) {
-            Image image = ip.getImage();
-            userPhoto = fileHandlerService.convertImagetoByteArray(image);
-            System.out.println(userPhoto.length);
-        }
-        else{userPhoto=null;}
+        UserRepository.updateUserProfile(CurrentUser.get().getId(), username, displayName, dob, email);
 
-        UserRepository.updateUserProfile(CurrentUser.get().getId(), username, displayName, dob, email, userPhoto);
+        CurrentUser.get().setEmail(email);
+        CurrentUser.get().setDob(dob);
+        CurrentUser.get().setDisplayName(displayName);
+        CurrentUser.get().setUsername(username);
 
     }
 

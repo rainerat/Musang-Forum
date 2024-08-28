@@ -135,18 +135,31 @@ public class UserRepository {
         }
     }
 
+    public static void updatePassword(String hash, int userID){
 
-    public static void updateUserProfile(int userID, String username, String displayName, Date dob, String email, byte[] userProfilePicture){
+        String query = "UPDATE user SET hash=? WHERE id=?";
 
-        String query = "UPDATE user SET username=?, display_name=?, dob=?, email=?, profile_picture=? WHERE id=?";
+        try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
+            ps.setString(1, hash);
+            ps.setInt(2, userID);
+
+            ps.executeUpdate();
+
+        }  catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void updateUserProfile(int userID, String username, String displayName, Date dob, String email){
+
+        String query = "UPDATE user SET username=?, display_name=?, dob=?, email=? WHERE id=?";
 
         try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
             ps.setString(1, username);
             ps.setString(2, displayName);
             ps.setDate(3, dob);
             ps.setString(4, email);
-            ps.setBytes(5, userProfilePicture);
-            ps.setInt(6, userID);
+            ps.setInt(5, userID);
 
 
             ps.executeUpdate();

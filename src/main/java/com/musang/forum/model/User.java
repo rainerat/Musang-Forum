@@ -55,6 +55,10 @@ public class User {
         this.username = username;
     }
 
+    public User(String hash) {
+       this.hash = hash;
+    }
+
     public int getId() {
         return id;
     }
@@ -125,4 +129,5 @@ public class User {
             throw new RuntimeException(e);
         }
     }
+
 }
