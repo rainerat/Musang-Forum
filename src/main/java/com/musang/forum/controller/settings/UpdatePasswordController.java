@@ -1,7 +1,8 @@
 package com.musang.forum.controller.settings;
 
 import com.musang.forum.controller.Controller;
-import com.musang.forum.model.CurrentUser;
+import com.musang.forum.service.EncryptionService;
+import com.musang.forum.util.SessionManager;
 import com.musang.forum.model.User;
 import com.musang.forum.repository.UserRepository;
 import com.musang.forum.util.Path;
@@ -57,17 +58,17 @@ public class UpdatePasswordController extends Controller {
         System.out.println(isConfirmPasswordValid);
         if(isCurrentPasswordValid && isNewPasswordValid && isConfirmPasswordValid)
         {
-            String salt = CurrentUser.get().getSalt();
-            String hash = app().getEncryptionService().getHash(newPassword, salt);
+            String salt = app().getCurrentUser().getSalt();
+            String hash = EncryptionService.getHash(newPassword, salt);
             new User(hash);
-            UserRepository.updatePassword(hash, CurrentUser.get().getId());
+            UserRepository.updatePassword(hash, app().getCurrentUser().getId());
         }
 
     }
 
     private boolean validateCurrentPassword(String currentPassword){
-        String salt = CurrentUser.get().getSalt();
-        String hash = app().getEncryptionService().getHash(currentPassword, salt);
+        String salt = app().getCurrentUser().getSalt();
+        String hash = EncryptionService.getHash(currentPassword, salt);
 
         if (currentPassword.isBlank()) {
             currentPasswordTF.setStyle(errorFieldStyle);
@@ -76,7 +77,7 @@ public class UpdatePasswordController extends Controller {
             return false;
         }
 
-       if(!hash.equals(CurrentUser.get().getHash())){
+       if(!hash.equals(app().getCurrentUser().getHash())){
            currentPasswordTF.setStyle(errorFieldStyle);
            currentPasswordErrorLabel.setText("Password doesn't match");
            currentPasswordErrorLabel.setVisible(true);
@@ -111,7 +112,7 @@ public class UpdatePasswordController extends Controller {
             return false;
         }
 
-        if (newPassword.equalsIgnoreCase(CurrentUser.get().getUsername())) {
+        if (newPassword.equalsIgnoreCase(app().getCurrentUser().getUsername())) {
             newPasswordTF.setStyle(errorFieldStyle);
             newPasswordErrorLabel.setText("Password is too weak");
             newPasswordErrorLabel.setVisible(true);

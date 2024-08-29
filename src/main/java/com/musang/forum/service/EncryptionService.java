@@ -7,7 +7,7 @@ import java.util.Base64;
 
 public class EncryptionService {
 
-    private String hash(String saltedPassword) {
+    private static String hash(String saltedPassword) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] hashByteArr = md.digest(saltedPassword.getBytes());
@@ -27,14 +27,14 @@ public class EncryptionService {
         }
     }
 
-    public String nextSalt() {
+    public static String nextSalt() {
         byte[] salt = new byte[32];
         SecureRandom secureRandom = new SecureRandom();
         secureRandom.nextBytes(salt);
         return Base64.getEncoder().encodeToString(salt);
     }
 
-    public String getHash(String password, String salt) {
+    public static String getHash(String password, String salt) {
         return hash(password.concat(salt));
     }
 

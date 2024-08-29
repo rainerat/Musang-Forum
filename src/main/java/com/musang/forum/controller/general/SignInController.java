@@ -4,8 +4,10 @@ import com.musang.forum.client.Client;
 import com.musang.forum.controller.Controller;
 import com.musang.forum.controller.main.AllDiscussionsController;
 import com.musang.forum.controller.main.HomeController;
+import com.musang.forum.service.EncryptionService;
+import com.musang.forum.util.SessionManager;
+import com.musang.forum.model.User;
 import com.musang.forum.repository.UserRepository;
-import com.musang.forum.util.ClientManager;
 import com.musang.forum.util.Path;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -41,19 +43,24 @@ public class SignInController extends Controller {
         if (password.isBlank()) passwordField.setStyle(errorFieldStyle);
 
         if (identifier.contains("@")) {
-            salt = UserRepository.getSaltByEmail(identifier);
+            salt = UserRepository.findSaltByEmail(identifier);
         } else {
-            salt = UserRepository.getSaltByUsername(identifier);
+            salt = UserRepository.findSaltByUsername(identifier);
         }
 
-        boolean isValidLogin = UserRepository.login(identifier, app().getEncryptionService().getHash(password, salt));
-        if (!isValidLogin) {
+        User loggedInUser = UserRepository.login(
+                identifier, EncryptionService.getHash(password, salt)
+        );
+
+        boolean isValidLogin = loggedInUser != null;
+
+        if (isValidLogin) {
+            SessionManager.setCurrentUser(loggedInUser);
+            this.loadHomePage();
+        } else {
             errorLabel.setVisible(true);
             identifierField.setStyle(errorFieldStyle);
             passwordField.setStyle(errorFieldStyle);
-        } else {
-            this.loadHomePage();
-//            this.loadForumPage();
         }
     }
 
@@ -67,7 +74,7 @@ public class SignInController extends Controller {
         AllDiscussionsController controller = homeController.getDiscussionsController();
         Client client = new Client("localhost", 59001, app().getCurrentUser());
         client.setDiscussionsController(controller);
-        ClientManager.setClient(client);
+        SessionManager.setClient(client);
     }
 
 //    private void loadForumPage() throws IOException {

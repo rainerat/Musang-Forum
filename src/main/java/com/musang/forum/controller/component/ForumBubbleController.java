@@ -4,8 +4,8 @@ import com.musang.forum.controller.Controller;
 import com.musang.forum.controller.main.ForumController;
 import com.musang.forum.model.CurrentForum;
 import com.musang.forum.model.Forum;
-import com.musang.forum.util.ClientManager;
 import com.musang.forum.util.Path;
+import com.musang.forum.util.SessionManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -37,7 +37,7 @@ public class ForumBubbleController extends Controller {
     public void handleForumBubble() throws IOException {
         CurrentForum.getInstance().set(forum);
         ForumController controller = (ForumController) super.loadPage(Path.FORUM);
-        ClientManager.getClient().setForumController(controller);
+        app().getClient().setForumController(controller);
     }
 
 }

@@ -28,7 +28,7 @@ public class Client {
             running = true;
             this.listenForMessages();
         } catch (IOException e) {
-            System.err.println("[ Can't connect to the server ]");
+            System.err.println("[ CLIENT couldn't connect to the server ]");
         }
     }
 
@@ -56,7 +56,7 @@ public class Client {
                     }
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("[ Can't read from the server : Client closed ]");
             }
         }).start();
     }

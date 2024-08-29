@@ -1,9 +1,5 @@
 package com.musang.forum.service;
 
-
-
-
-import com.musang.forum.server.Database;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritablePixelFormat;
@@ -13,22 +9,28 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.nio.ByteBuffer;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Base64;
 import java.util.zip.DeflaterOutputStream;
 
-public class fileHandlerService {
-
-    private FileChooser fileChooser;
-
-    public File openFileChooser(Stage stage) {
-
-        fileChooser = new FileChooser();
-        fileChooser.setTitle("Select profile picture");
+public class FileService {
+    public static File openFileChooser(Stage stage) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose profile picture");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
-
         return fileChooser.showOpenDialog(stage);
+    }
+
+    public static byte[] toByteArray(File file) {
+        try (FileInputStream fis = new FileInputStream(file)) {
+            return fis.readAllBytes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static long getMb(long length) {
+        return length * 1024L * 1024L;
     }
 
     public static byte[] convertFileToByteArray(File file) throws IOException {
@@ -59,30 +61,6 @@ public class fileHandlerService {
 
         return Base64.getEncoder().encodeToString(fileContent);
     }
-
-
-    public static void savePhoto(String filePath, int userID) {
-        String query = "UPDATE user set profile_picture = ? WHERE id =?";
-        try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
-
-
-                // Convert PNG to byte array
-                File imageFile = new File(filePath);
-                FileInputStream inputStream = new FileInputStream(imageFile);
-
-                ps.setBinaryStream(1, inputStream, (int) imageFile.length());
-                ps.setInt(2, userID);
-                ps.executeUpdate();
-
-                System.out.println("Image saved to database successfully.");
-
-        } catch (SQLException | FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
-
 
     public static byte[] compressByteSize(byte[] imageFile){
 

@@ -3,6 +3,7 @@ package com.musang.forum.controller.general;
 import com.musang.forum.controller.Controller;
 import com.musang.forum.model.User;
 import com.musang.forum.repository.UserRepository;
+import com.musang.forum.service.EncryptionService;
 import com.musang.forum.util.Path;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -80,8 +81,8 @@ public class SignUpController extends Controller {
             return null;
         }
 
-        String salt = app().getEncryptionService().nextSalt();
-        String hash = app().getEncryptionService().getHash(password, salt);
+        String salt = EncryptionService.nextSalt();
+        String hash = EncryptionService.getHash(password, salt);
 
         return new User(username, Date.valueOf(dob), email, salt, hash);
     }

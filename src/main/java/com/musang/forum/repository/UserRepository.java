@@ -1,16 +1,14 @@
 package com.musang.forum.repository;
 
-import com.musang.forum.model.CurrentUser;
+import com.musang.forum.util.SessionManager;
 import com.musang.forum.model.User;
 import com.musang.forum.server.Database;
 import javafx.collections.FXCollections;
 
-import java.io.ByteArrayInputStream;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 
 public class UserRepository {
@@ -22,11 +20,7 @@ public class UserRepository {
         try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                userList.add(new User(
-                        rs.getInt("id"), rs.getString("username"), rs.getString("display_name"),
-                        rs.getDate("dob"), rs.getString("email"), rs.getString("salt"),
-                        rs.getString("hash"))
-                );
+                userList.add(getUser(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -37,81 +31,25 @@ public class UserRepository {
 
     public static User findByUsername(String username) {
         String query = "SELECT * FROM user WHERE username = ?";
-
-        try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
-            ps.setString(1, username);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                return new User(
-                        rs.getInt("id"), rs.getString("username"), rs.getString("display_name"),
-                        rs.getDate("dob"), rs.getString("email"), rs.getString("salt"),
-                        rs.getString("hash")
-                );
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException();
-        }
-
-        return null;
+        return UserRepository.findByIdentifier(query, username);
     }
 
     public static User findByEmail(String email) {
         String query = "SELECT * FROM user WHERE email = ?";
-
-        try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
-            ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                return new User(
-                        rs.getInt("id"), rs.getString("username"), rs.getString("display_name"),
-                        rs.getDate("dob"), rs.getString("email"), rs.getString("salt"),
-                        rs.getString("hash")
-                );
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return null;
+        return UserRepository.findByIdentifier(query, email);
     }
 
-    public static String getSaltByUsername(String username) {
+    public static String findSaltByUsername(String username) {
         String query = "SELECT salt FROM user WHERE username = ?";
-
-        try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
-            ps.setString(1, username);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                return rs.getString(1);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return "";
+        return UserRepository.findSaltByIdentifier(username, query);
     }
 
-    public static String getSaltByEmail(String email) {
+    public static String findSaltByEmail(String email) {
         String query = "SELECT salt FROM user WHERE email = ?";
-
-        try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
-            ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                return rs.getString(1);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return "";
+        return UserRepository.findSaltByIdentifier(email, query);
     }
 
-    public static boolean login(String identifier, String hash) {
+    public static User login(String identifier, String hash) {
         String query = "SELECT * FROM user WHERE (username = ? OR email = ?) AND hash = ?";
 
         try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
@@ -121,15 +59,10 @@ public class UserRepository {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                CurrentUser.set(
-                        new User(
-                            rs.getInt("id"), rs.getString("username"), rs.getString("display_name"),
-                            rs.getDate("dob"), rs.getString("email"), rs.getString("salt"),
-                            rs.getString("hash"))
-                        );
-                return true;
+                return UserRepository.getUser(rs);
+            } else {
+                return null;
             }
-            return false;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -187,5 +120,40 @@ public class UserRepository {
         }
 
 
+    }
+
+    private static User findByIdentifier(String query, String identifier) {
+        try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
+            ps.setString(1, identifier);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) return getUser(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    private static String findSaltByIdentifier(String username, String query) {
+        try (PreparedStatement ps = Database.getInstance().prepareStatement(query)) {
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
+    private static User getUser(ResultSet rs) throws SQLException {
+        return new User(
+                rs.getInt("id"), rs.getString("username"), rs.getString("display_name"),
+                rs.getDate("dob"), rs.getString("email"), rs.getString("salt"),
+                rs.getString("hash"), rs.getBytes("profile_picture")
+        );
     }
 }

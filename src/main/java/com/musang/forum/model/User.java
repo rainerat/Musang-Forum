@@ -1,10 +1,14 @@
 package com.musang.forum.model;
 
 import com.musang.forum.server.Database;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 
+import java.io.ByteArrayInputStream;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class User {
     private int id;
@@ -14,11 +18,9 @@ public class User {
     private String email;
     private String salt;
     private String hash;
+    private byte[] profilePicture;
 
-
-
-
-    public User(int id, String username, String displayName, Date dob, String email, String salt, String hash) {
+    public User(int id, String username, String displayName, Date dob, String email, String salt, String hash, byte[] profilePicture) {
         this.id = id;
         this.username = username;
         this.displayName = displayName;
@@ -26,6 +28,7 @@ public class User {
         this.email = email;
         this.salt = salt;
         this.hash = hash;
+        this.profilePicture = profilePicture;
     }
 
     public User(String username, Date dob, String email, String salt, String hash) {
@@ -39,13 +42,6 @@ public class User {
     public User(int id, String username, Date dob, String email) {
         this.id = id;
         this.username = username;
-        this.dob = dob;
-        this.email = email;
-    }
-
-    public User(String username, String displayName, Date dob, String email) {
-        this.username = username;
-        this.displayName = displayName;
         this.dob = dob;
         this.email = email;
     }
@@ -83,8 +79,8 @@ public class User {
         this.displayName = displayName;
     }
 
-    public Date getDob() {
-        return dob;
+    public LocalDate getDob() {
+        return dob.toLocalDate();
     }
 
     public void setDob(Date dob) {
@@ -103,16 +99,24 @@ public class User {
         return salt;
     }
 
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
     public String getHash() {
         return hash;
     }
 
     public void setHash(String hash) {
         this.hash = hash;
+    }
+
+    public ImagePattern getProfilePicture() {
+        if (profilePicture != null) {
+            return new ImagePattern(new Image(new ByteArrayInputStream(profilePicture)));
+        } else {
+            return null;
+        }
+    }
+
+    public void setProfilePicture(byte[] profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
     public void save() {
