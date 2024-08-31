@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1015.0" style="-fx-background-color: #f3f3f3;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.forum.controller.main.HomeController">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="1015.0" spacing="15.0" style="-fx-background-color: f3f3f3;" BorderPane.alignment="CENTER">
@@ -56,7 +57,8 @@
                 <Button mnemonicParsing="false" onAction="#handleStartDiscussionButton" prefHeight="40.0" prefWidth="150.0" styleClass="main-button" stylesheets="@../../styles/mainbutton-style.css" text="Start a discussion">
                <font>
                   <Font name="Segoe UI" size="16.0" />
-               </font></Button>
+               </font>
+            </Button>
                 <ToggleButton fx:id="allDiscussionButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#showAllDiscussionsPage" prefHeight="80.0" prefWidth="150.0" stylesheets="@../../styles/togglebutton-style.css" text="All discussion" textFill="#4c4c4c">
                     <graphic>
                         <MaterialDesignIconView fill="#4c4c4c" glyphName="MESSAGE_TEXT_OUTLINE" size="35" />
@@ -89,7 +91,8 @@
             </children>
             <padding>
                 <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
-            </padding></VBox>
+            </padding>
+      </VBox>
     </left>
     <center>
         <Pane fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fefefe; -fx-background-radius: 15 0 0 0; -fx-border-radius: 15 0 0 0; -fx-border-color: dddddd; -fx-border-width: 0.7 0 0 0.7;" BorderPane.alignment="CENTER" />

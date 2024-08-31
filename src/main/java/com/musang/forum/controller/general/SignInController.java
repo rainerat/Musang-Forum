@@ -5,6 +5,7 @@ import com.musang.forum.controller.Controller;
 import com.musang.forum.controller.main.AllDiscussionsController;
 import com.musang.forum.controller.main.HomeController;
 import com.musang.forum.service.EncryptionService;
+import com.musang.forum.service.NotificationService;
 import com.musang.forum.util.SessionManager;
 import com.musang.forum.model.User;
 import com.musang.forum.repository.UserRepository;
@@ -72,9 +73,16 @@ public class SignInController extends Controller {
     private void loadHomePage() throws IOException {
         HomeController homeController = (HomeController) super.loadPage(Path.HOME);
         AllDiscussionsController controller = homeController.getDiscussionsController();
-        Client client = new Client("localhost", 59001, app().getCurrentUser());
-        client.setDiscussionsController(controller);
-        SessionManager.setClient(client);
+
+        try {
+            Client client = new Client("localhost", 59069, app().getCurrentUser());
+            client.setDiscussionsController(controller);
+            SessionManager.setClient(client);
+        } catch(IOException e) {
+            System.err.println("Client can't find server socket");
+            super.alert(NotificationService.NotificationType.ERROR,
+                    "Can't connect to the server");
+        }
     }
 
 //    private void loadForumPage() throws IOException {

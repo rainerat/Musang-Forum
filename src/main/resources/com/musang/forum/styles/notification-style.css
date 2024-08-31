@@ -1,0 +1,32 @@
+.container {
+    -fx-padding: 0 10 10 0;
+    -fx-max-width: 350;
+    -fx-alignment: center-left;
+    -fx-spacing: 10;
+}
+
+.error-box {
+    -fx-background-color: #e3cac6;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #b7918e;
+    -fx-border-width: 2;
+}
+
+.notification-text {
+    -fx-font-family: 'Segoe UI Semibold';
+    -fx-font-size: 14;
+    -fx-fill: #a94d40;
+}
+
+.button {
+    -fx-background-color: transparent;
+}
+
+.icon-x {
+    -fx-fill: #ba9b9599;
+}
+
+.icon-x:hover {
+    -fx-fill: #8C747099
+}

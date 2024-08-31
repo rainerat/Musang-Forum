@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Server {
-    private static final int PORT = 59001;
+    private static final int PORT = 59069;
     private static final Set<ClientHandler> clientHandlers = new HashSet<>();
 
     public static void main(String[] args) {

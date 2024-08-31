@@ -18,18 +18,14 @@ public class Client {
 
     private volatile boolean running = false;
 
-    public Client(String serverAddress, int port, User user) {
+    public Client(String serverAddress, int port, User user) throws IOException {
         this.user = user;
 
-        try {
-            socket = new Socket(serverAddress, port);
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out = new PrintWriter(socket.getOutputStream(), true);
-            running = true;
-            this.listenForMessages();
-        } catch (IOException e) {
-            System.err.println("[ CLIENT couldn't connect to the server ]");
-        }
+        socket = new Socket(serverAddress, port);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        out = new PrintWriter(socket.getOutputStream(), true);
+        running = true;
+        this.listenForMessages();
     }
 
     private void listenForMessages() {

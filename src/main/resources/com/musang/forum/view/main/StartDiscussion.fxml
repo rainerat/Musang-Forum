@@ -65,7 +65,7 @@
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="180.0" styleClass="main-button" stylesheets="@../../styles/mainbutton-style.css" text="Create Topic">
+            <Button mnemonicParsing="false" onAction="#handleCreateTopicButton" prefHeight="42.0" prefWidth="180.0" styleClass="main-button" stylesheets="@../../styles/mainbutton-style.css" text="Create Topic">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font></Button>

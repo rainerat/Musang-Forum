@@ -15,6 +15,7 @@ public class Path {
     public static final String CHANGE_PASSWORD = "view/settings/UpdatePassword.fxml";
     public static final String PERSONALIZE = "view/settings/Personalize.fxml";
     public static final String INFORMATION = "view/settings/Information.fxml";
+    public static final String NOTIFICATION_BUBBLE = "component/Notification.fxml";
     public static final String MESSAGE_BUBBLE = "component/MessageBubble.fxml";
     public static final String FORUM_BUBBLE = "component/ForumBubble.fxml";
 }
