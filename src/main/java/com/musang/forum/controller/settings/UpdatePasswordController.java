@@ -2,7 +2,6 @@ package com.musang.forum.controller.settings;
 
 import com.musang.forum.controller.Controller;
 import com.musang.forum.service.EncryptionService;
-import com.musang.forum.util.SessionManager;
 import com.musang.forum.model.User;
 import com.musang.forum.repository.UserRepository;
 import com.musang.forum.util.Path;

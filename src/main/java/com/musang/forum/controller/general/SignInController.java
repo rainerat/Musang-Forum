@@ -5,8 +5,8 @@ import com.musang.forum.controller.Controller;
 import com.musang.forum.controller.main.AllDiscussionsController;
 import com.musang.forum.controller.main.HomeController;
 import com.musang.forum.service.EncryptionService;
-import com.musang.forum.service.NotificationService;
-import com.musang.forum.util.SessionManager;
+import com.musang.forum.util.NotificationType;
+import com.musang.forum.util.manager.SessionManager;
 import com.musang.forum.model.User;
 import com.musang.forum.repository.UserRepository;
 import com.musang.forum.util.Path;
@@ -16,7 +16,6 @@ import javafx.scene.control.*;
 import java.io.IOException;
 
 public class SignInController extends Controller {
-
     @FXML
     private TextField identifierField;
 
@@ -71,17 +70,16 @@ public class SignInController extends Controller {
     }
 
     private void loadHomePage() throws IOException {
-        HomeController homeController = (HomeController) super.loadPage(Path.HOME);
-        AllDiscussionsController controller = homeController.getDiscussionsController();
+        Controller homeController = super.loadPage(Path.HOME);
+        AllDiscussionsController allDiscussionsController = ((HomeController) homeController).getDiscussionsController();
 
         try {
             Client client = new Client("localhost", 59069, app().getCurrentUser());
-            client.setDiscussionsController(controller);
+            client.setDiscussionsController(allDiscussionsController);
             SessionManager.setClient(client);
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.err.println("Client can't find server socket");
-            super.alert(NotificationService.NotificationType.ERROR,
-                    "Can't connect to the server");
+            super.alert(NotificationType.ERROR, "Can't connect to the server");
         }
     }
 

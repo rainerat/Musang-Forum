@@ -4,9 +4,8 @@ import com.musang.forum.controller.Controller;
 import com.musang.forum.controller.main.ForumController;
 import com.musang.forum.model.CurrentForum;
 import com.musang.forum.model.Forum;
-import com.musang.forum.service.NotificationService;
+import com.musang.forum.util.NotificationType;
 import com.musang.forum.util.Path;
-import com.musang.forum.util.SessionManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -43,8 +42,7 @@ public class ForumBubbleController extends Controller {
             app().getClient().setForumController(controller);
         } catch(NullPointerException e) {
             System.err.println("Client is null");
-            super.alert(NotificationService.NotificationType.ERROR,
-                    "Can't connect to the server");
+            super.alert(NotificationType.ERROR, "Can't connect to the server");
         }
     }
 

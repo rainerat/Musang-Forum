@@ -1,8 +1,8 @@
 package com.musang.forum.controller.main;
 
 import com.musang.forum.controller.Controller;
-import com.musang.forum.service.NotificationService;
-import com.musang.forum.util.PageManager;
+import com.musang.forum.util.NotificationType;
+import com.musang.forum.util.manager.PageManager;
 import com.musang.forum.util.Path;
 import javafx.fxml.FXML;
 
@@ -16,8 +16,7 @@ public class StartDiscussionController extends Controller {
 
     @FXML
     protected void handleCreateTopicButton() {
-        super.alert(NotificationService.NotificationType.ERROR,
-                "Feature not implemented");
+        super.alert(NotificationType.ERROR, "Feature not implemented");
     }
 
     @FXML

@@ -2,7 +2,7 @@ package com.musang.forum.controller.settings;
 
 import com.musang.forum.controller.Controller;
 import com.musang.forum.customfx.ToggleGroup;
-import com.musang.forum.util.PageManager;
+import com.musang.forum.util.manager.PageManager;
 import com.musang.forum.util.Path;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

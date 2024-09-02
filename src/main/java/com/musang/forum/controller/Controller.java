@@ -2,10 +2,10 @@ package com.musang.forum.controller;
 
 import com.musang.forum.App;
 import com.musang.forum.Main;
-import com.musang.forum.service.NotificationService;
-import com.musang.forum.util.PageManager;
-import com.musang.forum.util.StageManager;
-import com.musang.forum.util.ThemeManager;
+import com.musang.forum.util.NotificationType;
+import com.musang.forum.util.manager.PageManager;
+import com.musang.forum.util.manager.StageManager;
+import com.musang.forum.util.manager.ThemeManager;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -68,15 +68,11 @@ public abstract class Controller {
             centerPane.getChildren().setAll(pane);
             return loadedController;
         } catch (IOException e) {
-            alert(NotificationService.NotificationType.ERROR, "Couldn't load page");
+            alert(NotificationType.ERROR, "Couldn't load page");
             e.printStackTrace();
         }
         return null;
     }
-
-//    protected void loadPreviousPage() throws IOException {
-//        StageManager.getPrimaryStage().setScene(new Scene(getLoader(PageManager.getPreviousPagePath()).load()));
-//    }
 
     protected void setMainController(Controller controller) {
         this.controller = controller;
@@ -86,11 +82,11 @@ public abstract class Controller {
         return controller;
     }
 
-    public void alert(NotificationService.NotificationType type, String message) {
+    public void alert(NotificationType type, String message) {
         try {
             app().getNotificationService().send(type, message);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Couldn't send notification");
         }
     }
 

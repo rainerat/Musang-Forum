@@ -2,6 +2,7 @@ package com.musang.forum.service;
 
 import com.musang.forum.Main;
 import com.musang.forum.controller.component.NotificationController;
+import com.musang.forum.util.NotificationType;
 import com.musang.forum.util.Path;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
@@ -15,14 +16,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class NotificationService {
-    private static final VBox notificationContainer = new VBox();
 
-    public enum NotificationType {
-        INFO,
-        WARNING,
-        ERROR,
-        SUCCESS
-    }
+    private static final VBox notificationContainer = new VBox();
 
     public NotificationService() {
         notificationContainer.setMaxHeight(notificationContainer.getHeight());
@@ -46,26 +41,34 @@ public class NotificationService {
             case INFO:
                 notification.getStyleClass().add("info-box");
                 controller.setMessage("Info: " + message);
+                controller.setInfoIcon();
                 break;
 
             case WARNING:
                 notification.getStyleClass().add("warning-box");
                 controller.setMessage("Warning: " + message);
+                controller.setWarningIcon();
                 break;
 
             case ERROR:
                 notification.getStyleClass().add("error-box");
                 controller.setMessage("Error: " + message);
+                controller.setErrorIcon();
                 break;
 
             case SUCCESS:
                 notification.getStyleClass().add("success-box");
                 controller.setMessage("Success: " + message);
+                controller.setSuccessIcon();
                 break;
         }
 
         notificationContainer.getChildren().add(notification);
-        new Timeline(new KeyFrame(Duration.seconds(5), event -> close(notification))).play();
+
+        final int FADE_DURATION = 5;
+        new Timeline(new KeyFrame(Duration.seconds(FADE_DURATION), event -> {
+            this.close(notification);
+        })).play();
     }
 
     /**

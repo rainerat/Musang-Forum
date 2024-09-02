@@ -2,7 +2,7 @@ package com.musang.forum.controller.settings;
 
 import com.musang.forum.controller.Controller;
 import com.musang.forum.util.Path;
-import com.musang.forum.util.ThemeManager;
+import com.musang.forum.util.manager.ThemeManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 

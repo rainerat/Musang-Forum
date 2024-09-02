@@ -1,4 +1,4 @@
-package com.musang.forum.util;
+package com.musang.forum.util.manager;
 
 import javafx.stage.Stage;
 

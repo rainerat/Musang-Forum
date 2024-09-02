@@ -1,6 +1,5 @@
 package com.musang.forum.repository;
 
-import com.musang.forum.util.SessionManager;
 import com.musang.forum.model.User;
 import com.musang.forum.server.Database;
 import javafx.collections.FXCollections;

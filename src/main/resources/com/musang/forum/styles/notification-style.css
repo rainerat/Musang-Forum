@@ -5,18 +5,39 @@
     -fx-spacing: 10;
 }
 
-.error-box {
-    -fx-background-color: #e3cac6;
+.h-box {
     -fx-background-radius: 5;
     -fx-border-radius: 5;
-    -fx-border-color: #b7918e;
     -fx-border-width: 2;
 }
 
-.notification-text {
+.text {
     -fx-font-family: 'Segoe UI Semibold';
     -fx-font-size: 14;
-    -fx-fill: #a94d40;
+}
+
+.info-box, .info-box .icon, .info-box .text {
+    -fx-background-color: #d5e6f4;
+    -fx-border-color: #96b9dd;
+    -fx-fill: #5d7aac;
+}
+
+.warning-box, .warning-box .icon, .warning-box .text {
+    -fx-background-color: #f5f5d8;
+    -fx-border-color: #d4d28b;
+    -fx-fill: #8c7639;
+}
+
+.error-box, .error-box .icon, .error-box .text {
+    -fx-background-color: #e3cac6;
+    -fx-border-color: #b7918e;
+    -fx-fill: #9d4032;
+}
+
+.success-box, .success-box .icon, .success-box .text {
+    -fx-background-color: #e2f3d7;
+    -fx-border-color: #b7cea8;
+    -fx-fill: #5f7154;
 }
 
 .button {
@@ -24,9 +45,9 @@
 }
 
 .icon-x {
-    -fx-fill: #ba9b9599;
+    -fx-opacity: .15;
 }
 
 .icon-x:hover {
-    -fx-fill: #8C747099
+    -fx-opacity: .20;
 }

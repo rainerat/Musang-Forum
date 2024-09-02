@@ -1,6 +1,6 @@
 package com.musang.forum;
 
-import com.musang.forum.util.StageManager;
+import com.musang.forum.util.manager.StageManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

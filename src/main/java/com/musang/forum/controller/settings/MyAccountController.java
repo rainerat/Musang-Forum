@@ -1,8 +1,8 @@
 package com.musang.forum.controller.settings;
 
 import com.musang.forum.controller.Controller;
-import com.musang.forum.util.AssetManager;
-import com.musang.forum.util.SessionManager;
+import com.musang.forum.util.manager.AssetManager;
+import com.musang.forum.util.manager.SessionManager;
 import com.musang.forum.model.User;
 import com.musang.forum.service.FileService;
 import com.musang.forum.service.UserService;
