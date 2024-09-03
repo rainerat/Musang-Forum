@@ -1,14 +1,14 @@
-.genre-label {
+.tag-label {
     -fx-background-color: #605341;
     -fx-text-fill: white;
     -fx-background-radius: 20;
     -fx-padding: 3 12 3 12;
 }
 
-.genre-label:hover {
+.tag-label:hover {
     -fx-background-color: #4f4436;
 }
 
-.genre-label:pressed {
+.tag-label:pressed {
     -fx-background-color: #5d503f;
 }

@@ -23,8 +23,8 @@ public abstract class Controller {
         PageManager.setCurrentPage(PATH);
         ThemeManager.setCurrentTheme(ThemeManager.getAll().getFirst());
 
-        System.out.println("Current Page: " + PageManager.getCurrentPagePath());
-        System.out.println("Previous Page: " + PageManager.getPreviousPagePath());
+//        System.out.println("Current Page: " + PageManager.getCurrentPagePath());
+//        System.out.println("Previous Page: " + PageManager.getPreviousPagePath());
     }
 
     protected FXMLLoader getLoader(final String PATH) throws IOException {

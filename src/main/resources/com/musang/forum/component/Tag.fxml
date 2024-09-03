@@ -1,0 +1,7 @@
+<?import javafx.scene.control.Label?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<Label alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="5.0" prefHeight="30.0" styleClass="genre-label" text="Tag short" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.forum.controller.component.TagController">
+    <graphic>
+        <MaterialDesignIconView fill="#fefefe" glyphName="CLOSE" size="16" />
+    </graphic>
+</Label>

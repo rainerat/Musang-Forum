@@ -11,11 +11,11 @@
 
 <VBox maxHeight="200.0" onMouseClicked="#handleForumBubble" spacing="5.0" styleClass="forum-bubble" stylesheets="@../styles/forum-bubble-style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musang.forum.controller.component.ForumBubbleController">
     <children>
-        <FlowPane hgap="10.0" rowValignment="TOP" stylesheets="@../styles/genre-style.css" vgap="5.0">
+        <FlowPane hgap="10.0" rowValignment="TOP" stylesheets="@../styles/tag-style.css" vgap="5.0">
             <children>
-                <Label alignment="CENTER" styleClass="genre-label" text="Genre" />
-                <Label alignment="CENTER" styleClass="genre-label" text="BDSM" />
-                <Label alignment="CENTER" styleClass="genre-label" text="Futanari" />
+                <Label alignment="CENTER" styleClass="tag-label" text="Tag 1" />
+                <Label alignment="CENTER" styleClass="tag-label" text="Tag 2" />
+                <Label alignment="CENTER" styleClass="tag-label" text="Tag 3" />
             </children>
         </FlowPane>
         <Label fx:id="titleLabel" alignment="TOP_LEFT" text="Title" textFill="#1b1b1b">
